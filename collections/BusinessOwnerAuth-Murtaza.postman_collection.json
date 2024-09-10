@@ -1,0 +1,2556 @@
+{
+	"info": {
+		"_postman_id": "77a55a04-2e5f-4d5d-91bb-047fa7471ec8",
+		"name": "BusinessOwnerAuth-Murtaza - Working",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37800078",
+		"_collection_link": "https://warped-astronaut-104320.postman.co/workspace/Team-Workspace~15ec6838-957d-4df8-8655-6ab04cad34ba/collection/37800078-77a55a04-2e5f-4d5d-91bb-047fa7471ec8?action=share&source=collection_link&creator=37800078"
+	},
+	"item": [
+		{
+			"name": "TempEmailServiceCreation",
+			"item": [
+				{
+					"name": "https://api.mail.tm/domains?page=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// if(pm.variables.get(\"isPositiveScenario\")==true){\r",
+									"pm.environment.set(\"domain\", jsonData[\"hydra:member\"][0].domain);\r",
+									"console.log(\"Available domain is \"+ pm.environment.get(\"domain\"));\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json"
+							}
+						],
+						"url": {
+							"raw": "https://api.mail.tm/domains?page=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mail",
+								"tm"
+							],
+							"path": [
+								"domains"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://api.mail.tm/domains?page=1' \\\r\n  -H 'accept: application/ld+json'"
+					},
+					"response": [
+						{
+							"name": "https://api.mail.tm/domains?page=1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/ld+json"
+									}
+								],
+								"url": {
+									"raw": "https://api.mail.tm/domains?page=1",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mail",
+										"tm"
+									],
+									"path": [
+										"domains"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Sep 2024 07:54:40 GMT"
+								},
+								{
+									"key": "etag",
+									"value": "\"57d5aa2d67b7b2573e359883cf1f330f\""
+								},
+								{
+									"key": "link",
+									"value": "<http://api.mail.tm/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "ratelimit-policy",
+									"value": "50; w=60"
+								},
+								{
+									"key": "server",
+									"value": "Caddy"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "deny"
+								},
+								{
+									"key": "content-length",
+									"value": "349"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/contexts/Domain\",\n    \"@id\": \"/domains\",\n    \"@type\": \"hydra:Collection\",\n    \"hydra:totalItems\": 1,\n    \"hydra:member\": [\n        {\n            \"@id\": \"/domains/66cc313193890a46cc415124\",\n            \"@type\": \"Domain\",\n            \"id\": \"66cc313193890a46cc415124\",\n            \"domain\": \"starmail.net\",\n            \"isActive\": true,\n            \"isPrivate\": false,\n            \"createdAt\": \"2024-08-26T00:00:00+00:00\",\n            \"updatedAt\": \"2024-08-26T00:00:00+00:00\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "https://api.mail.tm/accounts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// pm.environment.set(\"domain\", jsonData[\"hydra:member\"][0].domain);\r",
+									"// console.log(\"Available domain is \"+ pm.environment.get(\"domain\"));\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Random Name Generator for Javascript\r",
+									"*/\r",
+									"function capFirst(string) {\r",
+									"    return string.charAt(0).toUpperCase() + string.slice(1);\r",
+									"}\r",
+									"\r",
+									"function getRandomInt(min, max) {\r",
+									"  \treturn Math.floor(Math.random() * (max - min)) + min;\r",
+									"}\r",
+									"var name1 = [\"abandoned\",\"able\",\"absolute\",\"adorable\",\"adventurous\",\"academic\",\"acceptable\",\"acclaimed\",\"accomplished\",\"accurate\",\"aching\",\"acidic\",\"acrobatic\",\"active\",\"actual\",\"adept\",\"admirable\",\"admired\",\"adolescent\",\"adorable\",\"adored\",\"advanced\",\"afraid\",\"affectionate\",\"aged\",\"aggravating\",\"aggressive\",\"agile\",\"agitated\",\"agonizing\",\"agreeable\",\"ajar\",\"alarmed\",\"alarming\",\"alert\",\"alienated\",\"alive\",\"all\",\"altruistic\",\"amazing\",\"ambitious\",\"ample\",\"amused\",\"amusing\",\"anchored\",\"ancient\",\"angelic\",\"angry\",\"anguished\",\"animated\",\"annual\",\"another\",\"antique\",\"anxious\",\"any\",\"apprehensive\",\"appropriate\",\"apt\",\"arctic\",\"arid\",\"aromatic\",\"artistic\",\"ashamed\",\"assured\",\"astonishing\",\"athletic\",\"attached\",\"attentive\",\"attractive\",\"austere\",\"authentic\",\"authorized\",\"automatic\",\"avaricious\",\"average\",\"aware\",\"awesome\",\"awful\",\"awkward\",\"babyish\",\"bad\",\"back\",\"baggy\",\"bare\",\"barren\",\"basic\",\"beautiful\",\"belated\",\"beloved\",\"beneficial\",\"better\",\"best\",\"bewitched\",\"big\",\"big-hearted\",\"biodegradable\",\"bite-sized\",\"bitter\",\"black\",\"black-and-white\",\"bland\",\"blank\",\"blaring\",\"bleak\",\"blind\",\"blissful\",\"blond\",\"blue\",\"blushing\",\"bogus\",\"boiling\",\"bold\",\"bony\",\"boring\",\"bossy\",\"both\",\"bouncy\",\"bountiful\",\"bowed\",\"brave\",\"breakable\",\"brief\",\"bright\",\"brilliant\",\"brisk\",\"broken\",\"bronze\",\"brown\",\"bruised\",\"bubbly\",\"bulky\",\"bumpy\",\"buoyant\",\"burdensome\",\"burly\",\"bustling\",\"busy\",\"buttery\",\"buzzing\",\"calculating\",\"calm\",\"candid\",\"canine\",\"capital\",\"carefree\",\"careful\",\"careless\",\"caring\",\"cautious\",\"cavernous\",\"celebrated\",\"charming\",\"cheap\",\"cheerful\",\"cheery\",\"chief\",\"chilly\",\"chubby\",\"circular\",\"classic\",\"clean\",\"clear\",\"clear-cut\",\"clever\",\"close\",\"closed\",\"cloudy\",\"clueless\",\"clumsy\",\"cluttered\",\"coarse\",\"cold\",\"colorful\",\"colorless\",\"colossal\",\"comfortable\",\"common\",\"compassionate\",\"competent\",\"complete\",\"complex\",\"complicated\",\"composed\",\"concerned\",\"concrete\",\"confused\",\"conscious\",\"considerate\",\"constant\",\"content\",\"conventional\",\"cooked\",\"cool\",\"cooperative\",\"coordinated\",\"corny\",\"corrupt\",\"costly\",\"courageous\",\"courteous\",\"crafty\",\"crazy\",\"creamy\",\"creative\",\"creepy\",\"criminal\",\"crisp\",\"critical\",\"crooked\",\"crowded\",\"cruel\",\"crushing\",\"cuddly\",\"cultivated\",\"cultured\",\"cumbersome\",\"curly\",\"curvy\",\"cute\",\"cylindrical\",\"damaged\",\"damp\",\"dangerous\",\"dapper\",\"daring\",\"darling\",\"dark\",\"dazzling\",\"dead\",\"deadly\",\"deafening\",\"dear\",\"dearest\",\"decent\",\"decimal\",\"decisive\",\"deep\",\"defenseless\",\"defensive\",\"defiant\",\"deficient\",\"definite\",\"definitive\",\"delayed\",\"delectable\",\"delicious\",\"delightful\",\"delirious\",\"demanding\",\"dense\",\"dental\",\"dependable\",\"dependent\",\"descriptive\",\"deserted\",\"detailed\",\"determined\",\"devoted\",\"different\",\"difficult\",\"digital\",\"diligent\",\"dim\",\"dimpled\",\"dimwitted\",\"direct\",\"disastrous\",\"discrete\",\"disfigured\",\"disgusting\",\"disloyal\",\"dismal\",\"distant\",\"downright\",\"dreary\",\"dirty\",\"disguised\",\"dishonest\",\"dismal\",\"distant\",\"distinct\",\"distorted\",\"dizzy\",\"dopey\",\"doting\",\"double\",\"downright\",\"drab\",\"drafty\",\"dramatic\",\"dreary\",\"droopy\",\"dry\",\"dual\",\"dull\",\"dutiful\",\"each\",\"eager\",\"earnest\",\"early\",\"easy\",\"easy-going\",\"ecstatic\",\"edible\",\"educated\",\"elaborate\",\"elastic\",\"elated\",\"elderly\",\"electric\",\"elegant\",\"elementary\",\"elliptical\",\"embarrassed\",\"embellished\",\"eminent\",\"emotional\",\"empty\",\"enchanted\",\"enchanting\",\"energetic\",\"enlightened\",\"enormous\",\"enraged\",\"entire\",\"envious\",\"equal\",\"equatorial\",\"essential\",\"esteemed\",\"ethical\",\"euphoric\",\"even\",\"evergreen\",\"everlasting\",\"every\",\"evil\",\"exalted\",\"excellent\",\"exemplary\",\"exhausted\",\"excitable\",\"excited\",\"exciting\",\"exotic\",\"expensive\",\"experienced\",\"expert\",\"extraneous\",\"extroverted\",\"extra-large\",\"extra-small\",\"fabulous\",\"failing\",\"faint\",\"fair\",\"faithful\",\"fake\",\"false\",\"familiar\",\"famous\",\"fancy\",\"fantastic\",\"far\",\"faraway\",\"far-flung\",\"far-off\",\"fast\",\"fat\",\"fatal\",\"fatherly\",\"favorable\",\"favorite\",\"fearful\",\"fearless\",\"feisty\",\"feline\",\"female\",\"feminine\",\"few\",\"fickle\",\"filthy\",\"fine\",\"finished\",\"firm\",\"first\",\"firsthand\",\"fitting\",\"fixed\",\"flaky\",\"flamboyant\",\"flashy\",\"flat\",\"flawed\",\"flawless\",\"flickering\",\"flimsy\",\"flippant\",\"flowery\",\"fluffy\",\"fluid\",\"flustered\",\"focused\",\"fond\",\"foolhardy\",\"foolish\",\"forceful\",\"forked\",\"formal\",\"forsaken\",\"forthright\",\"fortunate\",\"fragrant\",\"frail\",\"frank\",\"frayed\",\"free\",\"French\",\"fresh\",\"frequent\",\"friendly\",\"frightened\",\"frightening\",\"frigid\",\"frilly\",\"frizzy\",\"frivolous\",\"front\",\"frosty\",\"frozen\",\"frugal\",\"fruitful\",\"full\",\"fumbling\",\"functional\",\"funny\",\"fussy\",\"fuzzy\",\"gargantuan\",\"gaseous\",\"general\",\"generous\",\"gentle\",\"genuine\",\"giant\",\"giddy\",\"gigantic\",\"gifted\",\"giving\",\"glamorous\",\"glaring\",\"glass\",\"gleaming\",\"gleeful\",\"glistening\",\"glittering\",\"gloomy\",\"glorious\",\"glossy\",\"glum\",\"golden\",\"good\",\"good-natured\",\"gorgeous\",\"graceful\",\"gracious\",\"grand\",\"grandiose\",\"granular\",\"grateful\",\"grave\",\"gray\",\"great\",\"greedy\",\"green\",\"gregarious\",\"grim\",\"grimy\",\"gripping\",\"grizzled\",\"gross\",\"grotesque\",\"grouchy\",\"grounded\",\"growing\",\"growling\",\"grown\",\"grubby\",\"gruesome\",\"grumpy\",\"guilty\",\"gullible\",\"gummy\",\"hairy\",\"half\",\"handmade\",\"handsome\",\"handy\",\"happy\",\"happy-go-lucky\",\"hard\",\"hard-to-find\",\"harmful\",\"harmless\",\"harmonious\",\"harsh\",\"hasty\",\"hateful\",\"haunting\",\"healthy\",\"heartfelt\",\"hearty\",\"heavenly\",\"heavy\",\"hefty\",\"helpful\",\"helpless\",\"hidden\",\"hideous\",\"high\",\"high-level\",\"hilarious\",\"hoarse\",\"hollow\",\"homely\",\"honest\",\"honorable\",\"honored\",\"hopeful\",\"horrible\",\"hospitable\",\"hot\",\"huge\",\"humble\",\"humiliating\",\"humming\",\"humongous\",\"hungry\",\"hurtful\",\"husky\",\"icky\",\"icy\",\"ideal\",\"idealistic\",\"identical\",\"idle\",\"idiotic\",\"idolized\",\"ignorant\",\"ill\",\"illegal\",\"ill-fated\",\"ill-informed\",\"illiterate\",\"illustrious\",\"imaginary\",\"imaginative\",\"immaculate\",\"immaterial\",\"immediate\",\"immense\",\"impassioned\",\"impeccable\",\"impartial\",\"imperfect\",\"imperturbable\",\"impish\",\"impolite\",\"important\",\"impossible\",\"impractical\",\"impressionable\",\"impressive\",\"improbable\",\"impure\",\"inborn\",\"incomparable\",\"incompatible\",\"incomplete\",\"inconsequential\",\"incredible\",\"indelible\",\"inexperienced\",\"indolent\",\"infamous\",\"infantile\",\"infatuated\",\"inferior\",\"infinite\",\"informal\",\"innocent\",\"insecure\",\"insidious\",\"insignificant\",\"insistent\",\"instructive\",\"insubstantial\",\"intelligent\",\"intent\",\"intentional\",\"interesting\",\"internal\",\"international\",\"intrepid\",\"ironclad\",\"irresponsible\",\"irritating\",\"itchy\",\"jaded\",\"jagged\",\"jam-packed\",\"jaunty\",\"jealous\",\"jittery\",\"joint\",\"jolly\",\"jovial\",\"joyful\",\"joyous\",\"jubilant\",\"judicious\",\"juicy\",\"jumbo\",\"junior\",\"jumpy\",\"juvenile\",\"kaleidoscopic\",\"keen\",\"key\",\"kind\",\"kindhearted\",\"kindly\",\"klutzy\",\"knobby\",\"knotty\",\"knowledgeable\",\"knowing\",\"known\",\"kooky\",\"kosher\",\"lame\",\"lanky\",\"large\",\"last\",\"lasting\",\"late\",\"lavish\",\"lawful\",\"lazy\",\"leading\",\"lean\",\"leafy\",\"left\",\"legal\",\"legitimate\",\"light\",\"lighthearted\",\"likable\",\"likely\",\"limited\",\"limp\",\"limping\",\"linear\",\"lined\",\"liquid\",\"little\",\"live\",\"lively\",\"livid\",\"loathsome\",\"lone\",\"lonely\",\"long\",\"long-term\",\"loose\",\"lopsided\",\"lost\",\"loud\",\"lovable\",\"lovely\",\"loving\",\"low\",\"loyal\",\"lucky\",\"lumbering\",\"luminous\",\"lumpy\",\"lustrous\",\"luxurious\",\"mad\",\"made-up\",\"magnificent\",\"majestic\",\"major\",\"male\",\"mammoth\",\"married\",\"marvelous\",\"masculine\",\"massive\",\"mature\",\"meager\",\"mealy\",\"mean\",\"measly\",\"meaty\",\"medical\",\"mediocre\",\"medium\",\"meek\",\"mellow\",\"melodic\",\"memorable\",\"menacing\",\"merry\",\"messy\",\"metallic\",\"mild\",\"milky\",\"mindless\",\"miniature\",\"minor\",\"minty\",\"miserable\",\"miserly\",\"misguided\",\"misty\",\"mixed\",\"modern\",\"modest\",\"moist\",\"monstrous\",\"monthly\",\"monumental\",\"moral\",\"mortified\",\"motherly\",\"motionless\",\"mountainous\",\"muddy\",\"muffled\",\"multicolored\",\"mundane\",\"murky\",\"mushy\",\"musty\",\"muted\",\"mysterious\",\"naive\",\"narrow\",\"nasty\",\"natural\",\"naughty\",\"nautical\",\"near\",\"neat\",\"necessary\",\"needy\",\"negative\",\"neglected\",\"negligible\",\"neighboring\",\"nervous\",\"new\",\"next\",\"nice\",\"nifty\",\"nimble\",\"nippy\",\"nocturnal\",\"noisy\",\"nonstop\",\"normal\",\"notable\",\"noted\",\"noteworthy\",\"novel\",\"noxious\",\"numb\",\"nutritious\",\"nutty\",\"obedient\",\"obese\",\"oblong\",\"oily\",\"oblong\",\"obvious\",\"occasional\",\"odd\",\"oddball\",\"offbeat\",\"offensive\",\"official\",\"old\",\"old-fashioned\",\"only\",\"open\",\"optimal\",\"optimistic\",\"opulent\",\"orange\",\"orderly\",\"organic\",\"ornate\",\"ornery\",\"ordinary\",\"original\",\"other\",\"our\",\"outlying\",\"outgoing\",\"outlandish\",\"outrageous\",\"outstanding\",\"oval\",\"overcooked\",\"overdue\",\"overjoyed\",\"overlooked\",\"palatable\",\"pale\",\"paltry\",\"parallel\",\"parched\",\"partial\",\"passionate\",\"past\",\"pastel\",\"peaceful\",\"peppery\",\"perfect\",\"perfumed\",\"periodic\",\"perky\",\"personal\",\"pertinent\",\"pesky\",\"pessimistic\",\"petty\",\"phony\",\"physical\",\"piercing\",\"pink\",\"pitiful\",\"plain\",\"plaintive\",\"plastic\",\"playful\",\"pleasant\",\"pleased\",\"pleasing\",\"plump\",\"plush\",\"polished\",\"polite\",\"political\",\"pointed\",\"pointless\",\"poised\",\"poor\",\"popular\",\"portly\",\"posh\",\"positive\",\"possible\",\"potable\",\"powerful\",\"powerless\",\"practical\",\"precious\",\"present\",\"prestigious\",\"pretty\",\"precious\",\"previous\",\"pricey\",\"prickly\",\"primary\",\"prime\",\"pristine\",\"private\",\"prize\",\"probable\",\"productive\",\"profitable\",\"profuse\",\"proper\",\"proud\",\"prudent\",\"punctual\",\"pungent\",\"puny\",\"pure\",\"purple\",\"pushy\",\"putrid\",\"puzzled\",\"puzzling\",\"quaint\",\"qualified\",\"quarrelsome\",\"quarterly\",\"queasy\",\"querulous\",\"questionable\",\"quick\",\"quick-witted\",\"quiet\",\"quintessential\",\"quirky\",\"quixotic\",\"quizzical\",\"radiant\",\"ragged\",\"rapid\",\"rare\",\"rash\",\"raw\",\"recent\",\"reckless\",\"rectangular\",\"ready\",\"real\",\"realistic\",\"reasonable\",\"red\",\"reflecting\",\"regal\",\"regular\",\"reliable\",\"relieved\",\"remarkable\",\"remorseful\",\"remote\",\"repentant\",\"required\",\"respectful\",\"responsible\",\"repulsive\",\"revolving\",\"rewarding\",\"rich\",\"rigid\",\"right\",\"ringed\",\"ripe\",\"roasted\",\"robust\",\"rosy\",\"rotating\",\"rotten\",\"rough\",\"round\",\"rowdy\",\"royal\",\"rubbery\",\"rundown\",\"ruddy\",\"rude\",\"runny\",\"rural\",\"rusty\",\"sad\",\"safe\",\"salty\",\"same\",\"sandy\",\"sane\",\"sarcastic\",\"sardonic\",\"satisfied\",\"scaly\",\"scarce\",\"scared\",\"scary\",\"scented\",\"scholarly\",\"scientific\",\"scornful\",\"scratchy\",\"scrawny\",\"second\",\"secondary\",\"second-hand\",\"secret\",\"self-assured\",\"self-reliant\",\"selfish\",\"sentimental\",\"separate\",\"serene\",\"serious\",\"serpentine\",\"several\",\"severe\",\"shabby\",\"shadowy\",\"shady\",\"shallow\",\"shameful\",\"shameless\",\"sharp\",\"shimmering\",\"shiny\",\"shocked\",\"shocking\",\"shoddy\",\"short\",\"short-term\",\"showy\",\"shrill\",\"shy\",\"sick\",\"silent\",\"silky\",\"silly\",\"silver\",\"similar\",\"simple\",\"simplistic\",\"sinful\",\"single\",\"sizzling\",\"skeletal\",\"skinny\",\"sleepy\",\"slight\",\"slim\",\"slimy\",\"slippery\",\"slow\",\"slushy\",\"small\",\"smart\",\"smoggy\",\"smooth\",\"smug\",\"snappy\",\"snarling\",\"sneaky\",\"sniveling\",\"snoopy\",\"sociable\",\"soft\",\"soggy\",\"solid\",\"somber\",\"some\",\"spherical\",\"sophisticated\",\"sore\",\"sorrowful\",\"soulful\",\"soupy\",\"sour\",\"Spanish\",\"sparkling\",\"sparse\",\"specific\",\"spectacular\",\"speedy\",\"spicy\",\"spiffy\",\"spirited\",\"spiteful\",\"splendid\",\"spotless\",\"spotted\",\"spry\",\"square\",\"squeaky\",\"squiggly\",\"stable\",\"staid\",\"stained\",\"stale\",\"standard\",\"starchy\",\"stark\",\"starry\",\"steep\",\"sticky\",\"stiff\",\"stimulating\",\"stingy\",\"stormy\",\"straight\",\"strange\",\"steel\",\"strict\",\"strident\",\"striking\",\"striped\",\"strong\",\"studious\",\"stunning\",\"stupendous\",\"stupid\",\"sturdy\",\"stylish\",\"subdued\",\"submissive\",\"substantial\",\"subtle\",\"suburban\",\"sudden\",\"sugary\",\"sunny\",\"super\",\"superb\",\"superficial\",\"superior\",\"supportive\",\"sure-footed\",\"surprised\",\"suspicious\",\"svelte\",\"sweaty\",\"sweet\",\"sweltering\",\"swift\",\"sympathetic\",\"tall\",\"talkative\",\"tame\",\"tan\",\"tangible\",\"tart\",\"tasty\",\"tattered\",\"taut\",\"tedious\",\"teeming\",\"tempting\",\"tender\",\"tense\",\"tepid\",\"terrible\",\"terrific\",\"testy\",\"thankful\",\"that\",\"these\",\"thick\",\"thin\",\"third\",\"thirsty\",\"this\",\"thorough\",\"thorny\",\"those\",\"thoughtful\",\"threadbare\",\"thrifty\",\"thunderous\",\"tidy\",\"tight\",\"timely\",\"tinted\",\"tiny\",\"tired\",\"torn\",\"total\",\"tough\",\"traumatic\",\"treasured\",\"tremendous\",\"tragic\",\"trained\",\"tremendous\",\"triangular\",\"tricky\",\"trifling\",\"trim\",\"trivial\",\"troubled\",\"true\",\"trusting\",\"trustworthy\",\"trusty\",\"truthful\",\"tubby\",\"turbulent\",\"twin\",\"ugly\",\"ultimate\",\"unacceptable\",\"unaware\",\"uncomfortable\",\"uncommon\",\"unconscious\",\"understated\",\"unequaled\",\"uneven\",\"unfinished\",\"unfit\",\"unfolded\",\"unfortunate\",\"unhappy\",\"unhealthy\",\"uniform\",\"unimportant\",\"unique\",\"united\",\"unkempt\",\"unknown\",\"unlawful\",\"unlined\",\"unlucky\",\"unnatural\",\"unpleasant\",\"unrealistic\",\"unripe\",\"unruly\",\"unselfish\",\"unsightly\",\"unsteady\",\"unsung\",\"untidy\",\"untimely\",\"untried\",\"untrue\",\"unused\",\"unusual\",\"unwelcome\",\"unwieldy\",\"unwilling\",\"unwitting\",\"unwritten\",\"upbeat\",\"upright\",\"upset\",\"urban\",\"usable\",\"used\",\"useful\",\"useless\",\"utilized\",\"utter\",\"vacant\",\"vague\",\"vain\",\"valid\",\"valuable\",\"vapid\",\"variable\",\"vast\",\"velvety\",\"venerated\",\"vengeful\",\"verifiable\",\"vibrant\",\"vicious\",\"victorious\",\"vigilant\",\"vigorous\",\"villainous\",\"violet\",\"violent\",\"virtual\",\"virtuous\",\"visible\",\"vital\",\"vivacious\",\"vivid\",\"voluminous\",\"wan\",\"warlike\",\"warm\",\"warmhearted\",\"warped\",\"wary\",\"wasteful\",\"watchful\",\"waterlogged\",\"watery\",\"wavy\",\"wealthy\",\"weak\",\"weary\",\"webbed\",\"wee\",\"weekly\",\"weepy\",\"weighty\",\"weird\",\"welcome\",\"well-documented\",\"well-groomed\",\"well-informed\",\"well-lit\",\"well-made\",\"well-off\",\"well-to-do\",\"well-worn\",\"wet\",\"which\",\"whimsical\",\"whirlwind\",\"whispered\",\"white\",\"whole\",\"whopping\",\"wicked\",\"wide\",\"wide-eyed\",\"wiggly\",\"wild\",\"willing\",\"wilted\",\"winding\",\"windy\",\"winged\",\"wiry\",\"wise\",\"witty\",\"wobbly\",\"woeful\",\"wonderful\",\"wooden\",\"woozy\",\"wordy\",\"worldly\",\"worn\",\"worried\",\"worrisome\",\"worse\",\"worst\",\"worthless\",\"worthwhile\",\"worthy\",\"wrathful\",\"wretched\",\"writhing\",\"wrong\",\"wry\",\"yawning\",\"yearly\",\"yellow\",\"yellowish\",\"young\",\"youthful\",\"yummy\",\"zany\",\"zealous\",\"zesty\",\"zigzag\",\"rocky\"];\r",
+									"\r",
+									"var name2 = [\"people\",\"history\",\"way\",\"art\",\"world\",\"information\",\"map\",\"family\",\"government\",\"health\",\"system\",\"computer\",\"meat\",\"year\",\"thanks\",\"music\",\"person\",\"reading\",\"method\",\"data\",\"food\",\"understanding\",\"theory\",\"law\",\"bird\",\"literature\",\"problem\",\"software\",\"control\",\"knowledge\",\"power\",\"ability\",\"economics\",\"love\",\"internet\",\"television\",\"science\",\"library\",\"nature\",\"fact\",\"product\",\"idea\",\"temperature\",\"investment\",\"area\",\"society\",\"activity\",\"story\",\"industry\",\"media\",\"thing\",\"oven\",\"community\",\"definition\",\"safety\",\"quality\",\"development\",\"language\",\"management\",\"player\",\"variety\",\"video\",\"week\",\"security\",\"country\",\"exam\",\"movie\",\"organization\",\"equipment\",\"physics\",\"analysis\",\"policy\",\"series\",\"thought\",\"basis\",\"boyfriend\",\"direction\",\"strategy\",\"technology\",\"army\",\"camera\",\"freedom\",\"paper\",\"environment\",\"child\",\"instance\",\"month\",\"truth\",\"marketing\",\"university\",\"writing\",\"article\",\"department\",\"difference\",\"goal\",\"news\",\"audience\",\"fishing\",\"growth\",\"income\",\"marriage\",\"user\",\"combination\",\"failure\",\"meaning\",\"medicine\",\"philosophy\",\"teacher\",\"communication\",\"night\",\"chemistry\",\"disease\",\"disk\",\"energy\",\"nation\",\"road\",\"role\",\"soup\",\"advertising\",\"location\",\"success\",\"addition\",\"apartment\",\"education\",\"math\",\"moment\",\"painting\",\"politics\",\"attention\",\"decision\",\"event\",\"property\",\"shopping\",\"student\",\"wood\",\"competition\",\"distribution\",\"entertainment\",\"office\",\"population\",\"president\",\"unit\",\"category\",\"cigarette\",\"context\",\"introduction\",\"opportunity\",\"performance\",\"driver\",\"flight\",\"length\",\"magazine\",\"newspaper\",\"relationship\",\"teaching\",\"cell\",\"dealer\",\"debate\",\"finding\",\"lake\",\"member\",\"message\",\"phone\",\"scene\",\"appearance\",\"association\",\"concept\",\"customer\",\"death\",\"discussion\",\"housing\",\"inflation\",\"insurance\",\"mood\",\"woman\",\"advice\",\"blood\",\"effort\",\"expression\",\"importance\",\"opinion\",\"payment\",\"reality\",\"responsibility\",\"situation\",\"skill\",\"statement\",\"wealth\",\"application\",\"city\",\"county\",\"depth\",\"estate\",\"foundation\",\"grandmother\",\"heart\",\"perspective\",\"photo\",\"recipe\",\"studio\",\"topic\",\"collection\",\"depression\",\"imagination\",\"passion\",\"percentage\",\"resource\",\"setting\",\"ad\",\"agency\",\"college\",\"connection\",\"criticism\",\"debt\",\"description\",\"memory\",\"patience\",\"secretary\",\"solution\",\"administration\",\"aspect\",\"attitude\",\"director\",\"personality\",\"psychology\",\"recommendation\",\"response\",\"selection\",\"storage\",\"version\",\"alcohol\",\"argument\",\"complaint\",\"contract\",\"emphasis\",\"highway\",\"loss\",\"membership\",\"possession\",\"preparation\",\"steak\",\"union\",\"agreement\",\"cancer\",\"currency\",\"employment\",\"engineering\",\"entry\",\"interaction\",\"limit\",\"mixture\",\"preference\",\"region\",\"republic\",\"seat\",\"tradition\",\"virus\",\"actor\",\"classroom\",\"delivery\",\"device\",\"difficulty\",\"drama\",\"election\",\"engine\",\"football\",\"guidance\",\"hotel\",\"match\",\"owner\",\"priority\",\"protection\",\"suggestion\",\"tension\",\"variation\",\"anxiety\",\"atmosphere\",\"awareness\",\"bread\",\"climate\",\"comparison\",\"confusion\",\"construction\",\"elevator\",\"emotion\",\"employee\",\"employer\",\"guest\",\"height\",\"leadership\",\"mall\",\"manager\",\"operation\",\"recording\",\"respect\",\"sample\",\"transportation\",\"boring\",\"charity\",\"cousin\",\"disaster\",\"editor\",\"efficiency\",\"excitement\",\"extent\",\"feedback\",\"guitar\",\"homework\",\"leader\",\"mom\",\"outcome\",\"permission\",\"presentation\",\"promotion\",\"reflection\",\"refrigerator\",\"resolution\",\"revenue\",\"session\",\"singer\",\"tennis\",\"basket\",\"bonus\",\"cabinet\",\"childhood\",\"church\",\"clothes\",\"coffee\",\"dinner\",\"drawing\",\"hair\",\"hearing\",\"initiative\",\"judgment\",\"lab\",\"measurement\",\"mode\",\"mud\",\"orange\",\"poetry\",\"police\",\"possibility\",\"procedure\",\"queen\",\"ratio\",\"relation\",\"restaurant\",\"satisfaction\",\"sector\",\"signature\",\"significance\",\"song\",\"tooth\",\"town\",\"vehicle\",\"volume\",\"wife\",\"accident\",\"airport\",\"appointment\",\"arrival\",\"assumption\",\"baseball\",\"chapter\",\"committee\",\"conversation\",\"database\",\"enthusiasm\",\"error\",\"explanation\",\"farmer\",\"gate\",\"girl\",\"hall\",\"historian\",\"hospital\",\"injury\",\"instruction\",\"maintenance\",\"manufacturer\",\"meal\",\"perception\",\"pie\",\"poem\",\"presence\",\"proposal\",\"reception\",\"replacement\",\"revolution\",\"river\",\"son\",\"speech\",\"tea\",\"village\",\"warning\",\"winner\",\"worker\",\"writer\",\"assistance\",\"breath\",\"buyer\",\"chest\",\"chocolate\",\"conclusion\",\"contribution\",\"cookie\",\"courage\",\"desk\",\"drawer\",\"establishment\",\"examination\",\"garbage\",\"grocery\",\"honey\",\"impression\",\"improvement\",\"independence\",\"insect\",\"inspection\",\"inspector\",\"king\",\"ladder\",\"menu\",\"penalty\",\"piano\",\"potato\",\"profession\",\"professor\",\"quantity\",\"reaction\",\"requirement\",\"salad\",\"sister\",\"supermarket\",\"tongue\",\"weakness\",\"wedding\",\"affair\",\"ambition\",\"analyst\",\"apple\",\"assignment\",\"assistant\",\"bathroom\",\"bedroom\",\"beer\",\"birthday\",\"celebration\",\"championship\",\"cheek\",\"client\",\"consequence\",\"departure\",\"diamond\",\"dirt\",\"ear\",\"fortune\",\"friendship\",\"funeral\",\"gene\",\"girlfriend\",\"hat\",\"indication\",\"intention\",\"lady\",\"midnight\",\"negotiation\",\"obligation\",\"passenger\",\"pizza\",\"platform\",\"poet\",\"pollution\",\"recognition\",\"reputation\",\"shirt\",\"speaker\",\"stranger\",\"surgery\",\"sympathy\",\"tale\",\"throat\",\"trainer\",\"uncle\",\"youth\",\"time\",\"work\",\"film\",\"water\",\"money\",\"example\",\"while\",\"business\",\"study\",\"game\",\"life\",\"form\",\"air\",\"day\",\"place\",\"number\",\"part\",\"field\",\"fish\",\"back\",\"process\",\"heat\",\"hand\",\"experience\",\"job\",\"book\",\"end\",\"point\",\"type\",\"home\",\"economy\",\"value\",\"body\",\"market\",\"guide\",\"interest\",\"state\",\"radio\",\"course\",\"company\",\"price\",\"size\",\"card\",\"list\",\"mind\",\"trade\",\"line\",\"care\",\"group\",\"risk\",\"word\",\"fat\",\"force\",\"key\",\"light\",\"training\",\"name\",\"school\",\"top\",\"amount\",\"level\",\"order\",\"practice\",\"research\",\"sense\",\"service\",\"piece\",\"web\",\"boss\",\"sport\",\"fun\",\"house\",\"page\",\"term\",\"test\",\"answer\",\"sound\",\"focus\",\"matter\",\"kind\",\"soil\",\"board\",\"oil\",\"picture\",\"access\",\"garden\",\"range\",\"rate\",\"reason\",\"future\",\"site\",\"demand\",\"exercise\",\"image\",\"case\",\"cause\",\"coast\",\"action\",\"age\",\"bad\",\"boat\",\"record\",\"result\",\"section\",\"building\",\"mouse\",\"cash\",\"class\",\"period\",\"plan\",\"store\",\"tax\",\"side\",\"subject\",\"space\",\"rule\",\"stock\",\"weather\",\"chance\",\"figure\",\"man\",\"model\",\"source\",\"beginning\",\"earth\",\"program\",\"chicken\",\"design\",\"feature\",\"head\",\"material\",\"purpose\",\"question\",\"rock\",\"salt\",\"act\",\"birth\",\"car\",\"dog\",\"object\",\"scale\",\"sun\",\"note\",\"profit\",\"rent\",\"speed\",\"style\",\"war\",\"bank\",\"craft\",\"half\",\"inside\",\"outside\",\"standard\",\"bus\",\"exchange\",\"eye\",\"fire\",\"position\",\"pressure\",\"stress\",\"advantage\",\"benefit\",\"box\",\"frame\",\"issue\",\"step\",\"cycle\",\"face\",\"item\",\"metal\",\"paint\",\"review\",\"room\",\"screen\",\"structure\",\"view\",\"account\",\"ball\",\"discipline\",\"medium\",\"share\",\"balance\",\"bit\",\"black\",\"bottom\",\"choice\",\"gift\",\"impact\",\"machine\",\"shape\",\"tool\",\"wind\",\"address\",\"average\",\"career\",\"culture\",\"morning\",\"pot\",\"sign\",\"table\",\"task\",\"condition\",\"contact\",\"credit\",\"egg\",\"hope\",\"ice\",\"network\",\"north\",\"square\",\"attempt\",\"date\",\"effect\",\"link\",\"post\",\"star\",\"voice\",\"capital\",\"challenge\",\"friend\",\"self\",\"shot\",\"brush\",\"couple\",\"exit\",\"front\",\"function\",\"lack\",\"living\",\"plant\",\"plastic\",\"spot\",\"summer\",\"taste\",\"theme\",\"track\",\"wing\",\"brain\",\"button\",\"click\",\"desire\",\"foot\",\"gas\",\"influence\",\"notice\",\"rain\",\"wall\",\"base\",\"damage\",\"distance\",\"feeling\",\"pair\",\"savings\",\"staff\",\"sugar\",\"target\",\"text\",\"animal\",\"author\",\"budget\",\"discount\",\"file\",\"ground\",\"lesson\",\"minute\",\"officer\",\"phase\",\"reference\",\"register\",\"sky\",\"stage\",\"stick\",\"title\",\"trouble\",\"bowl\",\"bridge\",\"campaign\",\"character\",\"club\",\"edge\",\"evidence\",\"fan\",\"letter\",\"lock\",\"maximum\",\"novel\",\"option\",\"pack\",\"park\",\"quarter\",\"skin\",\"sort\",\"weight\",\"baby\",\"background\",\"carry\",\"dish\",\"factor\",\"fruit\",\"glass\",\"joint\",\"master\",\"muscle\",\"red\",\"strength\",\"traffic\",\"trip\",\"vegetable\",\"appeal\",\"chart\",\"gear\",\"ideal\",\"kitchen\",\"land\",\"log\",\"mother\",\"net\",\"party\",\"principle\",\"relative\",\"sale\",\"season\",\"signal\",\"spirit\",\"street\",\"tree\",\"wave\",\"belt\",\"bench\",\"commission\",\"copy\",\"drop\",\"minimum\",\"path\",\"progress\",\"project\",\"sea\",\"south\",\"status\",\"stuff\",\"ticket\",\"tour\",\"angle\",\"blue\",\"breakfast\",\"confidence\",\"daughter\",\"degree\",\"doctor\",\"dot\",\"dream\",\"duty\",\"essay\",\"father\",\"fee\",\"finance\",\"hour\",\"juice\",\"luck\",\"milk\",\"mouth\",\"peace\",\"pipe\",\"stable\",\"storm\",\"substance\",\"team\",\"trick\",\"afternoon\",\"bat\",\"beach\",\"blank\",\"catch\",\"chain\",\"consideration\",\"cream\",\"crew\",\"detail\",\"gold\",\"interview\",\"kid\",\"mark\",\"mission\",\"pain\",\"pleasure\",\"score\",\"screw\",\"sex\",\"shop\",\"shower\",\"suit\",\"tone\",\"window\",\"agent\",\"band\",\"bath\",\"block\",\"bone\",\"calendar\",\"candidate\",\"cap\",\"coat\",\"contest\",\"corner\",\"court\",\"cup\",\"district\",\"door\",\"east\",\"finger\",\"garage\",\"guarantee\",\"hole\",\"hook\",\"implement\",\"layer\",\"lecture\",\"lie\",\"manner\",\"meeting\",\"nose\",\"parking\",\"partner\",\"profile\",\"rice\",\"routine\",\"schedule\",\"swimming\",\"telephone\",\"tip\",\"winter\",\"airline\",\"bag\",\"battle\",\"bed\",\"bill\",\"bother\",\"cake\",\"code\",\"curve\",\"designer\",\"dimension\",\"dress\",\"ease\",\"emergency\",\"evening\",\"extension\",\"farm\",\"fight\",\"gap\",\"grade\",\"holiday\",\"horror\",\"horse\",\"host\",\"husband\",\"loan\",\"mistake\",\"mountain\",\"nail\",\"noise\",\"occasion\",\"package\",\"patient\",\"pause\",\"phrase\",\"proof\",\"race\",\"relief\",\"sand\",\"sentence\",\"shoulder\",\"smoke\",\"stomach\",\"string\",\"tourist\",\"towel\",\"vacation\",\"west\",\"wheel\",\"wine\",\"arm\",\"aside\",\"associate\",\"bet\",\"blow\",\"border\",\"branch\",\"breast\",\"brother\",\"buddy\",\"bunch\",\"chip\",\"coach\",\"cross\",\"document\",\"draft\",\"dust\",\"expert\",\"floor\",\"god\",\"golf\",\"habit\",\"iron\",\"judge\",\"knife\",\"landscape\",\"league\",\"mail\",\"mess\",\"native\",\"opening\",\"parent\",\"pattern\",\"pin\",\"pool\",\"pound\",\"request\",\"salary\",\"shame\",\"shelter\",\"shoe\",\"silver\",\"tackle\",\"tank\",\"trust\",\"assist\",\"bake\",\"bar\",\"bell\",\"bike\",\"blame\",\"boy\",\"brick\",\"chair\",\"closet\",\"clue\",\"collar\",\"comment\",\"conference\",\"devil\",\"diet\",\"fear\",\"fuel\",\"glove\",\"jacket\",\"lunch\",\"monitor\",\"mortgage\",\"nurse\",\"pace\",\"panic\",\"peak\",\"plane\",\"reward\",\"row\",\"sandwich\",\"shock\",\"spite\",\"spray\",\"surprise\",\"till\",\"transition\",\"weekend\",\"welcome\",\"yard\",\"alarm\",\"bend\",\"bicycle\",\"bite\",\"blind\",\"bottle\",\"cable\",\"candle\",\"clerk\",\"cloud\",\"concert\",\"counter\",\"flower\",\"grandfather\",\"harm\",\"knee\",\"lawyer\",\"leather\",\"load\",\"mirror\",\"neck\",\"pension\",\"plate\",\"purple\",\"ruin\",\"ship\",\"skirt\",\"slice\",\"snow\",\"specialist\",\"stroke\",\"switch\",\"trash\",\"tune\",\"zone\",\"anger\",\"award\",\"bid\",\"bitter\",\"boot\",\"bug\",\"camp\",\"candy\",\"carpet\",\"cat\",\"champion\",\"channel\",\"clock\",\"comfort\",\"cow\",\"crack\",\"engineer\",\"entrance\",\"fault\",\"grass\",\"guy\",\"hell\",\"highlight\",\"incident\",\"island\",\"joke\",\"jury\",\"leg\",\"lip\",\"mate\",\"motor\",\"nerve\",\"passage\",\"pen\",\"pride\",\"priest\",\"prize\",\"promise\",\"resident\",\"resort\",\"ring\",\"roof\",\"rope\",\"sail\",\"scheme\",\"script\",\"sock\",\"station\",\"toe\",\"tower\",\"truck\",\"witness\",\"can\",\"will\",\"other\",\"use\",\"make\",\"good\",\"look\",\"help\",\"go\",\"great\",\"being\",\"still\",\"public\",\"read\",\"keep\",\"start\",\"give\",\"human\",\"local\",\"general\",\"specific\",\"long\",\"play\",\"feel\",\"high\",\"put\",\"common\",\"set\",\"change\",\"simple\",\"past\",\"big\",\"possible\",\"particular\",\"major\",\"personal\",\"current\",\"national\",\"cut\",\"natural\",\"physical\",\"show\",\"try\",\"check\",\"second\",\"call\",\"move\",\"pay\",\"let\",\"increase\",\"single\",\"individual\",\"turn\",\"ask\",\"buy\",\"guard\",\"hold\",\"main\",\"offer\",\"potential\",\"professional\",\"international\",\"travel\",\"cook\",\"alternative\",\"special\",\"working\",\"whole\",\"dance\",\"excuse\",\"cold\",\"commercial\",\"low\",\"purchase\",\"deal\",\"primary\",\"worth\",\"fall\",\"necessary\",\"positive\",\"produce\",\"search\",\"present\",\"spend\",\"talk\",\"creative\",\"tell\",\"cost\",\"drive\",\"green\",\"support\",\"glad\",\"remove\",\"return\",\"run\",\"complex\",\"due\",\"effective\",\"middle\",\"regular\",\"reserve\",\"independent\",\"leave\",\"original\",\"reach\",\"rest\",\"serve\",\"watch\",\"beautiful\",\"charge\",\"active\",\"break\",\"negative\",\"safe\",\"stay\",\"visit\",\"visual\",\"affect\",\"cover\",\"report\",\"rise\",\"walk\",\"white\",\"junior\",\"pick\",\"unique\",\"classic\",\"final\",\"lift\",\"mix\",\"private\",\"stop\",\"teach\",\"western\",\"concern\",\"familiar\",\"fly\",\"official\",\"broad\",\"comfortable\",\"gain\",\"rich\",\"save\",\"stand\",\"young\",\"heavy\",\"lead\",\"listen\",\"valuable\",\"worry\",\"handle\",\"leading\",\"meet\",\"release\",\"sell\",\"finish\",\"normal\",\"press\",\"ride\",\"secret\",\"spread\",\"spring\",\"tough\",\"wait\",\"brown\",\"deep\",\"display\",\"flow\",\"hit\",\"objective\",\"shoot\",\"touch\",\"cancel\",\"chemical\",\"cry\",\"dump\",\"extreme\",\"push\",\"conflict\",\"eat\",\"fill\",\"formal\",\"jump\",\"kick\",\"opposite\",\"pass\",\"pitch\",\"remote\",\"total\",\"treat\",\"vast\",\"abuse\",\"beat\",\"burn\",\"deposit\",\"print\",\"raise\",\"sleep\",\"somewhere\",\"advance\",\"consist\",\"dark\",\"double\",\"draw\",\"equal\",\"fix\",\"hire\",\"internal\",\"join\",\"kill\",\"sensitive\",\"tap\",\"win\",\"attack\",\"claim\",\"constant\",\"drag\",\"drink\",\"guess\",\"minor\",\"pull\",\"raw\",\"soft\",\"solid\",\"wear\",\"weird\",\"wonder\",\"annual\",\"count\",\"dead\",\"doubt\",\"feed\",\"forever\",\"impress\",\"repeat\",\"round\",\"sing\",\"slide\",\"strip\",\"wish\",\"combine\",\"command\",\"dig\",\"divide\",\"equivalent\",\"hang\",\"hunt\",\"initial\",\"march\",\"mention\",\"spiritual\",\"survey\",\"tie\",\"adult\",\"brief\",\"crazy\",\"escape\",\"gather\",\"hate\",\"prior\",\"repair\",\"rough\",\"sad\",\"scratch\",\"sick\",\"strike\",\"employ\",\"external\",\"hurt\",\"illegal\",\"laugh\",\"lay\",\"mobile\",\"nasty\",\"ordinary\",\"respond\",\"royal\",\"senior\",\"split\",\"strain\",\"struggle\",\"swim\",\"train\",\"upper\",\"wash\",\"yellow\",\"convert\",\"crash\",\"dependent\",\"fold\",\"funny\",\"grab\",\"hide\",\"miss\",\"permit\",\"quote\",\"recover\",\"resolve\",\"roll\",\"sink\",\"slip\",\"spare\",\"suspect\",\"sweet\",\"swing\",\"twist\",\"upstairs\",\"usual\",\"abroad\",\"brave\",\"calm\",\"concentrate\",\"estimate\",\"grand\",\"male\",\"mine\",\"prompt\",\"quiet\",\"refuse\",\"regret\",\"reveal\",\"rush\",\"shake\",\"shift\",\"shine\",\"steal\",\"suck\",\"surround\",\"bear\",\"brilliant\",\"dare\",\"dear\",\"delay\",\"drunk\",\"female\",\"hurry\",\"inevitable\",\"invite\",\"kiss\",\"neat\",\"pop\",\"punch\",\"quit\",\"reply\",\"representative\",\"resist\",\"rip\",\"rub\",\"silly\",\"smile\",\"spell\",\"stretch\",\"stupid\",\"tear\",\"temporary\",\"tomorrow\",\"wake\",\"wrap\",\"yesterday\",\"Thomas\",\"Tom\",\"Lieuwe\"];\r",
+									"\r",
+									"function generateBusinessName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name1[getRandomInt(0, name1.length + 1)]) + '-' + capFirst(name2[getRandomInt(0, name2.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"Business Name is \"+generateBusinessName())\r",
+									"\r",
+									"function generateFirstName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name1[getRandomInt(0, name1.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"First Name is \"+generateFirstName())\r",
+									"\r",
+									"function generateSecondName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name2[getRandomInt(0, name2.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"Second Name is \"+generateSecondName())\r",
+									"\r",
+									"// function getRandomEmail(domain){\r",
+									"// const random = Math.random().toString(36).substring(7);\r",
+									"// return random + '@' + domain;\r",
+									"// }\r",
+									"function getRandomEmail(domain){\r",
+									"const email=\"patientq_automation\" + new Date().getTime();\r",
+									"pm.environment.set(\"businessOwnerEmailBefore@\", email);\r",
+									"const random = Math.random().toString(36).substring(7);\r",
+									"return email + '@' + domain;\r",
+									"}\r",
+									"const domain = pm.environment.get(\"domain\");\r",
+									"console.log(\"random email address:\"+ getRandomEmail(domain));\r",
+									"pm.environment.set(\"businessOwnerEmailAddressStarmailNet\", getRandomEmail(domain));\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/ld+json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"address\": \"{{businessOwnerEmailAddressStarmailNet}}\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mail.tm/accounts",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mail",
+								"tm"
+							],
+							"path": [
+								"accounts"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://api.mail.tm/accounts' \\\r\n  -H 'accept: application/ld+json' \\\r\n  -H 'Content-Type: application/ld+json' \\\r\n  -d '{\r\n  \"address\": \"patientq_automation1725866700071@starmail.net\",\r\n  \"password\": \"string\"\r\n}'"
+					},
+					"response": [
+						{
+							"name": "https://api.mail.tm/accounts",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/ld+json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/ld+json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"address\": \"{{businessOwnerEmailAddressStarmailNet}}\",\r\n  \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.mail.tm/accounts",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mail",
+										"tm"
+									],
+									"path": [
+										"accounts"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-location",
+									"value": "/accounts/66deadf00c723920ee0e8225"
+								},
+								{
+									"key": "content-type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Sep 2024 08:12:32 GMT"
+								},
+								{
+									"key": "link",
+									"value": "<http://api.mail.tm/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "link",
+									"value": "<https://mercure.mail.tm/.well-known/mercure>; rel=\"mercure\""
+								},
+								{
+									"key": "location",
+									"value": "/accounts/66deadf00c723920ee0e8225"
+								},
+								{
+									"key": "ratelimit-policy",
+									"value": "1; w=60"
+								},
+								{
+									"key": "server",
+									"value": "Caddy"
+								},
+								{
+									"key": "status",
+									"value": "201 Created"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "deny"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.2.16"
+								},
+								{
+									"key": "content-length",
+									"value": "330"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/contexts/Account\",\n    \"@id\": \"/accounts/66deadf00c723920ee0e8225\",\n    \"@type\": \"Account\",\n    \"id\": \"66deadf00c723920ee0e8225\",\n    \"address\": \"patientq_automation1725869555073@starmail.net\",\n    \"quota\": 40000000,\n    \"used\": 0,\n    \"isDisabled\": false,\n    \"isDeleted\": false,\n    \"createdAt\": \"2024-09-09T08:12:32+00:00\",\n    \"updatedAt\": \"2024-09-09T08:12:32+00:00\"\n}"
+						}
+					]
+				},
+				{
+					"name": "https://api.mail.tm/token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									" pm.environment.set(\"tempMailJWT\", jsonData.token);\r",
+									" console.log(\"tempMailJWT: \"+ pm.environment.get(\"tempMailJWT\"));\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"address\": \"{{businessOwnerEmailAddressStarmailNet}}\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://api.mail.tm/token",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mail",
+								"tm"
+							],
+							"path": [
+								"token"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'POST' \\\r\n  'https://api.mail.tm/token' \\\r\n  -H 'accept: application/json' \\\r\n  -H 'Content-Type: application/json' \\\r\n  -d '{\r\n  \"address\": \"patientq_automation1725868770517@starmail.net\",\r\n  \"password\": \"password123\"\r\n}'"
+					},
+					"response": [
+						{
+							"name": "https://api.mail.tm/token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									},
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"address\": \"{{businessOwnerEmailAddressStarmailNet}}\",\r\n  \"password\": \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://api.mail.tm/token",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mail",
+										"tm"
+									],
+									"path": [
+										"token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-type",
+									"value": "application/json"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Sep 2024 08:13:19 GMT"
+								},
+								{
+									"key": "server",
+									"value": "Caddy"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.2.16"
+								},
+								{
+									"key": "content-length",
+									"value": "471"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg\",\n    \"@id\": \"/accounts/66deadf00c723920ee0e8225\",\n    \"id\": \"66deadf00c723920ee0e8225\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "SuperAdminFlow",
+			"item": [
+				{
+					"name": "Super Admin Auth Controller login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// if(pm.variables.get(\"isPositiveScenario\")==true){\r",
+									"pm.environment.set(\"SuperAdminAcessTokenForBOAuthFlow\", jsonData.data.accessToken);\r",
+									"console.log(jsonData.data.accessToken);\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"// Adding a test to check the response time\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"// Adding a test to validate a response Schema\r",
+									"pm.test(\"Schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      statusCode: { type: \"number\" },\r",
+									"      data: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"          id: { type: \"string\" },\r",
+									"          firstName: { type: \"string\" },\r",
+									"          lastName: { type: \"string\" },\r",
+									"          email: { type: \"string\", format: \"email\" },\r",
+									"          accessToken: { type: \"string\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"firstName\", \"lastName\", \"email\", \"accessToken\"]\r",
+									"      },\r",
+									"      error: { type: [\"null\", \"object\"] }\r",
+									"    },\r",
+									"    required: [\"statusCode\", \"data\", \"error\"]\r",
+									"  };\r",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+									"});\r",
+									"// } else {\r",
+									"//     // Adding a test to check the response status code\r",
+									"// pm.test(\"Response status code is 400\", function () {\r",
+									"//     pm.response.to.have.status(400);\r",
+									"// });\r",
+									"// // Adding a test to check the response time\r",
+									"// pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"// });\r",
+									"// }\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{superAdminEmail}}\",\n  \"password\": \"{{superAdminPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Super Admin Auth Controller login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{superAdminEmail}}\",\n  \"password\": \"{{superAdminPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "385"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Aug 2024 06:14:38 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"181-8wsfDawXtRxPjU1+SCFK5cdsJtk\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1724220878253-ac91e317"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 b468d2eaeccf66c166161f90b42a09bc.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "RA2oo383oX-i6X3WCIlal6qRMA2rs7g0guB128kNDUIoiY-So33N8Q=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"id\": \"5edce435-a697-4cf3-bd7b-9af49620fa9d\",\n        \"firstName\": \"Super\",\n        \"lastName\": \"Admin\",\n        \"email\": \"admin@patientq.com\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWRjZTQzNS1hNjk3LTRjZjMtYmQ3Yi05YWY0OTYyMGZhOWQiLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJpYXQiOjE3MjQyMjA4NzgsImV4cCI6MTcyNDI1Njg3OH0.gH1iLaUKXByB4tSN_QeFNl4jR7Ib3UrLDNZszdc7V9g\"\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/business",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.environment.set(\"ehtereal_URL\", jsonData.data.testMessageInboxUrl);\r",
+									"pm.environment.set(\"created_business_id\", jsonData.data.id);\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Verify the isActive flag of the business\", function () {\r",
+									"    pm.expect(jsonData.data.isActive).to.eql(true);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Random Name Generator for Javascript\r",
+									"*/\r",
+									"function capFirst(string) {\r",
+									"    return string.charAt(0).toUpperCase() + string.slice(1);\r",
+									"}\r",
+									"\r",
+									"function getRandomInt(min, max) {\r",
+									"  \treturn Math.floor(Math.random() * (max - min)) + min;\r",
+									"}\r",
+									"var name1 = [\"abandoned\",\"able\",\"absolute\",\"adorable\",\"adventurous\",\"academic\",\"acceptable\",\"acclaimed\",\"accomplished\",\"accurate\",\"aching\",\"acidic\",\"acrobatic\",\"active\",\"actual\",\"adept\",\"admirable\",\"admired\",\"adolescent\",\"adorable\",\"adored\",\"advanced\",\"afraid\",\"affectionate\",\"aged\",\"aggravating\",\"aggressive\",\"agile\",\"agitated\",\"agonizing\",\"agreeable\",\"ajar\",\"alarmed\",\"alarming\",\"alert\",\"alienated\",\"alive\",\"all\",\"altruistic\",\"amazing\",\"ambitious\",\"ample\",\"amused\",\"amusing\",\"anchored\",\"ancient\",\"angelic\",\"angry\",\"anguished\",\"animated\",\"annual\",\"another\",\"antique\",\"anxious\",\"any\",\"apprehensive\",\"appropriate\",\"apt\",\"arctic\",\"arid\",\"aromatic\",\"artistic\",\"ashamed\",\"assured\",\"astonishing\",\"athletic\",\"attached\",\"attentive\",\"attractive\",\"austere\",\"authentic\",\"authorized\",\"automatic\",\"avaricious\",\"average\",\"aware\",\"awesome\",\"awful\",\"awkward\",\"babyish\",\"bad\",\"back\",\"baggy\",\"bare\",\"barren\",\"basic\",\"beautiful\",\"belated\",\"beloved\",\"beneficial\",\"better\",\"best\",\"bewitched\",\"big\",\"big-hearted\",\"biodegradable\",\"bite-sized\",\"bitter\",\"black\",\"black-and-white\",\"bland\",\"blank\",\"blaring\",\"bleak\",\"blind\",\"blissful\",\"blond\",\"blue\",\"blushing\",\"bogus\",\"boiling\",\"bold\",\"bony\",\"boring\",\"bossy\",\"both\",\"bouncy\",\"bountiful\",\"bowed\",\"brave\",\"breakable\",\"brief\",\"bright\",\"brilliant\",\"brisk\",\"broken\",\"bronze\",\"brown\",\"bruised\",\"bubbly\",\"bulky\",\"bumpy\",\"buoyant\",\"burdensome\",\"burly\",\"bustling\",\"busy\",\"buttery\",\"buzzing\",\"calculating\",\"calm\",\"candid\",\"canine\",\"capital\",\"carefree\",\"careful\",\"careless\",\"caring\",\"cautious\",\"cavernous\",\"celebrated\",\"charming\",\"cheap\",\"cheerful\",\"cheery\",\"chief\",\"chilly\",\"chubby\",\"circular\",\"classic\",\"clean\",\"clear\",\"clear-cut\",\"clever\",\"close\",\"closed\",\"cloudy\",\"clueless\",\"clumsy\",\"cluttered\",\"coarse\",\"cold\",\"colorful\",\"colorless\",\"colossal\",\"comfortable\",\"common\",\"compassionate\",\"competent\",\"complete\",\"complex\",\"complicated\",\"composed\",\"concerned\",\"concrete\",\"confused\",\"conscious\",\"considerate\",\"constant\",\"content\",\"conventional\",\"cooked\",\"cool\",\"cooperative\",\"coordinated\",\"corny\",\"corrupt\",\"costly\",\"courageous\",\"courteous\",\"crafty\",\"crazy\",\"creamy\",\"creative\",\"creepy\",\"criminal\",\"crisp\",\"critical\",\"crooked\",\"crowded\",\"cruel\",\"crushing\",\"cuddly\",\"cultivated\",\"cultured\",\"cumbersome\",\"curly\",\"curvy\",\"cute\",\"cylindrical\",\"damaged\",\"damp\",\"dangerous\",\"dapper\",\"daring\",\"darling\",\"dark\",\"dazzling\",\"dead\",\"deadly\",\"deafening\",\"dear\",\"dearest\",\"decent\",\"decimal\",\"decisive\",\"deep\",\"defenseless\",\"defensive\",\"defiant\",\"deficient\",\"definite\",\"definitive\",\"delayed\",\"delectable\",\"delicious\",\"delightful\",\"delirious\",\"demanding\",\"dense\",\"dental\",\"dependable\",\"dependent\",\"descriptive\",\"deserted\",\"detailed\",\"determined\",\"devoted\",\"different\",\"difficult\",\"digital\",\"diligent\",\"dim\",\"dimpled\",\"dimwitted\",\"direct\",\"disastrous\",\"discrete\",\"disfigured\",\"disgusting\",\"disloyal\",\"dismal\",\"distant\",\"downright\",\"dreary\",\"dirty\",\"disguised\",\"dishonest\",\"dismal\",\"distant\",\"distinct\",\"distorted\",\"dizzy\",\"dopey\",\"doting\",\"double\",\"downright\",\"drab\",\"drafty\",\"dramatic\",\"dreary\",\"droopy\",\"dry\",\"dual\",\"dull\",\"dutiful\",\"each\",\"eager\",\"earnest\",\"early\",\"easy\",\"easy-going\",\"ecstatic\",\"edible\",\"educated\",\"elaborate\",\"elastic\",\"elated\",\"elderly\",\"electric\",\"elegant\",\"elementary\",\"elliptical\",\"embarrassed\",\"embellished\",\"eminent\",\"emotional\",\"empty\",\"enchanted\",\"enchanting\",\"energetic\",\"enlightened\",\"enormous\",\"enraged\",\"entire\",\"envious\",\"equal\",\"equatorial\",\"essential\",\"esteemed\",\"ethical\",\"euphoric\",\"even\",\"evergreen\",\"everlasting\",\"every\",\"evil\",\"exalted\",\"excellent\",\"exemplary\",\"exhausted\",\"excitable\",\"excited\",\"exciting\",\"exotic\",\"expensive\",\"experienced\",\"expert\",\"extraneous\",\"extroverted\",\"extra-large\",\"extra-small\",\"fabulous\",\"failing\",\"faint\",\"fair\",\"faithful\",\"fake\",\"false\",\"familiar\",\"famous\",\"fancy\",\"fantastic\",\"far\",\"faraway\",\"far-flung\",\"far-off\",\"fast\",\"fat\",\"fatal\",\"fatherly\",\"favorable\",\"favorite\",\"fearful\",\"fearless\",\"feisty\",\"feline\",\"female\",\"feminine\",\"few\",\"fickle\",\"filthy\",\"fine\",\"finished\",\"firm\",\"first\",\"firsthand\",\"fitting\",\"fixed\",\"flaky\",\"flamboyant\",\"flashy\",\"flat\",\"flawed\",\"flawless\",\"flickering\",\"flimsy\",\"flippant\",\"flowery\",\"fluffy\",\"fluid\",\"flustered\",\"focused\",\"fond\",\"foolhardy\",\"foolish\",\"forceful\",\"forked\",\"formal\",\"forsaken\",\"forthright\",\"fortunate\",\"fragrant\",\"frail\",\"frank\",\"frayed\",\"free\",\"French\",\"fresh\",\"frequent\",\"friendly\",\"frightened\",\"frightening\",\"frigid\",\"frilly\",\"frizzy\",\"frivolous\",\"front\",\"frosty\",\"frozen\",\"frugal\",\"fruitful\",\"full\",\"fumbling\",\"functional\",\"funny\",\"fussy\",\"fuzzy\",\"gargantuan\",\"gaseous\",\"general\",\"generous\",\"gentle\",\"genuine\",\"giant\",\"giddy\",\"gigantic\",\"gifted\",\"giving\",\"glamorous\",\"glaring\",\"glass\",\"gleaming\",\"gleeful\",\"glistening\",\"glittering\",\"gloomy\",\"glorious\",\"glossy\",\"glum\",\"golden\",\"good\",\"good-natured\",\"gorgeous\",\"graceful\",\"gracious\",\"grand\",\"grandiose\",\"granular\",\"grateful\",\"grave\",\"gray\",\"great\",\"greedy\",\"green\",\"gregarious\",\"grim\",\"grimy\",\"gripping\",\"grizzled\",\"gross\",\"grotesque\",\"grouchy\",\"grounded\",\"growing\",\"growling\",\"grown\",\"grubby\",\"gruesome\",\"grumpy\",\"guilty\",\"gullible\",\"gummy\",\"hairy\",\"half\",\"handmade\",\"handsome\",\"handy\",\"happy\",\"happy-go-lucky\",\"hard\",\"hard-to-find\",\"harmful\",\"harmless\",\"harmonious\",\"harsh\",\"hasty\",\"hateful\",\"haunting\",\"healthy\",\"heartfelt\",\"hearty\",\"heavenly\",\"heavy\",\"hefty\",\"helpful\",\"helpless\",\"hidden\",\"hideous\",\"high\",\"high-level\",\"hilarious\",\"hoarse\",\"hollow\",\"homely\",\"honest\",\"honorable\",\"honored\",\"hopeful\",\"horrible\",\"hospitable\",\"hot\",\"huge\",\"humble\",\"humiliating\",\"humming\",\"humongous\",\"hungry\",\"hurtful\",\"husky\",\"icky\",\"icy\",\"ideal\",\"idealistic\",\"identical\",\"idle\",\"idiotic\",\"idolized\",\"ignorant\",\"ill\",\"illegal\",\"ill-fated\",\"ill-informed\",\"illiterate\",\"illustrious\",\"imaginary\",\"imaginative\",\"immaculate\",\"immaterial\",\"immediate\",\"immense\",\"impassioned\",\"impeccable\",\"impartial\",\"imperfect\",\"imperturbable\",\"impish\",\"impolite\",\"important\",\"impossible\",\"impractical\",\"impressionable\",\"impressive\",\"improbable\",\"impure\",\"inborn\",\"incomparable\",\"incompatible\",\"incomplete\",\"inconsequential\",\"incredible\",\"indelible\",\"inexperienced\",\"indolent\",\"infamous\",\"infantile\",\"infatuated\",\"inferior\",\"infinite\",\"informal\",\"innocent\",\"insecure\",\"insidious\",\"insignificant\",\"insistent\",\"instructive\",\"insubstantial\",\"intelligent\",\"intent\",\"intentional\",\"interesting\",\"internal\",\"international\",\"intrepid\",\"ironclad\",\"irresponsible\",\"irritating\",\"itchy\",\"jaded\",\"jagged\",\"jam-packed\",\"jaunty\",\"jealous\",\"jittery\",\"joint\",\"jolly\",\"jovial\",\"joyful\",\"joyous\",\"jubilant\",\"judicious\",\"juicy\",\"jumbo\",\"junior\",\"jumpy\",\"juvenile\",\"kaleidoscopic\",\"keen\",\"key\",\"kind\",\"kindhearted\",\"kindly\",\"klutzy\",\"knobby\",\"knotty\",\"knowledgeable\",\"knowing\",\"known\",\"kooky\",\"kosher\",\"lame\",\"lanky\",\"large\",\"last\",\"lasting\",\"late\",\"lavish\",\"lawful\",\"lazy\",\"leading\",\"lean\",\"leafy\",\"left\",\"legal\",\"legitimate\",\"light\",\"lighthearted\",\"likable\",\"likely\",\"limited\",\"limp\",\"limping\",\"linear\",\"lined\",\"liquid\",\"little\",\"live\",\"lively\",\"livid\",\"loathsome\",\"lone\",\"lonely\",\"long\",\"long-term\",\"loose\",\"lopsided\",\"lost\",\"loud\",\"lovable\",\"lovely\",\"loving\",\"low\",\"loyal\",\"lucky\",\"lumbering\",\"luminous\",\"lumpy\",\"lustrous\",\"luxurious\",\"mad\",\"made-up\",\"magnificent\",\"majestic\",\"major\",\"male\",\"mammoth\",\"married\",\"marvelous\",\"masculine\",\"massive\",\"mature\",\"meager\",\"mealy\",\"mean\",\"measly\",\"meaty\",\"medical\",\"mediocre\",\"medium\",\"meek\",\"mellow\",\"melodic\",\"memorable\",\"menacing\",\"merry\",\"messy\",\"metallic\",\"mild\",\"milky\",\"mindless\",\"miniature\",\"minor\",\"minty\",\"miserable\",\"miserly\",\"misguided\",\"misty\",\"mixed\",\"modern\",\"modest\",\"moist\",\"monstrous\",\"monthly\",\"monumental\",\"moral\",\"mortified\",\"motherly\",\"motionless\",\"mountainous\",\"muddy\",\"muffled\",\"multicolored\",\"mundane\",\"murky\",\"mushy\",\"musty\",\"muted\",\"mysterious\",\"naive\",\"narrow\",\"nasty\",\"natural\",\"naughty\",\"nautical\",\"near\",\"neat\",\"necessary\",\"needy\",\"negative\",\"neglected\",\"negligible\",\"neighboring\",\"nervous\",\"new\",\"next\",\"nice\",\"nifty\",\"nimble\",\"nippy\",\"nocturnal\",\"noisy\",\"nonstop\",\"normal\",\"notable\",\"noted\",\"noteworthy\",\"novel\",\"noxious\",\"numb\",\"nutritious\",\"nutty\",\"obedient\",\"obese\",\"oblong\",\"oily\",\"oblong\",\"obvious\",\"occasional\",\"odd\",\"oddball\",\"offbeat\",\"offensive\",\"official\",\"old\",\"old-fashioned\",\"only\",\"open\",\"optimal\",\"optimistic\",\"opulent\",\"orange\",\"orderly\",\"organic\",\"ornate\",\"ornery\",\"ordinary\",\"original\",\"other\",\"our\",\"outlying\",\"outgoing\",\"outlandish\",\"outrageous\",\"outstanding\",\"oval\",\"overcooked\",\"overdue\",\"overjoyed\",\"overlooked\",\"palatable\",\"pale\",\"paltry\",\"parallel\",\"parched\",\"partial\",\"passionate\",\"past\",\"pastel\",\"peaceful\",\"peppery\",\"perfect\",\"perfumed\",\"periodic\",\"perky\",\"personal\",\"pertinent\",\"pesky\",\"pessimistic\",\"petty\",\"phony\",\"physical\",\"piercing\",\"pink\",\"pitiful\",\"plain\",\"plaintive\",\"plastic\",\"playful\",\"pleasant\",\"pleased\",\"pleasing\",\"plump\",\"plush\",\"polished\",\"polite\",\"political\",\"pointed\",\"pointless\",\"poised\",\"poor\",\"popular\",\"portly\",\"posh\",\"positive\",\"possible\",\"potable\",\"powerful\",\"powerless\",\"practical\",\"precious\",\"present\",\"prestigious\",\"pretty\",\"precious\",\"previous\",\"pricey\",\"prickly\",\"primary\",\"prime\",\"pristine\",\"private\",\"prize\",\"probable\",\"productive\",\"profitable\",\"profuse\",\"proper\",\"proud\",\"prudent\",\"punctual\",\"pungent\",\"puny\",\"pure\",\"purple\",\"pushy\",\"putrid\",\"puzzled\",\"puzzling\",\"quaint\",\"qualified\",\"quarrelsome\",\"quarterly\",\"queasy\",\"querulous\",\"questionable\",\"quick\",\"quick-witted\",\"quiet\",\"quintessential\",\"quirky\",\"quixotic\",\"quizzical\",\"radiant\",\"ragged\",\"rapid\",\"rare\",\"rash\",\"raw\",\"recent\",\"reckless\",\"rectangular\",\"ready\",\"real\",\"realistic\",\"reasonable\",\"red\",\"reflecting\",\"regal\",\"regular\",\"reliable\",\"relieved\",\"remarkable\",\"remorseful\",\"remote\",\"repentant\",\"required\",\"respectful\",\"responsible\",\"repulsive\",\"revolving\",\"rewarding\",\"rich\",\"rigid\",\"right\",\"ringed\",\"ripe\",\"roasted\",\"robust\",\"rosy\",\"rotating\",\"rotten\",\"rough\",\"round\",\"rowdy\",\"royal\",\"rubbery\",\"rundown\",\"ruddy\",\"rude\",\"runny\",\"rural\",\"rusty\",\"sad\",\"safe\",\"salty\",\"same\",\"sandy\",\"sane\",\"sarcastic\",\"sardonic\",\"satisfied\",\"scaly\",\"scarce\",\"scared\",\"scary\",\"scented\",\"scholarly\",\"scientific\",\"scornful\",\"scratchy\",\"scrawny\",\"second\",\"secondary\",\"second-hand\",\"secret\",\"self-assured\",\"self-reliant\",\"selfish\",\"sentimental\",\"separate\",\"serene\",\"serious\",\"serpentine\",\"several\",\"severe\",\"shabby\",\"shadowy\",\"shady\",\"shallow\",\"shameful\",\"shameless\",\"sharp\",\"shimmering\",\"shiny\",\"shocked\",\"shocking\",\"shoddy\",\"short\",\"short-term\",\"showy\",\"shrill\",\"shy\",\"sick\",\"silent\",\"silky\",\"silly\",\"silver\",\"similar\",\"simple\",\"simplistic\",\"sinful\",\"single\",\"sizzling\",\"skeletal\",\"skinny\",\"sleepy\",\"slight\",\"slim\",\"slimy\",\"slippery\",\"slow\",\"slushy\",\"small\",\"smart\",\"smoggy\",\"smooth\",\"smug\",\"snappy\",\"snarling\",\"sneaky\",\"sniveling\",\"snoopy\",\"sociable\",\"soft\",\"soggy\",\"solid\",\"somber\",\"some\",\"spherical\",\"sophisticated\",\"sore\",\"sorrowful\",\"soulful\",\"soupy\",\"sour\",\"Spanish\",\"sparkling\",\"sparse\",\"specific\",\"spectacular\",\"speedy\",\"spicy\",\"spiffy\",\"spirited\",\"spiteful\",\"splendid\",\"spotless\",\"spotted\",\"spry\",\"square\",\"squeaky\",\"squiggly\",\"stable\",\"staid\",\"stained\",\"stale\",\"standard\",\"starchy\",\"stark\",\"starry\",\"steep\",\"sticky\",\"stiff\",\"stimulating\",\"stingy\",\"stormy\",\"straight\",\"strange\",\"steel\",\"strict\",\"strident\",\"striking\",\"striped\",\"strong\",\"studious\",\"stunning\",\"stupendous\",\"stupid\",\"sturdy\",\"stylish\",\"subdued\",\"submissive\",\"substantial\",\"subtle\",\"suburban\",\"sudden\",\"sugary\",\"sunny\",\"super\",\"superb\",\"superficial\",\"superior\",\"supportive\",\"sure-footed\",\"surprised\",\"suspicious\",\"svelte\",\"sweaty\",\"sweet\",\"sweltering\",\"swift\",\"sympathetic\",\"tall\",\"talkative\",\"tame\",\"tan\",\"tangible\",\"tart\",\"tasty\",\"tattered\",\"taut\",\"tedious\",\"teeming\",\"tempting\",\"tender\",\"tense\",\"tepid\",\"terrible\",\"terrific\",\"testy\",\"thankful\",\"that\",\"these\",\"thick\",\"thin\",\"third\",\"thirsty\",\"this\",\"thorough\",\"thorny\",\"those\",\"thoughtful\",\"threadbare\",\"thrifty\",\"thunderous\",\"tidy\",\"tight\",\"timely\",\"tinted\",\"tiny\",\"tired\",\"torn\",\"total\",\"tough\",\"traumatic\",\"treasured\",\"tremendous\",\"tragic\",\"trained\",\"tremendous\",\"triangular\",\"tricky\",\"trifling\",\"trim\",\"trivial\",\"troubled\",\"true\",\"trusting\",\"trustworthy\",\"trusty\",\"truthful\",\"tubby\",\"turbulent\",\"twin\",\"ugly\",\"ultimate\",\"unacceptable\",\"unaware\",\"uncomfortable\",\"uncommon\",\"unconscious\",\"understated\",\"unequaled\",\"uneven\",\"unfinished\",\"unfit\",\"unfolded\",\"unfortunate\",\"unhappy\",\"unhealthy\",\"uniform\",\"unimportant\",\"unique\",\"united\",\"unkempt\",\"unknown\",\"unlawful\",\"unlined\",\"unlucky\",\"unnatural\",\"unpleasant\",\"unrealistic\",\"unripe\",\"unruly\",\"unselfish\",\"unsightly\",\"unsteady\",\"unsung\",\"untidy\",\"untimely\",\"untried\",\"untrue\",\"unused\",\"unusual\",\"unwelcome\",\"unwieldy\",\"unwilling\",\"unwitting\",\"unwritten\",\"upbeat\",\"upright\",\"upset\",\"urban\",\"usable\",\"used\",\"useful\",\"useless\",\"utilized\",\"utter\",\"vacant\",\"vague\",\"vain\",\"valid\",\"valuable\",\"vapid\",\"variable\",\"vast\",\"velvety\",\"venerated\",\"vengeful\",\"verifiable\",\"vibrant\",\"vicious\",\"victorious\",\"vigilant\",\"vigorous\",\"villainous\",\"violet\",\"violent\",\"virtual\",\"virtuous\",\"visible\",\"vital\",\"vivacious\",\"vivid\",\"voluminous\",\"wan\",\"warlike\",\"warm\",\"warmhearted\",\"warped\",\"wary\",\"wasteful\",\"watchful\",\"waterlogged\",\"watery\",\"wavy\",\"wealthy\",\"weak\",\"weary\",\"webbed\",\"wee\",\"weekly\",\"weepy\",\"weighty\",\"weird\",\"welcome\",\"well-documented\",\"well-groomed\",\"well-informed\",\"well-lit\",\"well-made\",\"well-off\",\"well-to-do\",\"well-worn\",\"wet\",\"which\",\"whimsical\",\"whirlwind\",\"whispered\",\"white\",\"whole\",\"whopping\",\"wicked\",\"wide\",\"wide-eyed\",\"wiggly\",\"wild\",\"willing\",\"wilted\",\"winding\",\"windy\",\"winged\",\"wiry\",\"wise\",\"witty\",\"wobbly\",\"woeful\",\"wonderful\",\"wooden\",\"woozy\",\"wordy\",\"worldly\",\"worn\",\"worried\",\"worrisome\",\"worse\",\"worst\",\"worthless\",\"worthwhile\",\"worthy\",\"wrathful\",\"wretched\",\"writhing\",\"wrong\",\"wry\",\"yawning\",\"yearly\",\"yellow\",\"yellowish\",\"young\",\"youthful\",\"yummy\",\"zany\",\"zealous\",\"zesty\",\"zigzag\",\"rocky\"];\r",
+									"\r",
+									"var name2 = [\"people\",\"history\",\"way\",\"art\",\"world\",\"information\",\"map\",\"family\",\"government\",\"health\",\"system\",\"computer\",\"meat\",\"year\",\"thanks\",\"music\",\"person\",\"reading\",\"method\",\"data\",\"food\",\"understanding\",\"theory\",\"law\",\"bird\",\"literature\",\"problem\",\"software\",\"control\",\"knowledge\",\"power\",\"ability\",\"economics\",\"love\",\"internet\",\"television\",\"science\",\"library\",\"nature\",\"fact\",\"product\",\"idea\",\"temperature\",\"investment\",\"area\",\"society\",\"activity\",\"story\",\"industry\",\"media\",\"thing\",\"oven\",\"community\",\"definition\",\"safety\",\"quality\",\"development\",\"language\",\"management\",\"player\",\"variety\",\"video\",\"week\",\"security\",\"country\",\"exam\",\"movie\",\"organization\",\"equipment\",\"physics\",\"analysis\",\"policy\",\"series\",\"thought\",\"basis\",\"boyfriend\",\"direction\",\"strategy\",\"technology\",\"army\",\"camera\",\"freedom\",\"paper\",\"environment\",\"child\",\"instance\",\"month\",\"truth\",\"marketing\",\"university\",\"writing\",\"article\",\"department\",\"difference\",\"goal\",\"news\",\"audience\",\"fishing\",\"growth\",\"income\",\"marriage\",\"user\",\"combination\",\"failure\",\"meaning\",\"medicine\",\"philosophy\",\"teacher\",\"communication\",\"night\",\"chemistry\",\"disease\",\"disk\",\"energy\",\"nation\",\"road\",\"role\",\"soup\",\"advertising\",\"location\",\"success\",\"addition\",\"apartment\",\"education\",\"math\",\"moment\",\"painting\",\"politics\",\"attention\",\"decision\",\"event\",\"property\",\"shopping\",\"student\",\"wood\",\"competition\",\"distribution\",\"entertainment\",\"office\",\"population\",\"president\",\"unit\",\"category\",\"cigarette\",\"context\",\"introduction\",\"opportunity\",\"performance\",\"driver\",\"flight\",\"length\",\"magazine\",\"newspaper\",\"relationship\",\"teaching\",\"cell\",\"dealer\",\"debate\",\"finding\",\"lake\",\"member\",\"message\",\"phone\",\"scene\",\"appearance\",\"association\",\"concept\",\"customer\",\"death\",\"discussion\",\"housing\",\"inflation\",\"insurance\",\"mood\",\"woman\",\"advice\",\"blood\",\"effort\",\"expression\",\"importance\",\"opinion\",\"payment\",\"reality\",\"responsibility\",\"situation\",\"skill\",\"statement\",\"wealth\",\"application\",\"city\",\"county\",\"depth\",\"estate\",\"foundation\",\"grandmother\",\"heart\",\"perspective\",\"photo\",\"recipe\",\"studio\",\"topic\",\"collection\",\"depression\",\"imagination\",\"passion\",\"percentage\",\"resource\",\"setting\",\"ad\",\"agency\",\"college\",\"connection\",\"criticism\",\"debt\",\"description\",\"memory\",\"patience\",\"secretary\",\"solution\",\"administration\",\"aspect\",\"attitude\",\"director\",\"personality\",\"psychology\",\"recommendation\",\"response\",\"selection\",\"storage\",\"version\",\"alcohol\",\"argument\",\"complaint\",\"contract\",\"emphasis\",\"highway\",\"loss\",\"membership\",\"possession\",\"preparation\",\"steak\",\"union\",\"agreement\",\"cancer\",\"currency\",\"employment\",\"engineering\",\"entry\",\"interaction\",\"limit\",\"mixture\",\"preference\",\"region\",\"republic\",\"seat\",\"tradition\",\"virus\",\"actor\",\"classroom\",\"delivery\",\"device\",\"difficulty\",\"drama\",\"election\",\"engine\",\"football\",\"guidance\",\"hotel\",\"match\",\"owner\",\"priority\",\"protection\",\"suggestion\",\"tension\",\"variation\",\"anxiety\",\"atmosphere\",\"awareness\",\"bread\",\"climate\",\"comparison\",\"confusion\",\"construction\",\"elevator\",\"emotion\",\"employee\",\"employer\",\"guest\",\"height\",\"leadership\",\"mall\",\"manager\",\"operation\",\"recording\",\"respect\",\"sample\",\"transportation\",\"boring\",\"charity\",\"cousin\",\"disaster\",\"editor\",\"efficiency\",\"excitement\",\"extent\",\"feedback\",\"guitar\",\"homework\",\"leader\",\"mom\",\"outcome\",\"permission\",\"presentation\",\"promotion\",\"reflection\",\"refrigerator\",\"resolution\",\"revenue\",\"session\",\"singer\",\"tennis\",\"basket\",\"bonus\",\"cabinet\",\"childhood\",\"church\",\"clothes\",\"coffee\",\"dinner\",\"drawing\",\"hair\",\"hearing\",\"initiative\",\"judgment\",\"lab\",\"measurement\",\"mode\",\"mud\",\"orange\",\"poetry\",\"police\",\"possibility\",\"procedure\",\"queen\",\"ratio\",\"relation\",\"restaurant\",\"satisfaction\",\"sector\",\"signature\",\"significance\",\"song\",\"tooth\",\"town\",\"vehicle\",\"volume\",\"wife\",\"accident\",\"airport\",\"appointment\",\"arrival\",\"assumption\",\"baseball\",\"chapter\",\"committee\",\"conversation\",\"database\",\"enthusiasm\",\"error\",\"explanation\",\"farmer\",\"gate\",\"girl\",\"hall\",\"historian\",\"hospital\",\"injury\",\"instruction\",\"maintenance\",\"manufacturer\",\"meal\",\"perception\",\"pie\",\"poem\",\"presence\",\"proposal\",\"reception\",\"replacement\",\"revolution\",\"river\",\"son\",\"speech\",\"tea\",\"village\",\"warning\",\"winner\",\"worker\",\"writer\",\"assistance\",\"breath\",\"buyer\",\"chest\",\"chocolate\",\"conclusion\",\"contribution\",\"cookie\",\"courage\",\"desk\",\"drawer\",\"establishment\",\"examination\",\"garbage\",\"grocery\",\"honey\",\"impression\",\"improvement\",\"independence\",\"insect\",\"inspection\",\"inspector\",\"king\",\"ladder\",\"menu\",\"penalty\",\"piano\",\"potato\",\"profession\",\"professor\",\"quantity\",\"reaction\",\"requirement\",\"salad\",\"sister\",\"supermarket\",\"tongue\",\"weakness\",\"wedding\",\"affair\",\"ambition\",\"analyst\",\"apple\",\"assignment\",\"assistant\",\"bathroom\",\"bedroom\",\"beer\",\"birthday\",\"celebration\",\"championship\",\"cheek\",\"client\",\"consequence\",\"departure\",\"diamond\",\"dirt\",\"ear\",\"fortune\",\"friendship\",\"funeral\",\"gene\",\"girlfriend\",\"hat\",\"indication\",\"intention\",\"lady\",\"midnight\",\"negotiation\",\"obligation\",\"passenger\",\"pizza\",\"platform\",\"poet\",\"pollution\",\"recognition\",\"reputation\",\"shirt\",\"speaker\",\"stranger\",\"surgery\",\"sympathy\",\"tale\",\"throat\",\"trainer\",\"uncle\",\"youth\",\"time\",\"work\",\"film\",\"water\",\"money\",\"example\",\"while\",\"business\",\"study\",\"game\",\"life\",\"form\",\"air\",\"day\",\"place\",\"number\",\"part\",\"field\",\"fish\",\"back\",\"process\",\"heat\",\"hand\",\"experience\",\"job\",\"book\",\"end\",\"point\",\"type\",\"home\",\"economy\",\"value\",\"body\",\"market\",\"guide\",\"interest\",\"state\",\"radio\",\"course\",\"company\",\"price\",\"size\",\"card\",\"list\",\"mind\",\"trade\",\"line\",\"care\",\"group\",\"risk\",\"word\",\"fat\",\"force\",\"key\",\"light\",\"training\",\"name\",\"school\",\"top\",\"amount\",\"level\",\"order\",\"practice\",\"research\",\"sense\",\"service\",\"piece\",\"web\",\"boss\",\"sport\",\"fun\",\"house\",\"page\",\"term\",\"test\",\"answer\",\"sound\",\"focus\",\"matter\",\"kind\",\"soil\",\"board\",\"oil\",\"picture\",\"access\",\"garden\",\"range\",\"rate\",\"reason\",\"future\",\"site\",\"demand\",\"exercise\",\"image\",\"case\",\"cause\",\"coast\",\"action\",\"age\",\"bad\",\"boat\",\"record\",\"result\",\"section\",\"building\",\"mouse\",\"cash\",\"class\",\"period\",\"plan\",\"store\",\"tax\",\"side\",\"subject\",\"space\",\"rule\",\"stock\",\"weather\",\"chance\",\"figure\",\"man\",\"model\",\"source\",\"beginning\",\"earth\",\"program\",\"chicken\",\"design\",\"feature\",\"head\",\"material\",\"purpose\",\"question\",\"rock\",\"salt\",\"act\",\"birth\",\"car\",\"dog\",\"object\",\"scale\",\"sun\",\"note\",\"profit\",\"rent\",\"speed\",\"style\",\"war\",\"bank\",\"craft\",\"half\",\"inside\",\"outside\",\"standard\",\"bus\",\"exchange\",\"eye\",\"fire\",\"position\",\"pressure\",\"stress\",\"advantage\",\"benefit\",\"box\",\"frame\",\"issue\",\"step\",\"cycle\",\"face\",\"item\",\"metal\",\"paint\",\"review\",\"room\",\"screen\",\"structure\",\"view\",\"account\",\"ball\",\"discipline\",\"medium\",\"share\",\"balance\",\"bit\",\"black\",\"bottom\",\"choice\",\"gift\",\"impact\",\"machine\",\"shape\",\"tool\",\"wind\",\"address\",\"average\",\"career\",\"culture\",\"morning\",\"pot\",\"sign\",\"table\",\"task\",\"condition\",\"contact\",\"credit\",\"egg\",\"hope\",\"ice\",\"network\",\"north\",\"square\",\"attempt\",\"date\",\"effect\",\"link\",\"post\",\"star\",\"voice\",\"capital\",\"challenge\",\"friend\",\"self\",\"shot\",\"brush\",\"couple\",\"exit\",\"front\",\"function\",\"lack\",\"living\",\"plant\",\"plastic\",\"spot\",\"summer\",\"taste\",\"theme\",\"track\",\"wing\",\"brain\",\"button\",\"click\",\"desire\",\"foot\",\"gas\",\"influence\",\"notice\",\"rain\",\"wall\",\"base\",\"damage\",\"distance\",\"feeling\",\"pair\",\"savings\",\"staff\",\"sugar\",\"target\",\"text\",\"animal\",\"author\",\"budget\",\"discount\",\"file\",\"ground\",\"lesson\",\"minute\",\"officer\",\"phase\",\"reference\",\"register\",\"sky\",\"stage\",\"stick\",\"title\",\"trouble\",\"bowl\",\"bridge\",\"campaign\",\"character\",\"club\",\"edge\",\"evidence\",\"fan\",\"letter\",\"lock\",\"maximum\",\"novel\",\"option\",\"pack\",\"park\",\"quarter\",\"skin\",\"sort\",\"weight\",\"baby\",\"background\",\"carry\",\"dish\",\"factor\",\"fruit\",\"glass\",\"joint\",\"master\",\"muscle\",\"red\",\"strength\",\"traffic\",\"trip\",\"vegetable\",\"appeal\",\"chart\",\"gear\",\"ideal\",\"kitchen\",\"land\",\"log\",\"mother\",\"net\",\"party\",\"principle\",\"relative\",\"sale\",\"season\",\"signal\",\"spirit\",\"street\",\"tree\",\"wave\",\"belt\",\"bench\",\"commission\",\"copy\",\"drop\",\"minimum\",\"path\",\"progress\",\"project\",\"sea\",\"south\",\"status\",\"stuff\",\"ticket\",\"tour\",\"angle\",\"blue\",\"breakfast\",\"confidence\",\"daughter\",\"degree\",\"doctor\",\"dot\",\"dream\",\"duty\",\"essay\",\"father\",\"fee\",\"finance\",\"hour\",\"juice\",\"luck\",\"milk\",\"mouth\",\"peace\",\"pipe\",\"stable\",\"storm\",\"substance\",\"team\",\"trick\",\"afternoon\",\"bat\",\"beach\",\"blank\",\"catch\",\"chain\",\"consideration\",\"cream\",\"crew\",\"detail\",\"gold\",\"interview\",\"kid\",\"mark\",\"mission\",\"pain\",\"pleasure\",\"score\",\"screw\",\"sex\",\"shop\",\"shower\",\"suit\",\"tone\",\"window\",\"agent\",\"band\",\"bath\",\"block\",\"bone\",\"calendar\",\"candidate\",\"cap\",\"coat\",\"contest\",\"corner\",\"court\",\"cup\",\"district\",\"door\",\"east\",\"finger\",\"garage\",\"guarantee\",\"hole\",\"hook\",\"implement\",\"layer\",\"lecture\",\"lie\",\"manner\",\"meeting\",\"nose\",\"parking\",\"partner\",\"profile\",\"rice\",\"routine\",\"schedule\",\"swimming\",\"telephone\",\"tip\",\"winter\",\"airline\",\"bag\",\"battle\",\"bed\",\"bill\",\"bother\",\"cake\",\"code\",\"curve\",\"designer\",\"dimension\",\"dress\",\"ease\",\"emergency\",\"evening\",\"extension\",\"farm\",\"fight\",\"gap\",\"grade\",\"holiday\",\"horror\",\"horse\",\"host\",\"husband\",\"loan\",\"mistake\",\"mountain\",\"nail\",\"noise\",\"occasion\",\"package\",\"patient\",\"pause\",\"phrase\",\"proof\",\"race\",\"relief\",\"sand\",\"sentence\",\"shoulder\",\"smoke\",\"stomach\",\"string\",\"tourist\",\"towel\",\"vacation\",\"west\",\"wheel\",\"wine\",\"arm\",\"aside\",\"associate\",\"bet\",\"blow\",\"border\",\"branch\",\"breast\",\"brother\",\"buddy\",\"bunch\",\"chip\",\"coach\",\"cross\",\"document\",\"draft\",\"dust\",\"expert\",\"floor\",\"god\",\"golf\",\"habit\",\"iron\",\"judge\",\"knife\",\"landscape\",\"league\",\"mail\",\"mess\",\"native\",\"opening\",\"parent\",\"pattern\",\"pin\",\"pool\",\"pound\",\"request\",\"salary\",\"shame\",\"shelter\",\"shoe\",\"silver\",\"tackle\",\"tank\",\"trust\",\"assist\",\"bake\",\"bar\",\"bell\",\"bike\",\"blame\",\"boy\",\"brick\",\"chair\",\"closet\",\"clue\",\"collar\",\"comment\",\"conference\",\"devil\",\"diet\",\"fear\",\"fuel\",\"glove\",\"jacket\",\"lunch\",\"monitor\",\"mortgage\",\"nurse\",\"pace\",\"panic\",\"peak\",\"plane\",\"reward\",\"row\",\"sandwich\",\"shock\",\"spite\",\"spray\",\"surprise\",\"till\",\"transition\",\"weekend\",\"welcome\",\"yard\",\"alarm\",\"bend\",\"bicycle\",\"bite\",\"blind\",\"bottle\",\"cable\",\"candle\",\"clerk\",\"cloud\",\"concert\",\"counter\",\"flower\",\"grandfather\",\"harm\",\"knee\",\"lawyer\",\"leather\",\"load\",\"mirror\",\"neck\",\"pension\",\"plate\",\"purple\",\"ruin\",\"ship\",\"skirt\",\"slice\",\"snow\",\"specialist\",\"stroke\",\"switch\",\"trash\",\"tune\",\"zone\",\"anger\",\"award\",\"bid\",\"bitter\",\"boot\",\"bug\",\"camp\",\"candy\",\"carpet\",\"cat\",\"champion\",\"channel\",\"clock\",\"comfort\",\"cow\",\"crack\",\"engineer\",\"entrance\",\"fault\",\"grass\",\"guy\",\"hell\",\"highlight\",\"incident\",\"island\",\"joke\",\"jury\",\"leg\",\"lip\",\"mate\",\"motor\",\"nerve\",\"passage\",\"pen\",\"pride\",\"priest\",\"prize\",\"promise\",\"resident\",\"resort\",\"ring\",\"roof\",\"rope\",\"sail\",\"scheme\",\"script\",\"sock\",\"station\",\"toe\",\"tower\",\"truck\",\"witness\",\"can\",\"will\",\"other\",\"use\",\"make\",\"good\",\"look\",\"help\",\"go\",\"great\",\"being\",\"still\",\"public\",\"read\",\"keep\",\"start\",\"give\",\"human\",\"local\",\"general\",\"specific\",\"long\",\"play\",\"feel\",\"high\",\"put\",\"common\",\"set\",\"change\",\"simple\",\"past\",\"big\",\"possible\",\"particular\",\"major\",\"personal\",\"current\",\"national\",\"cut\",\"natural\",\"physical\",\"show\",\"try\",\"check\",\"second\",\"call\",\"move\",\"pay\",\"let\",\"increase\",\"single\",\"individual\",\"turn\",\"ask\",\"buy\",\"guard\",\"hold\",\"main\",\"offer\",\"potential\",\"professional\",\"international\",\"travel\",\"cook\",\"alternative\",\"special\",\"working\",\"whole\",\"dance\",\"excuse\",\"cold\",\"commercial\",\"low\",\"purchase\",\"deal\",\"primary\",\"worth\",\"fall\",\"necessary\",\"positive\",\"produce\",\"search\",\"present\",\"spend\",\"talk\",\"creative\",\"tell\",\"cost\",\"drive\",\"green\",\"support\",\"glad\",\"remove\",\"return\",\"run\",\"complex\",\"due\",\"effective\",\"middle\",\"regular\",\"reserve\",\"independent\",\"leave\",\"original\",\"reach\",\"rest\",\"serve\",\"watch\",\"beautiful\",\"charge\",\"active\",\"break\",\"negative\",\"safe\",\"stay\",\"visit\",\"visual\",\"affect\",\"cover\",\"report\",\"rise\",\"walk\",\"white\",\"junior\",\"pick\",\"unique\",\"classic\",\"final\",\"lift\",\"mix\",\"private\",\"stop\",\"teach\",\"western\",\"concern\",\"familiar\",\"fly\",\"official\",\"broad\",\"comfortable\",\"gain\",\"rich\",\"save\",\"stand\",\"young\",\"heavy\",\"lead\",\"listen\",\"valuable\",\"worry\",\"handle\",\"leading\",\"meet\",\"release\",\"sell\",\"finish\",\"normal\",\"press\",\"ride\",\"secret\",\"spread\",\"spring\",\"tough\",\"wait\",\"brown\",\"deep\",\"display\",\"flow\",\"hit\",\"objective\",\"shoot\",\"touch\",\"cancel\",\"chemical\",\"cry\",\"dump\",\"extreme\",\"push\",\"conflict\",\"eat\",\"fill\",\"formal\",\"jump\",\"kick\",\"opposite\",\"pass\",\"pitch\",\"remote\",\"total\",\"treat\",\"vast\",\"abuse\",\"beat\",\"burn\",\"deposit\",\"print\",\"raise\",\"sleep\",\"somewhere\",\"advance\",\"consist\",\"dark\",\"double\",\"draw\",\"equal\",\"fix\",\"hire\",\"internal\",\"join\",\"kill\",\"sensitive\",\"tap\",\"win\",\"attack\",\"claim\",\"constant\",\"drag\",\"drink\",\"guess\",\"minor\",\"pull\",\"raw\",\"soft\",\"solid\",\"wear\",\"weird\",\"wonder\",\"annual\",\"count\",\"dead\",\"doubt\",\"feed\",\"forever\",\"impress\",\"repeat\",\"round\",\"sing\",\"slide\",\"strip\",\"wish\",\"combine\",\"command\",\"dig\",\"divide\",\"equivalent\",\"hang\",\"hunt\",\"initial\",\"march\",\"mention\",\"spiritual\",\"survey\",\"tie\",\"adult\",\"brief\",\"crazy\",\"escape\",\"gather\",\"hate\",\"prior\",\"repair\",\"rough\",\"sad\",\"scratch\",\"sick\",\"strike\",\"employ\",\"external\",\"hurt\",\"illegal\",\"laugh\",\"lay\",\"mobile\",\"nasty\",\"ordinary\",\"respond\",\"royal\",\"senior\",\"split\",\"strain\",\"struggle\",\"swim\",\"train\",\"upper\",\"wash\",\"yellow\",\"convert\",\"crash\",\"dependent\",\"fold\",\"funny\",\"grab\",\"hide\",\"miss\",\"permit\",\"quote\",\"recover\",\"resolve\",\"roll\",\"sink\",\"slip\",\"spare\",\"suspect\",\"sweet\",\"swing\",\"twist\",\"upstairs\",\"usual\",\"abroad\",\"brave\",\"calm\",\"concentrate\",\"estimate\",\"grand\",\"male\",\"mine\",\"prompt\",\"quiet\",\"refuse\",\"regret\",\"reveal\",\"rush\",\"shake\",\"shift\",\"shine\",\"steal\",\"suck\",\"surround\",\"bear\",\"brilliant\",\"dare\",\"dear\",\"delay\",\"drunk\",\"female\",\"hurry\",\"inevitable\",\"invite\",\"kiss\",\"neat\",\"pop\",\"punch\",\"quit\",\"reply\",\"representative\",\"resist\",\"rip\",\"rub\",\"silly\",\"smile\",\"spell\",\"stretch\",\"stupid\",\"tear\",\"temporary\",\"tomorrow\",\"wake\",\"wrap\",\"yesterday\",\"Thomas\",\"Tom\",\"Lieuwe\"];\r",
+									"\r",
+									"function generateBusinessName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name1[getRandomInt(0, name1.length + 1)]) + '-' + capFirst(name2[getRandomInt(0, name2.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"Business Name is \"+generateBusinessName())\r",
+									"\r",
+									"function generateFirstName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name1[getRandomInt(0, name1.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"First Name is \"+generateFirstName())\r",
+									"\r",
+									"function generateSecondName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name2[getRandomInt(0, name2.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"Second Name is \"+generateSecondName())\r",
+									"\r",
+									"// function getRandomEmail(domain){\r",
+									"// const random = Math.random().toString(36).substring(7);\r",
+									"// return random + '@' + domain;\r",
+									"// }\r",
+									"function getRandomEmail(domain){\r",
+									"const email=\"patientq_automation\" + new Date().getTime();\r",
+									"pm.environment.set(\"businessOwnerEmailBefore@\", email);\r",
+									"const random = Math.random().toString(36).substring(7);\r",
+									"return email + '@' + domain;\r",
+									"}\r",
+									"const domain = pm.environment.get(\"domain\");\r",
+									"console.log(\"random email address:\"+ getRandomEmail(domain));\r",
+									"\r",
+									"var digits = Math.floor(Math.random() * 9000000000) + 1000000000;\r",
+									"console.log(\"Phone Number is \"+digits)\r",
+									"\r",
+									"pm.environment.set(\"businessName\", generateBusinessName());\r",
+									"pm.collectionVariables.set(\"phoneNumber\", digits);\r",
+									"pm.collectionVariables.set(\"firstName\", generateFirstName());\r",
+									"pm.collectionVariables.set(\"secondName\", generateSecondName());\r",
+									"pm.environment.set(\"businessOwnerEmailAddress\", getRandomEmail(domain));\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{SuperAdminAcessTokenForBOAuthFlow}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{businessName}}\",\n  \"businessPhoneNumber\": \"{{phoneNumber}}\",\n  \"ownerPhoneNumber\":\"{{phoneNumber}}\",\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{secondName}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\",\n  \"city\": \"Newyork\",\n  \"state\": \"USA\",\n  \"country\":\"America\",\n  \"streetAddress\": \"Block2 Street 15\",\n  \"postalCode\": \"00000\",\n  \"subdomain\": \"busbymubeen.patientq.com\",\n  \"website\": \"busbymubeen.patientq.com\",\n  \"preferredTimeZone\": \"America/New_York\",\n  \"twilio_phone_number\": \"string\",\n  \"twilio_sub_account_id\": \"string\",\n  \"jobTitle\": \"SQAE\",\n  \"title\": \"Software Test Engineer\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/business",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"business"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/business",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"{{businessName}}\",\n  \"phoneNumber\": \"{{phoneNumber}}\",\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{secondName}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"email\": \"{{businessOwnerEmailAddress}}\",\n  \"accountType\": \"current\",\n  \"bankName\": \"string\",\n  \"accountTitle\": \"string\",\n  \"accountNumber\": \"8496025030912\",\n  \"city\": \"string\",\n  \"state\": \"string\",\n  \"subdomain\": \"string\",\n  \"preferredTimeZone\": \"string\",\n  \"twilio_phone_number\": \"string\",\n  \"twilio_sub_account_id\": \"string\",\n  \"jobTitle\": \"string\",\n  \"title\": \"string\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/business",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"business"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "535"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 27 Aug 2024 07:56:01 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"217-D1D6zWuMvntR/JLtez1Qm4OWK4I\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1724745358992-32207cec"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 e4c53c4af9a72de6f37a2f8234e9d3ea.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "XSgHljkg1gMtpjQu23JgZ7TkNGt9tkrSd3Q2dWxIOXujHDQclMpFLg=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"id\": 8,\n        \"name\": \"Delectable-Farmer\",\n        \"accountType\": \"current\",\n        \"bankName\": \"string\",\n        \"accountTitle\": \"string\",\n        \"accountNumber\": \"8496025030912\",\n        \"isActive\": true,\n        \"user\": {\n            \"id\": \"fb8c881d-71ac-440c-8e71-de29e65f8bb3\",\n            \"firstName\": \"Irresponsible\",\n            \"lastName\": \"Clue\",\n            \"phoneNumber\": \"2001193210\",\n            \"email\": \"5p14h@outlook.com\",\n            \"isActive\": true,\n            \"isBusinessOwner\": true,\n            \"title\": \"string\",\n            \"jobTitle\": \"string\"\n        },\n        \"testMessageInboxUrl\": \"https://ethereal.email/message/ZsxvRLz.uA-zZ2l4Zs2GkbEfOOXRSnnZAAAADUuyGXkW3s9aYmxXg8YJjoE\"\n    },\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GetTempEmail",
+			"item": [
+				{
+					"name": "https://api.mail.tm/messages?page=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									" pm.environment.set(\"tempEmailMessageId\", jsonData[\"hydra:member\"][0].id);\r",
+									" console.log(\"tempEmailMessageId: \"+ pm.environment.get(\"tempEmailMessageId\"));\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 3000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tempMailJWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+							}
+						],
+						"url": {
+							"raw": "https://api.mail.tm/messages?page=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mail",
+								"tm"
+							],
+							"path": [
+								"messages"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://api.mail.tm/messages?page=1' \\\r\n  -H 'accept: application/ld+json' \\\r\n  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg'"
+					},
+					"response": [
+						{
+							"name": "https://api.mail.tm/messages?page=1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/ld+json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+									}
+								],
+								"url": {
+									"raw": "https://api.mail.tm/messages?page=1",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mail",
+										"tm"
+									],
+									"path": [
+										"messages"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Sep 2024 08:14:38 GMT"
+								},
+								{
+									"key": "etag",
+									"value": "\"2ecafaf4adf6c63d8798a9839c870c1c\""
+								},
+								{
+									"key": "link",
+									"value": "<http://api.mail.tm/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "link",
+									"value": "<https://mercure.mail.tm/.well-known/mercure>; rel=\"mercure\""
+								},
+								{
+									"key": "ratelimit-policy",
+									"value": "30; w=60"
+								},
+								{
+									"key": "server",
+									"value": "Caddy"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "deny"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.2.16"
+								},
+								{
+									"key": "content-length",
+									"value": "789"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/contexts/Message\",\n    \"@id\": \"/messages\",\n    \"@type\": \"hydra:Collection\",\n    \"hydra:totalItems\": 1,\n    \"hydra:member\": [\n        {\n            \"@id\": \"/messages/66deae0fc2641e77f2b959e4\",\n            \"@type\": \"Message\",\n            \"id\": \"66deae0fc2641e77f2b959e4\",\n            \"msgid\": \"<01000191d5d7e612-39ebd177-3269-469f-b6fa-bc1f32dcf8da-000000@email.amazonses.com>\",\n            \"from\": {\n                \"address\": \"no-reply@patientq.io\",\n                \"name\": \"\"\n            },\n            \"to\": [\n                {\n                    \"address\": \"patientq_automation1725869555073@starmail.net\",\n                    \"name\": \"\"\n                }\n            ],\n            \"subject\": \"Secure Your Account\",\n            \"seen\": false,\n            \"isDeleted\": false,\n            \"hasAttachments\": false,\n            \"size\": 2612,\n            \"downloadUrl\": \"/messages/66deae0fc2641e77f2b959e4/download\",\n            \"sourceUrl\": \"/sources/66deae0fc2641e77f2b959e4\",\n            \"createdAt\": \"2024-09-09T08:13:01+00:00\",\n            \"updatedAt\": \"2024-09-09T08:13:03+00:00\",\n            \"accountId\": \"/accounts/66deadf00c723920ee0e8225\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "https://api.mail.tm/messages/66deae0fc2641e77f2b959e4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var messageBody = jsonData.html[0];\r",
+									"console.log(messageBody);\r",
+									"\r",
+									"// Extract the URL from the anchor tag using regex\r",
+									"const regex = /<a[^>]*href=\"([^\"]*)\"/;\r",
+									"const match = messageBody.match(regex);\r",
+									"\r",
+									"// If a match is found, store the link in an environment variable\r",
+									"if (match && match[1]) {\r",
+									"    const extractedLink = match[1];\r",
+									"    console.log('Extracted Link:', extractedLink);\r",
+									"    \r",
+									"    // Set the extracted link as a Postman environment variable\r",
+									"    pm.environment.set(\"passwordResetLink\", extractedLink);\r",
+									"\r",
+									"    // Regular expression to find the 6-digit code\r",
+									"    const otpRegex = /code=(\\d{6})/;\r",
+									"    // Match the regular expression with the URL\r",
+									"    const otpMatch = extractedLink.match(otpRegex);\r",
+									"    // Extract the 6-digit code if found\r",
+									"    if (otpMatch && otpMatch[1]) {\r",
+									"    const code = otpMatch[1];\r",
+									"    console.log('Extracted Code:', code);\r",
+									"    \r",
+									"    // Set the extracted code as a Postman environment variable\r",
+									"    pm.environment.set(\"passwordResetCode\", code);\r",
+									"} else {\r",
+									"    console.log('No 6-digit code found.');\r",
+									"}\r",
+									"} else {\r",
+									"    console.log('No link found in the HTML.');\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tempMailJWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+							}
+						],
+						"url": {
+							"raw": "https://api.mail.tm/messages/{{tempEmailMessageId}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mail",
+								"tm"
+							],
+							"path": [
+								"messages",
+								"{{tempEmailMessageId}}"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://api.mail.tm/messages/66deae0fc2641e77f2b959e4' \\\r\n  -H 'accept: application/ld+json' \\\r\n  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg'"
+					},
+					"response": [
+						{
+							"name": "https://api.mail.tm/messages/66deae0fc2641e77f2b959e4",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/ld+json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+									}
+								],
+								"url": {
+									"raw": "https://api.mail.tm/messages/66deae0fc2641e77f2b959e4",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mail",
+										"tm"
+									],
+									"path": [
+										"messages",
+										"66deae0fc2641e77f2b959e4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "accept-patch",
+									"value": "application/merge-patch+json, application/vnd.api+json"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-location",
+									"value": "/messages/66deae0fc2641e77f2b959e4"
+								},
+								{
+									"key": "content-type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Sep 2024 08:17:04 GMT"
+								},
+								{
+									"key": "etag",
+									"value": "\"e01386d2bb1228b5a0eb7cc50d46b593\""
+								},
+								{
+									"key": "link",
+									"value": "<http://api.mail.tm/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "link",
+									"value": "<https://mercure.mail.tm/.well-known/mercure>; rel=\"mercure\""
+								},
+								{
+									"key": "ratelimit-policy",
+									"value": "30; w=60"
+								},
+								{
+									"key": "server",
+									"value": "Caddy"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "deny"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.2.16"
+								},
+								{
+									"key": "content-length",
+									"value": "1523"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/contexts/Message\",\n    \"@id\": \"/messages/66deae0fc2641e77f2b959e4\",\n    \"@type\": \"Message\",\n    \"id\": \"66deae0fc2641e77f2b959e4\",\n    \"msgid\": \"<01000191d5d7e612-39ebd177-3269-469f-b6fa-bc1f32dcf8da-000000@email.amazonses.com>\",\n    \"from\": {\n        \"address\": \"no-reply@patientq.io\",\n        \"name\": \"\"\n    },\n    \"to\": [\n        {\n            \"address\": \"patientq_automation1725869555073@starmail.net\",\n            \"name\": \"\"\n        }\n    ],\n    \"cc\": [],\n    \"bcc\": [],\n    \"subject\": \"Secure Your Account\",\n    \"seen\": false,\n    \"flagged\": false,\n    \"isDeleted\": false,\n    \"verifications\": {\n        \"tls\": {\n            \"name\": \"TLS_AES_256_GCM_SHA384\",\n            \"standardName\": \"TLS_AES_256_GCM_SHA384\",\n            \"version\": \"TLSv1.3\"\n        },\n        \"spf\": false,\n        \"dkim\": false\n    },\n    \"retention\": true,\n    \"retentionDate\": \"2024-09-16T08:13:03+00:00\",\n    \"html\": [\n        \"<p>Dear User</p>\\r\\n        <p>To ensure the security of your account, we recommend creating a strong password. You can set your password using the link below:</p>\\r\\n        <p><strong>Link :</strong> <a href=\\\"https://web-dev.patientq.io/create-password?email=patientq_automation1725869555073@starmail.net&code=278517\\\">Set Password</a></p>\\r\\n        <p>Thank you,</p>\\r\\n        <p>Your PatientQ Team</p>\"\n    ],\n    \"hasAttachments\": false,\n    \"size\": 2612,\n    \"downloadUrl\": \"/messages/66deae0fc2641e77f2b959e4/download\",\n    \"sourceUrl\": \"/sources/66deae0fc2641e77f2b959e4\",\n    \"createdAt\": \"2024-09-09T08:13:01+00:00\",\n    \"updatedAt\": \"2024-09-09T08:13:03+00:00\",\n    \"accountId\": \"/accounts/66deadf00c723920ee0e8225\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "create-new-password",
+			"item": [
+				{
+					"name": "Auth Controller reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"token\": \"{{passwordResetCode}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Auth Controller reset Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"token\": \"{{passwordResetCode}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/auth/reset-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"reset-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 08:24:39 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-1v62tADZ8PRP8RIwVlaZ2Mltnv4\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725870279376-edc37822"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 ecbddd33bb3186289a289748e6a6538e.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "33IK8Im_LcDvbfJNUa1zfrqqmkUEo81fN0Yrl0TQu39i2nFNHg11vw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": true,\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Auth Controller login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// if(pm.variables.get(\"isPositiveScenario\")==true){\r",
+									"pm.collectionVariables.set(\"BusinessOwnerAcessToken\", jsonData.data.accessToken);\r",
+									"console.log(jsonData.data.accessToken);\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\",\n  \"password\": \"{{businessOwnerPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Auth Controller login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"hamna.saad@venturedive.com\",\n  \"password\": \"12345678\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1328"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 22 Aug 2024 09:52:28 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"530-KVzH/UHU/B2HU8sion5Fe15z8QQ\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1724320348300-5d107efe"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 d438675d3e845db780613f86fb0814b6.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "B_VEsuwkKBptsDoUPLgDH168dKqDmC83ThJ-BMug797gAdGHCblQTw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"data\": {\n            \"id\": \"9c9d69ba-780f-4735-a6f5-57592b686fa5\",\n            \"name\": \"Hamna Saad\",\n            \"email\": \"hamna.saad@venturedive.com\",\n            \"profileImageUrl\": null,\n            \"authType\": \"credentials\",\n            \"twoFactorEnabled\": false,\n            \"accessToken\": \"eyJraWQiOiJid3VPOWpqWGpPRUF0cWQxdTV0VnpxV29ONVlXTk5pSUdJcDcwUnNwY2JZPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIwNGU4MzRmOC1iMDUxLTcwM2MtZDU5MS00Yjk1OTM1OGQ1NTciLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0xLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMV9rVzRFNFpnYjYiLCJjbGllbnRfaWQiOiI1bzc2NGtwcjk0Mmgya2UzdGFzZDF2a2JrbCIsIm9yaWdpbl9qdGkiOiJkMWM5ZGJlMi00ZjJlLTRjYmMtODhmMy1lY2Q3M2E1OTgyZDUiLCJldmVudF9pZCI6Ijk2YWRjOGQ1LTdjZDMtNGIyZi1hMzdjLTQ1NzI4NWQxNzhiMSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MjQzMjAzNDgsImV4cCI6MTcyNDMyMzk0OCwiaWF0IjoxNzI0MzIwMzQ4LCJqdGkiOiI0NWQwM2YzNi00ZWRmLTRkMTktODU2Yi0wN2VhMmNiZjFlZDEiLCJ1c2VybmFtZSI6IjA0ZTgzNGY4LWIwNTEtNzAzYy1kNTkxLTRiOTU5MzU4ZDU1NyJ9.ldtkz4b4cGELMnc4h7vptb4dJZwZWTEu1pIug3azf7Jn9gw6Df0Z80arGukwJMCaMhvR6n2b4d2lIJlPRZx2NMiRQGI9Ld1uRNsIPUz64y2YiRZ-E6H7HFSAymHq8qD0fLADEX2EaPLqnZrC9_Hz_dCyTyemOWLS6VWuakfxooJmN-P-23BJoXcwaiJ7wrGSsNczBKzFZ4BWx182FEwf6H11y3qI1MJKsQ0KNmSGjrkQlAA1PAVaHSwZXqH47VMbYY_kzaA4vDcU1etRMhC5Ve1hgZ34Kjk5pM4j4QJla-lHk-Sese3hwp8aldOnta2kP4VVx9wcLgRw-O3iLt7qWQ\"\n        },\n        \"statusCode\": 201\n    },\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "change-password",
+			"item": [
+				{
+					"name": "Auth Controller change Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"// if(pm.variables.get(\"isPositiveScenario\")==true){\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"// Adding a test to check the response time\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(10000);\r",
+									"});\r",
+									"// \r",
+									"// Adding a test to check for response schema validation\r",
+									"\r",
+									"// }\r",
+									"// Adding a test to validate the schema of the response data\r",
+									"pm.test(\"Schema of the response data is valid\", function () {\r",
+									"    var responseData = pm.response.json().data;\r",
+									"    var dataSchema = {\r",
+									"        type: \"boolean\"\r",
+									"    };\r",
+									"    pm.expect(tv4.validate(responseData, dataSchema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"currentPassword\": \"{{businessOwnerPassword}}\",\n  \"newPassword\": \"{{businessOwnerPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/change-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "send-reset-password-link",
+			"item": [
+				{
+					"name": "Auth Controller send Reset Password Link",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/send-reset-password-link",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"send-reset-password-link"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Auth Controller send Reset Password Link",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/auth/send-reset-password-link",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"send-reset-password-link"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "143"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 08:37:07 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"8f-4KildACgyy22Om/QbMyqn7tEoDw\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725871027660-e40c8f2f"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 a1d61a451b8c4484b806f4663558cce2.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "xS7bKDEAdL2e7d9bl1bF7iE7NdPnJ31NA6p60itmnGAhL62VNlIXGQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"success\": true,\n        \"message\": \"Please check your registered email for instructions to reset your password.\"\n    },\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "GetTempEmailForResetPassword",
+			"item": [
+				{
+					"name": "https://api.mail.tm/messages?page=1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									" pm.environment.set(\"tempEmailMessageId\", jsonData[\"hydra:member\"][0].id);\r",
+									" console.log(\"tempEmailMessageId: \"+ pm.environment.get(\"tempEmailMessageId\"));\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"setTimeout(function(){}, 3000);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tempMailJWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+							}
+						],
+						"url": {
+							"raw": "https://api.mail.tm/messages?page=1",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mail",
+								"tm"
+							],
+							"path": [
+								"messages"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://api.mail.tm/messages?page=1' \\\r\n  -H 'accept: application/ld+json' \\\r\n  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg'"
+					},
+					"response": [
+						{
+							"name": "https://api.mail.tm/messages?page=1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/ld+json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+									}
+								],
+								"url": {
+									"raw": "https://api.mail.tm/messages?page=1",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mail",
+										"tm"
+									],
+									"path": [
+										"messages"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Sep 2024 08:14:38 GMT"
+								},
+								{
+									"key": "etag",
+									"value": "\"2ecafaf4adf6c63d8798a9839c870c1c\""
+								},
+								{
+									"key": "link",
+									"value": "<http://api.mail.tm/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "link",
+									"value": "<https://mercure.mail.tm/.well-known/mercure>; rel=\"mercure\""
+								},
+								{
+									"key": "ratelimit-policy",
+									"value": "30; w=60"
+								},
+								{
+									"key": "server",
+									"value": "Caddy"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "deny"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.2.16"
+								},
+								{
+									"key": "content-length",
+									"value": "789"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/contexts/Message\",\n    \"@id\": \"/messages\",\n    \"@type\": \"hydra:Collection\",\n    \"hydra:totalItems\": 1,\n    \"hydra:member\": [\n        {\n            \"@id\": \"/messages/66deae0fc2641e77f2b959e4\",\n            \"@type\": \"Message\",\n            \"id\": \"66deae0fc2641e77f2b959e4\",\n            \"msgid\": \"<01000191d5d7e612-39ebd177-3269-469f-b6fa-bc1f32dcf8da-000000@email.amazonses.com>\",\n            \"from\": {\n                \"address\": \"no-reply@patientq.io\",\n                \"name\": \"\"\n            },\n            \"to\": [\n                {\n                    \"address\": \"patientq_automation1725869555073@starmail.net\",\n                    \"name\": \"\"\n                }\n            ],\n            \"subject\": \"Secure Your Account\",\n            \"seen\": false,\n            \"isDeleted\": false,\n            \"hasAttachments\": false,\n            \"size\": 2612,\n            \"downloadUrl\": \"/messages/66deae0fc2641e77f2b959e4/download\",\n            \"sourceUrl\": \"/sources/66deae0fc2641e77f2b959e4\",\n            \"createdAt\": \"2024-09-09T08:13:01+00:00\",\n            \"updatedAt\": \"2024-09-09T08:13:03+00:00\",\n            \"accountId\": \"/accounts/66deadf00c723920ee0e8225\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "https://api.mail.tm/messages/66deae0fc2641e77f2b959e4",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"var messageBody = jsonData.html[0];\r",
+									"console.log(messageBody);\r",
+									"\r",
+									"// Extract the URL from the anchor tag using regex\r",
+									"const regex = /<a[^>]*href=\"([^\"]*)\"/;\r",
+									"const match = messageBody.match(regex);\r",
+									"\r",
+									"// If a match is found, store the link in an environment variable\r",
+									"if (match && match[1]) {\r",
+									"    const extractedLink = match[1];\r",
+									"    console.log('Extracted Link:', extractedLink);\r",
+									"    \r",
+									"    // Set the extracted link as a Postman environment variable\r",
+									"    pm.environment.set(\"passwordResetLink\", extractedLink);\r",
+									"\r",
+									"    // Regular expression to find the 6-digit code\r",
+									"    const otpRegex = /code=(\\d{6})/;\r",
+									"    // Match the regular expression with the URL\r",
+									"    const otpMatch = extractedLink.match(otpRegex);\r",
+									"    // Extract the 6-digit code if found\r",
+									"    if (otpMatch && otpMatch[1]) {\r",
+									"    const code = otpMatch[1];\r",
+									"    console.log('Extracted Code:', code);\r",
+									"    \r",
+									"    // Set the extracted code as a Postman environment variable\r",
+									"    pm.environment.set(\"passwordResetCode\", code);\r",
+									"} else {\r",
+									"    console.log('No 6-digit code found.');\r",
+									"}\r",
+									"} else {\r",
+									"    console.log('No link found in the HTML.');\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{tempMailJWT}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/ld+json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+							}
+						],
+						"url": {
+							"raw": "https://api.mail.tm/messages/{{tempEmailMessageId}}",
+							"protocol": "https",
+							"host": [
+								"api",
+								"mail",
+								"tm"
+							],
+							"path": [
+								"messages",
+								"{{tempEmailMessageId}}"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://api.mail.tm/messages/66deae0fc2641e77f2b959e4' \\\r\n  -H 'accept: application/ld+json' \\\r\n  -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg'"
+					},
+					"response": [
+						{
+							"name": "https://api.mail.tm/messages/66deae0fc2641e77f2b959e4",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/ld+json"
+									},
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzUxMiJ9.eyJpYXQiOjE3MjU4Njk1OTksInJvbGVzIjpbIlJPTEVfVVNFUiJdLCJhZGRyZXNzIjoicGF0aWVudHFfYXV0b21hdGlvbjE3MjU4Njk1NTUwNzNAc3Rhcm1haWwubmV0IiwiaWQiOiI2NmRlYWRmMDBjNzIzOTIwZWUwZTgyMjUiLCJtZXJjdXJlIjp7InN1YnNjcmliZSI6WyIvYWNjb3VudHMvNjZkZWFkZjAwYzcyMzkyMGVlMGU4MjI1Il19fQ.A_AEShexgBMqdrKYzuLYwA8lhjLjGAykWrrv5uJ8ciOQMkprcTWThvqzx2yV2b3ixDpVsZmb49wPDNMPwr-9Bg"
+									}
+								],
+								"url": {
+									"raw": "https://api.mail.tm/messages/66deae0fc2641e77f2b959e4",
+									"protocol": "https",
+									"host": [
+										"api",
+										"mail",
+										"tm"
+									],
+									"path": [
+										"messages",
+										"66deae0fc2641e77f2b959e4"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "accept-patch",
+									"value": "application/merge-patch+json, application/vnd.api+json"
+								},
+								{
+									"key": "access-control-allow-origin",
+									"value": "*"
+								},
+								{
+									"key": "cache-control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "content-location",
+									"value": "/messages/66deae0fc2641e77f2b959e4"
+								},
+								{
+									"key": "content-type",
+									"value": "application/ld+json; charset=utf-8"
+								},
+								{
+									"key": "date",
+									"value": "Mon, 09 Sep 2024 08:17:04 GMT"
+								},
+								{
+									"key": "etag",
+									"value": "\"e01386d2bb1228b5a0eb7cc50d46b593\""
+								},
+								{
+									"key": "link",
+									"value": "<http://api.mail.tm/docs.jsonld>; rel=\"http://www.w3.org/ns/hydra/core#apiDocumentation\""
+								},
+								{
+									"key": "link",
+									"value": "<https://mercure.mail.tm/.well-known/mercure>; rel=\"mercure\""
+								},
+								{
+									"key": "ratelimit-policy",
+									"value": "30; w=60"
+								},
+								{
+									"key": "server",
+									"value": "Caddy"
+								},
+								{
+									"key": "vary",
+									"value": "Accept"
+								},
+								{
+									"key": "vary",
+									"value": "Content-Type"
+								},
+								{
+									"key": "vary",
+									"value": "Authorization"
+								},
+								{
+									"key": "vary",
+									"value": "Origin"
+								},
+								{
+									"key": "x-content-type-options",
+									"value": "nosniff"
+								},
+								{
+									"key": "x-frame-options",
+									"value": "deny"
+								},
+								{
+									"key": "x-powered-by",
+									"value": "PHP/8.2.16"
+								},
+								{
+									"key": "content-length",
+									"value": "1523"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"@context\": \"/contexts/Message\",\n    \"@id\": \"/messages/66deae0fc2641e77f2b959e4\",\n    \"@type\": \"Message\",\n    \"id\": \"66deae0fc2641e77f2b959e4\",\n    \"msgid\": \"<01000191d5d7e612-39ebd177-3269-469f-b6fa-bc1f32dcf8da-000000@email.amazonses.com>\",\n    \"from\": {\n        \"address\": \"no-reply@patientq.io\",\n        \"name\": \"\"\n    },\n    \"to\": [\n        {\n            \"address\": \"patientq_automation1725869555073@starmail.net\",\n            \"name\": \"\"\n        }\n    ],\n    \"cc\": [],\n    \"bcc\": [],\n    \"subject\": \"Secure Your Account\",\n    \"seen\": false,\n    \"flagged\": false,\n    \"isDeleted\": false,\n    \"verifications\": {\n        \"tls\": {\n            \"name\": \"TLS_AES_256_GCM_SHA384\",\n            \"standardName\": \"TLS_AES_256_GCM_SHA384\",\n            \"version\": \"TLSv1.3\"\n        },\n        \"spf\": false,\n        \"dkim\": false\n    },\n    \"retention\": true,\n    \"retentionDate\": \"2024-09-16T08:13:03+00:00\",\n    \"html\": [\n        \"<p>Dear User</p>\\r\\n        <p>To ensure the security of your account, we recommend creating a strong password. You can set your password using the link below:</p>\\r\\n        <p><strong>Link :</strong> <a href=\\\"https://web-dev.patientq.io/create-password?email=patientq_automation1725869555073@starmail.net&code=278517\\\">Set Password</a></p>\\r\\n        <p>Thank you,</p>\\r\\n        <p>Your PatientQ Team</p>\"\n    ],\n    \"hasAttachments\": false,\n    \"size\": 2612,\n    \"downloadUrl\": \"/messages/66deae0fc2641e77f2b959e4/download\",\n    \"sourceUrl\": \"/sources/66deae0fc2641e77f2b959e4\",\n    \"createdAt\": \"2024-09-09T08:13:01+00:00\",\n    \"updatedAt\": \"2024-09-09T08:13:03+00:00\",\n    \"accountId\": \"/accounts/66deadf00c723920ee0e8225\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "reset-password",
+			"item": [
+				{
+					"name": "Auth Controller reset Password",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"token\": \"{{passwordResetCode}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/auth/reset-password",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"reset-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Auth Controller reset Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{businessOwnerEmailAddressStarmailNet}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"token\": \"{{passwordResetCode}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/auth/reset-password",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"auth",
+										"reset-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "43"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 08:24:39 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2b-1v62tADZ8PRP8RIwVlaZ2Mltnv4\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725870279376-edc37822"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 ecbddd33bb3186289a289748e6a6538e.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "33IK8Im_LcDvbfJNUa1zfrqqmkUEo81fN0Yrl0TQu39i2nFNHg11vw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": true,\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{BusinessOwnerAcessToken}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BusinessOwnerAcessToken",
+			"value": ""
+		},
+		{
+			"key": "phoneNumber",
+			"value": ""
+		},
+		{
+			"key": "firstName",
+			"value": ""
+		},
+		{
+			"key": "secondName",
+			"value": ""
+		},
+		{
+			"key": "BusinessOwnerAcessTokenn",
+			"value": ""
+		},
+		{
+			"key": "SuperAdminAcessTokenn",
+			"value": ""
+		}
+	]
+}

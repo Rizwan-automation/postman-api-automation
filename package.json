@@ -1,0 +1,19 @@
+{
+  "name": "patientq-api-automation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "newman-runner.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^3.2.6",
+    "newman": "^6.2.1",
+    "newman-reporter-html": "^1.0.5",
+    "newman-reporter-htmlextra": "^1.23.1",
+    "path": "^0.12.7"
+  }
+}

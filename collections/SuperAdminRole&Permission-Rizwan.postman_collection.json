@@ -1,0 +1,2066 @@
+{
+	"info": {
+		"_postman_id": "9a0fd16e-cce1-4e9b-b504-5207cfa87512",
+		"name": "SuperAdminRole&Permission-Rizwan - Working",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37800078",
+		"_collection_link": "https://warped-astronaut-104320.postman.co/workspace/Team-Workspace~15ec6838-957d-4df8-8655-6ab04cad34ba/collection/37800078-9a0fd16e-cce1-4e9b-b504-5207cfa87512?action=share&source=collection_link&creator=37800078"
+	},
+	"item": [
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "Super Admin Auth Controller login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// if(pm.variables.get(\"isPositiveScenario\")==true){\r",
+									"pm.collectionVariables.set(\"SuperAdminAcessTokenn\", jsonData.data.accessToken);\r",
+									"console.log(jsonData.data.accessToken);\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"// Adding a test to check the response time\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"// Adding a test to validate a response Schema\r",
+									"pm.test(\"Schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      statusCode: { type: \"number\" },\r",
+									"      data: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"          id: { type: \"string\" },\r",
+									"          firstName: { type: \"string\" },\r",
+									"          lastName: { type: \"string\" },\r",
+									"          email: { type: \"string\", format: \"email\" },\r",
+									"          accessToken: { type: \"string\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"firstName\", \"lastName\", \"email\", \"accessToken\"]\r",
+									"      },\r",
+									"      error: { type: [\"null\", \"object\"] }\r",
+									"    },\r",
+									"    required: [\"statusCode\", \"data\", \"error\"]\r",
+									"  };\r",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+									"});\r",
+									"// } else {\r",
+									"//     // Adding a test to check the response status code\r",
+									"// pm.test(\"Response status code is 400\", function () {\r",
+									"//     pm.response.to.have.status(400);\r",
+									"// });\r",
+									"// // Adding a test to check the response time\r",
+									"// pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"//     pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"// });\r",
+									"// }\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"{{superAdminEmail}}\",\n  \"password\": \"{{superAdminPassword}}\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Super Admin Auth Controller login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"{{superAdminEmail}}\",\n  \"password\": \"{{superAdminPassword}}\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/auth/login",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "385"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 21 Aug 2024 06:14:38 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"181-8wsfDawXtRxPjU1+SCFK5cdsJtk\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1724220878253-ac91e317"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 b468d2eaeccf66c166161f90b42a09bc.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "RA2oo383oX-i6X3WCIlal6qRMA2rs7g0guB128kNDUIoiY-So33N8Q=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"id\": \"5edce435-a697-4cf3-bd7b-9af49620fa9d\",\n        \"firstName\": \"Super\",\n        \"lastName\": \"Admin\",\n        \"email\": \"admin@patientq.com\",\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZWRjZTQzNS1hNjk3LTRjZjMtYmQ3Yi05YWY0OTYyMGZhOWQiLCJuYW1lIjoiU3VwZXIgQWRtaW4iLCJpYXQiOjE3MjQyMjA4NzgsImV4cCI6MTcyNDI1Njg3OH0.gH1iLaUKXByB4tSN_QeFNl4jR7Ib3UrLDNZszdc7V9g\"\n    },\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "createBusiness",
+			"item": [
+				{
+					"name": "/api/v1/admin/business",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"pm.collectionVariables.set(\"created_business_id\", jsonData.data.id);\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"// Adding a test to verify the the business is active\r",
+									"pm.test(\"Verify the isActive flag of the business\", function () {\r",
+									"    pm.expect(jsonData.data.isActive).to.eql(true);\r",
+									"});\r",
+									"// Adding a test to verify the name of the business\r",
+									"pm.test(\"Verify the  the name of the businesss\", function () {\r",
+									"    pm.expect(jsonData.data.name).to.eql(pm.collectionVariables.get(\"businessNamee\"));\r",
+									"});\r",
+									"// Adding a test to verify the email of the business\r",
+									"pm.test(\"Verify the email of the business\", function () {\r",
+									"    pm.expect(jsonData.data.email).to.eql(pm.collectionVariables.get(\"businessOwnerEmailAddresss\"));\r",
+									"});\r",
+									"\r",
+									"// Adding a test to verify the phone numer of the business\r",
+									"pm.test(\"Verify the phone numer of the business\", function () {\r",
+									"    pm.expect(Number(jsonData.data.phoneNumber)).to.eql(pm.collectionVariables.get(\"phoneNumberr\"));\r",
+									"});\r",
+									"\r",
+									"// Add a test to validate the response schema\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      statusCode: { type: \"number\" },\r",
+									"      data: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"          id: { type: \"number\" },\r",
+									"          name: { type: \"string\" },\r",
+									"          email: { type: \"string\", format: \"email\" },\r",
+									"          phoneNumber: { type: \"string\" },\r",
+									"          isActive: { type: \"boolean\" },\r",
+									"          country: { type: \"string\" },\r",
+									"          streetAddress: { type: \"string\" },\r",
+									"          postalCode: { type: \"string\" },\r",
+									"          city: { type: \"string\" },\r",
+									"          state: { type: \"string\" },\r",
+									"          website: { type: \"string\", format: \"uri\" },\r",
+									"          user: {\r",
+									"            type: \"object\",\r",
+									"            properties: {\r",
+									"              id: { type: \"string\" },\r",
+									"              firstName: { type: \"string\" },\r",
+									"              lastName: { type: \"string\" },\r",
+									"              phoneNumber: { type: \"string\" },\r",
+									"              email: { type: \"string\", format: \"email\" },\r",
+									"              isActive: { type: \"boolean\" },\r",
+									"              isBusinessOwner: { type: \"boolean\" },\r",
+									"              title: { type: \"string\" },\r",
+									"              jobTitle: { type: \"string\" }\r",
+									"            },\r",
+									"            required: [\"id\", \"firstName\", \"lastName\", \"phoneNumber\", \"email\", \"isActive\", \"isBusinessOwner\", \"title\", \"jobTitle\"]\r",
+									"          },\r",
+									"          testMessageInboxUrl: { type: \"string\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"name\", \"email\", \"phoneNumber\", \"isActive\", \"country\", \"streetAddress\", \"postalCode\", \"city\", \"state\", \"website\", \"user\", \"testMessageInboxUrl\"]\r",
+									"      },\r",
+									"      error: { type: [\"null\", \"object\"] }\r",
+									"    },\r",
+									"    required: [\"statusCode\", \"data\", \"error\"]\r",
+									"  };\r",
+									"\r",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"/*\r",
+									"Random Name Generator for Javascript\r",
+									"*/\r",
+									"function capFirst(string) {\r",
+									"    return string.charAt(0).toUpperCase() + string.slice(1);\r",
+									"}\r",
+									"\r",
+									"function getRandomInt(min, max) {\r",
+									"  \treturn Math.floor(Math.random() * (max - min)) + min;\r",
+									"}\r",
+									"var name1 = [\"abandoned\",\"able\",\"absolute\",\"adorable\",\"adventurous\",\"academic\",\"acceptable\",\"acclaimed\",\"accomplished\",\"accurate\",\"aching\",\"acidic\",\"acrobatic\",\"active\",\"actual\",\"adept\",\"admirable\",\"admired\",\"adolescent\",\"adorable\",\"adored\",\"advanced\",\"afraid\",\"affectionate\",\"aged\",\"aggravating\",\"aggressive\",\"agile\",\"agitated\",\"agonizing\",\"agreeable\",\"ajar\",\"alarmed\",\"alarming\",\"alert\",\"alienated\",\"alive\",\"all\",\"altruistic\",\"amazing\",\"ambitious\",\"ample\",\"amused\",\"amusing\",\"anchored\",\"ancient\",\"angelic\",\"angry\",\"anguished\",\"animated\",\"annual\",\"another\",\"antique\",\"anxious\",\"any\",\"apprehensive\",\"appropriate\",\"apt\",\"arctic\",\"arid\",\"aromatic\",\"artistic\",\"ashamed\",\"assured\",\"astonishing\",\"athletic\",\"attached\",\"attentive\",\"attractive\",\"austere\",\"authentic\",\"authorized\",\"automatic\",\"avaricious\",\"average\",\"aware\",\"awesome\",\"awful\",\"awkward\",\"babyish\",\"bad\",\"back\",\"baggy\",\"bare\",\"barren\",\"basic\",\"beautiful\",\"belated\",\"beloved\",\"beneficial\",\"better\",\"best\",\"bewitched\",\"big\",\"big-hearted\",\"biodegradable\",\"bite-sized\",\"bitter\",\"black\",\"black-and-white\",\"bland\",\"blank\",\"blaring\",\"bleak\",\"blind\",\"blissful\",\"blond\",\"blue\",\"blushing\",\"bogus\",\"boiling\",\"bold\",\"bony\",\"boring\",\"bossy\",\"both\",\"bouncy\",\"bountiful\",\"bowed\",\"brave\",\"breakable\",\"brief\",\"bright\",\"brilliant\",\"brisk\",\"broken\",\"bronze\",\"brown\",\"bruised\",\"bubbly\",\"bulky\",\"bumpy\",\"buoyant\",\"burdensome\",\"burly\",\"bustling\",\"busy\",\"buttery\",\"buzzing\",\"calculating\",\"calm\",\"candid\",\"canine\",\"capital\",\"carefree\",\"careful\",\"careless\",\"caring\",\"cautious\",\"cavernous\",\"celebrated\",\"charming\",\"cheap\",\"cheerful\",\"cheery\",\"chief\",\"chilly\",\"chubby\",\"circular\",\"classic\",\"clean\",\"clear\",\"clear-cut\",\"clever\",\"close\",\"closed\",\"cloudy\",\"clueless\",\"clumsy\",\"cluttered\",\"coarse\",\"cold\",\"colorful\",\"colorless\",\"colossal\",\"comfortable\",\"common\",\"compassionate\",\"competent\",\"complete\",\"complex\",\"complicated\",\"composed\",\"concerned\",\"concrete\",\"confused\",\"conscious\",\"considerate\",\"constant\",\"content\",\"conventional\",\"cooked\",\"cool\",\"cooperative\",\"coordinated\",\"corny\",\"corrupt\",\"costly\",\"courageous\",\"courteous\",\"crafty\",\"crazy\",\"creamy\",\"creative\",\"creepy\",\"criminal\",\"crisp\",\"critical\",\"crooked\",\"crowded\",\"cruel\",\"crushing\",\"cuddly\",\"cultivated\",\"cultured\",\"cumbersome\",\"curly\",\"curvy\",\"cute\",\"cylindrical\",\"damaged\",\"damp\",\"dangerous\",\"dapper\",\"daring\",\"darling\",\"dark\",\"dazzling\",\"dead\",\"deadly\",\"deafening\",\"dear\",\"dearest\",\"decent\",\"decimal\",\"decisive\",\"deep\",\"defenseless\",\"defensive\",\"defiant\",\"deficient\",\"definite\",\"definitive\",\"delayed\",\"delectable\",\"delicious\",\"delightful\",\"delirious\",\"demanding\",\"dense\",\"dental\",\"dependable\",\"dependent\",\"descriptive\",\"deserted\",\"detailed\",\"determined\",\"devoted\",\"different\",\"difficult\",\"digital\",\"diligent\",\"dim\",\"dimpled\",\"dimwitted\",\"direct\",\"disastrous\",\"discrete\",\"disfigured\",\"disgusting\",\"disloyal\",\"dismal\",\"distant\",\"downright\",\"dreary\",\"dirty\",\"disguised\",\"dishonest\",\"dismal\",\"distant\",\"distinct\",\"distorted\",\"dizzy\",\"dopey\",\"doting\",\"double\",\"downright\",\"drab\",\"drafty\",\"dramatic\",\"dreary\",\"droopy\",\"dry\",\"dual\",\"dull\",\"dutiful\",\"each\",\"eager\",\"earnest\",\"early\",\"easy\",\"easy-going\",\"ecstatic\",\"edible\",\"educated\",\"elaborate\",\"elastic\",\"elated\",\"elderly\",\"electric\",\"elegant\",\"elementary\",\"elliptical\",\"embarrassed\",\"embellished\",\"eminent\",\"emotional\",\"empty\",\"enchanted\",\"enchanting\",\"energetic\",\"enlightened\",\"enormous\",\"enraged\",\"entire\",\"envious\",\"equal\",\"equatorial\",\"essential\",\"esteemed\",\"ethical\",\"euphoric\",\"even\",\"evergreen\",\"everlasting\",\"every\",\"evil\",\"exalted\",\"excellent\",\"exemplary\",\"exhausted\",\"excitable\",\"excited\",\"exciting\",\"exotic\",\"expensive\",\"experienced\",\"expert\",\"extraneous\",\"extroverted\",\"extra-large\",\"extra-small\",\"fabulous\",\"failing\",\"faint\",\"fair\",\"faithful\",\"fake\",\"false\",\"familiar\",\"famous\",\"fancy\",\"fantastic\",\"far\",\"faraway\",\"far-flung\",\"far-off\",\"fast\",\"fat\",\"fatal\",\"fatherly\",\"favorable\",\"favorite\",\"fearful\",\"fearless\",\"feisty\",\"feline\",\"female\",\"feminine\",\"few\",\"fickle\",\"filthy\",\"fine\",\"finished\",\"firm\",\"first\",\"firsthand\",\"fitting\",\"fixed\",\"flaky\",\"flamboyant\",\"flashy\",\"flat\",\"flawed\",\"flawless\",\"flickering\",\"flimsy\",\"flippant\",\"flowery\",\"fluffy\",\"fluid\",\"flustered\",\"focused\",\"fond\",\"foolhardy\",\"foolish\",\"forceful\",\"forked\",\"formal\",\"forsaken\",\"forthright\",\"fortunate\",\"fragrant\",\"frail\",\"frank\",\"frayed\",\"free\",\"French\",\"fresh\",\"frequent\",\"friendly\",\"frightened\",\"frightening\",\"frigid\",\"frilly\",\"frizzy\",\"frivolous\",\"front\",\"frosty\",\"frozen\",\"frugal\",\"fruitful\",\"full\",\"fumbling\",\"functional\",\"funny\",\"fussy\",\"fuzzy\",\"gargantuan\",\"gaseous\",\"general\",\"generous\",\"gentle\",\"genuine\",\"giant\",\"giddy\",\"gigantic\",\"gifted\",\"giving\",\"glamorous\",\"glaring\",\"glass\",\"gleaming\",\"gleeful\",\"glistening\",\"glittering\",\"gloomy\",\"glorious\",\"glossy\",\"glum\",\"golden\",\"good\",\"good-natured\",\"gorgeous\",\"graceful\",\"gracious\",\"grand\",\"grandiose\",\"granular\",\"grateful\",\"grave\",\"gray\",\"great\",\"greedy\",\"green\",\"gregarious\",\"grim\",\"grimy\",\"gripping\",\"grizzled\",\"gross\",\"grotesque\",\"grouchy\",\"grounded\",\"growing\",\"growling\",\"grown\",\"grubby\",\"gruesome\",\"grumpy\",\"guilty\",\"gullible\",\"gummy\",\"hairy\",\"half\",\"handmade\",\"handsome\",\"handy\",\"happy\",\"happy-go-lucky\",\"hard\",\"hard-to-find\",\"harmful\",\"harmless\",\"harmonious\",\"harsh\",\"hasty\",\"hateful\",\"haunting\",\"healthy\",\"heartfelt\",\"hearty\",\"heavenly\",\"heavy\",\"hefty\",\"helpful\",\"helpless\",\"hidden\",\"hideous\",\"high\",\"high-level\",\"hilarious\",\"hoarse\",\"hollow\",\"homely\",\"honest\",\"honorable\",\"honored\",\"hopeful\",\"horrible\",\"hospitable\",\"hot\",\"huge\",\"humble\",\"humiliating\",\"humming\",\"humongous\",\"hungry\",\"hurtful\",\"husky\",\"icky\",\"icy\",\"ideal\",\"idealistic\",\"identical\",\"idle\",\"idiotic\",\"idolized\",\"ignorant\",\"ill\",\"illegal\",\"ill-fated\",\"ill-informed\",\"illiterate\",\"illustrious\",\"imaginary\",\"imaginative\",\"immaculate\",\"immaterial\",\"immediate\",\"immense\",\"impassioned\",\"impeccable\",\"impartial\",\"imperfect\",\"imperturbable\",\"impish\",\"impolite\",\"important\",\"impossible\",\"impractical\",\"impressionable\",\"impressive\",\"improbable\",\"impure\",\"inborn\",\"incomparable\",\"incompatible\",\"incomplete\",\"inconsequential\",\"incredible\",\"indelible\",\"inexperienced\",\"indolent\",\"infamous\",\"infantile\",\"infatuated\",\"inferior\",\"infinite\",\"informal\",\"innocent\",\"insecure\",\"insidious\",\"insignificant\",\"insistent\",\"instructive\",\"insubstantial\",\"intelligent\",\"intent\",\"intentional\",\"interesting\",\"internal\",\"international\",\"intrepid\",\"ironclad\",\"irresponsible\",\"irritating\",\"itchy\",\"jaded\",\"jagged\",\"jam-packed\",\"jaunty\",\"jealous\",\"jittery\",\"joint\",\"jolly\",\"jovial\",\"joyful\",\"joyous\",\"jubilant\",\"judicious\",\"juicy\",\"jumbo\",\"junior\",\"jumpy\",\"juvenile\",\"kaleidoscopic\",\"keen\",\"key\",\"kind\",\"kindhearted\",\"kindly\",\"klutzy\",\"knobby\",\"knotty\",\"knowledgeable\",\"knowing\",\"known\",\"kooky\",\"kosher\",\"lame\",\"lanky\",\"large\",\"last\",\"lasting\",\"late\",\"lavish\",\"lawful\",\"lazy\",\"leading\",\"lean\",\"leafy\",\"left\",\"legal\",\"legitimate\",\"light\",\"lighthearted\",\"likable\",\"likely\",\"limited\",\"limp\",\"limping\",\"linear\",\"lined\",\"liquid\",\"little\",\"live\",\"lively\",\"livid\",\"loathsome\",\"lone\",\"lonely\",\"long\",\"long-term\",\"loose\",\"lopsided\",\"lost\",\"loud\",\"lovable\",\"lovely\",\"loving\",\"low\",\"loyal\",\"lucky\",\"lumbering\",\"luminous\",\"lumpy\",\"lustrous\",\"luxurious\",\"mad\",\"made-up\",\"magnificent\",\"majestic\",\"major\",\"male\",\"mammoth\",\"married\",\"marvelous\",\"masculine\",\"massive\",\"mature\",\"meager\",\"mealy\",\"mean\",\"measly\",\"meaty\",\"medical\",\"mediocre\",\"medium\",\"meek\",\"mellow\",\"melodic\",\"memorable\",\"menacing\",\"merry\",\"messy\",\"metallic\",\"mild\",\"milky\",\"mindless\",\"miniature\",\"minor\",\"minty\",\"miserable\",\"miserly\",\"misguided\",\"misty\",\"mixed\",\"modern\",\"modest\",\"moist\",\"monstrous\",\"monthly\",\"monumental\",\"moral\",\"mortified\",\"motherly\",\"motionless\",\"mountainous\",\"muddy\",\"muffled\",\"multicolored\",\"mundane\",\"murky\",\"mushy\",\"musty\",\"muted\",\"mysterious\",\"naive\",\"narrow\",\"nasty\",\"natural\",\"naughty\",\"nautical\",\"near\",\"neat\",\"necessary\",\"needy\",\"negative\",\"neglected\",\"negligible\",\"neighboring\",\"nervous\",\"new\",\"next\",\"nice\",\"nifty\",\"nimble\",\"nippy\",\"nocturnal\",\"noisy\",\"nonstop\",\"normal\",\"notable\",\"noted\",\"noteworthy\",\"novel\",\"noxious\",\"numb\",\"nutritious\",\"nutty\",\"obedient\",\"obese\",\"oblong\",\"oily\",\"oblong\",\"obvious\",\"occasional\",\"odd\",\"oddball\",\"offbeat\",\"offensive\",\"official\",\"old\",\"old-fashioned\",\"only\",\"open\",\"optimal\",\"optimistic\",\"opulent\",\"orange\",\"orderly\",\"organic\",\"ornate\",\"ornery\",\"ordinary\",\"original\",\"other\",\"our\",\"outlying\",\"outgoing\",\"outlandish\",\"outrageous\",\"outstanding\",\"oval\",\"overcooked\",\"overdue\",\"overjoyed\",\"overlooked\",\"palatable\",\"pale\",\"paltry\",\"parallel\",\"parched\",\"partial\",\"passionate\",\"past\",\"pastel\",\"peaceful\",\"peppery\",\"perfect\",\"perfumed\",\"periodic\",\"perky\",\"personal\",\"pertinent\",\"pesky\",\"pessimistic\",\"petty\",\"phony\",\"physical\",\"piercing\",\"pink\",\"pitiful\",\"plain\",\"plaintive\",\"plastic\",\"playful\",\"pleasant\",\"pleased\",\"pleasing\",\"plump\",\"plush\",\"polished\",\"polite\",\"political\",\"pointed\",\"pointless\",\"poised\",\"poor\",\"popular\",\"portly\",\"posh\",\"positive\",\"possible\",\"potable\",\"powerful\",\"powerless\",\"practical\",\"precious\",\"present\",\"prestigious\",\"pretty\",\"precious\",\"previous\",\"pricey\",\"prickly\",\"primary\",\"prime\",\"pristine\",\"private\",\"prize\",\"probable\",\"productive\",\"profitable\",\"profuse\",\"proper\",\"proud\",\"prudent\",\"punctual\",\"pungent\",\"puny\",\"pure\",\"purple\",\"pushy\",\"putrid\",\"puzzled\",\"puzzling\",\"quaint\",\"qualified\",\"quarrelsome\",\"quarterly\",\"queasy\",\"querulous\",\"questionable\",\"quick\",\"quick-witted\",\"quiet\",\"quintessential\",\"quirky\",\"quixotic\",\"quizzical\",\"radiant\",\"ragged\",\"rapid\",\"rare\",\"rash\",\"raw\",\"recent\",\"reckless\",\"rectangular\",\"ready\",\"real\",\"realistic\",\"reasonable\",\"red\",\"reflecting\",\"regal\",\"regular\",\"reliable\",\"relieved\",\"remarkable\",\"remorseful\",\"remote\",\"repentant\",\"required\",\"respectful\",\"responsible\",\"repulsive\",\"revolving\",\"rewarding\",\"rich\",\"rigid\",\"right\",\"ringed\",\"ripe\",\"roasted\",\"robust\",\"rosy\",\"rotating\",\"rotten\",\"rough\",\"round\",\"rowdy\",\"royal\",\"rubbery\",\"rundown\",\"ruddy\",\"rude\",\"runny\",\"rural\",\"rusty\",\"sad\",\"safe\",\"salty\",\"same\",\"sandy\",\"sane\",\"sarcastic\",\"sardonic\",\"satisfied\",\"scaly\",\"scarce\",\"scared\",\"scary\",\"scented\",\"scholarly\",\"scientific\",\"scornful\",\"scratchy\",\"scrawny\",\"second\",\"secondary\",\"second-hand\",\"secret\",\"self-assured\",\"self-reliant\",\"selfish\",\"sentimental\",\"separate\",\"serene\",\"serious\",\"serpentine\",\"several\",\"severe\",\"shabby\",\"shadowy\",\"shady\",\"shallow\",\"shameful\",\"shameless\",\"sharp\",\"shimmering\",\"shiny\",\"shocked\",\"shocking\",\"shoddy\",\"short\",\"short-term\",\"showy\",\"shrill\",\"shy\",\"sick\",\"silent\",\"silky\",\"silly\",\"silver\",\"similar\",\"simple\",\"simplistic\",\"sinful\",\"single\",\"sizzling\",\"skeletal\",\"skinny\",\"sleepy\",\"slight\",\"slim\",\"slimy\",\"slippery\",\"slow\",\"slushy\",\"small\",\"smart\",\"smoggy\",\"smooth\",\"smug\",\"snappy\",\"snarling\",\"sneaky\",\"sniveling\",\"snoopy\",\"sociable\",\"soft\",\"soggy\",\"solid\",\"somber\",\"some\",\"spherical\",\"sophisticated\",\"sore\",\"sorrowful\",\"soulful\",\"soupy\",\"sour\",\"Spanish\",\"sparkling\",\"sparse\",\"specific\",\"spectacular\",\"speedy\",\"spicy\",\"spiffy\",\"spirited\",\"spiteful\",\"splendid\",\"spotless\",\"spotted\",\"spry\",\"square\",\"squeaky\",\"squiggly\",\"stable\",\"staid\",\"stained\",\"stale\",\"standard\",\"starchy\",\"stark\",\"starry\",\"steep\",\"sticky\",\"stiff\",\"stimulating\",\"stingy\",\"stormy\",\"straight\",\"strange\",\"steel\",\"strict\",\"strident\",\"striking\",\"striped\",\"strong\",\"studious\",\"stunning\",\"stupendous\",\"stupid\",\"sturdy\",\"stylish\",\"subdued\",\"submissive\",\"substantial\",\"subtle\",\"suburban\",\"sudden\",\"sugary\",\"sunny\",\"super\",\"superb\",\"superficial\",\"superior\",\"supportive\",\"sure-footed\",\"surprised\",\"suspicious\",\"svelte\",\"sweaty\",\"sweet\",\"sweltering\",\"swift\",\"sympathetic\",\"tall\",\"talkative\",\"tame\",\"tan\",\"tangible\",\"tart\",\"tasty\",\"tattered\",\"taut\",\"tedious\",\"teeming\",\"tempting\",\"tender\",\"tense\",\"tepid\",\"terrible\",\"terrific\",\"testy\",\"thankful\",\"that\",\"these\",\"thick\",\"thin\",\"third\",\"thirsty\",\"this\",\"thorough\",\"thorny\",\"those\",\"thoughtful\",\"threadbare\",\"thrifty\",\"thunderous\",\"tidy\",\"tight\",\"timely\",\"tinted\",\"tiny\",\"tired\",\"torn\",\"total\",\"tough\",\"traumatic\",\"treasured\",\"tremendous\",\"tragic\",\"trained\",\"tremendous\",\"triangular\",\"tricky\",\"trifling\",\"trim\",\"trivial\",\"troubled\",\"true\",\"trusting\",\"trustworthy\",\"trusty\",\"truthful\",\"tubby\",\"turbulent\",\"twin\",\"ugly\",\"ultimate\",\"unacceptable\",\"unaware\",\"uncomfortable\",\"uncommon\",\"unconscious\",\"understated\",\"unequaled\",\"uneven\",\"unfinished\",\"unfit\",\"unfolded\",\"unfortunate\",\"unhappy\",\"unhealthy\",\"uniform\",\"unimportant\",\"unique\",\"united\",\"unkempt\",\"unknown\",\"unlawful\",\"unlined\",\"unlucky\",\"unnatural\",\"unpleasant\",\"unrealistic\",\"unripe\",\"unruly\",\"unselfish\",\"unsightly\",\"unsteady\",\"unsung\",\"untidy\",\"untimely\",\"untried\",\"untrue\",\"unused\",\"unusual\",\"unwelcome\",\"unwieldy\",\"unwilling\",\"unwitting\",\"unwritten\",\"upbeat\",\"upright\",\"upset\",\"urban\",\"usable\",\"used\",\"useful\",\"useless\",\"utilized\",\"utter\",\"vacant\",\"vague\",\"vain\",\"valid\",\"valuable\",\"vapid\",\"variable\",\"vast\",\"velvety\",\"venerated\",\"vengeful\",\"verifiable\",\"vibrant\",\"vicious\",\"victorious\",\"vigilant\",\"vigorous\",\"villainous\",\"violet\",\"violent\",\"virtual\",\"virtuous\",\"visible\",\"vital\",\"vivacious\",\"vivid\",\"voluminous\",\"wan\",\"warlike\",\"warm\",\"warmhearted\",\"warped\",\"wary\",\"wasteful\",\"watchful\",\"waterlogged\",\"watery\",\"wavy\",\"wealthy\",\"weak\",\"weary\",\"webbed\",\"wee\",\"weekly\",\"weepy\",\"weighty\",\"weird\",\"welcome\",\"well-documented\",\"well-groomed\",\"well-informed\",\"well-lit\",\"well-made\",\"well-off\",\"well-to-do\",\"well-worn\",\"wet\",\"which\",\"whimsical\",\"whirlwind\",\"whispered\",\"white\",\"whole\",\"whopping\",\"wicked\",\"wide\",\"wide-eyed\",\"wiggly\",\"wild\",\"willing\",\"wilted\",\"winding\",\"windy\",\"winged\",\"wiry\",\"wise\",\"witty\",\"wobbly\",\"woeful\",\"wonderful\",\"wooden\",\"woozy\",\"wordy\",\"worldly\",\"worn\",\"worried\",\"worrisome\",\"worse\",\"worst\",\"worthless\",\"worthwhile\",\"worthy\",\"wrathful\",\"wretched\",\"writhing\",\"wrong\",\"wry\",\"yawning\",\"yearly\",\"yellow\",\"yellowish\",\"young\",\"youthful\",\"yummy\",\"zany\",\"zealous\",\"zesty\",\"zigzag\",\"rocky\"];\r",
+									"\r",
+									"var name2 = [\"people\",\"history\",\"way\",\"art\",\"world\",\"information\",\"map\",\"family\",\"government\",\"health\",\"system\",\"computer\",\"meat\",\"year\",\"thanks\",\"music\",\"person\",\"reading\",\"method\",\"data\",\"food\",\"understanding\",\"theory\",\"law\",\"bird\",\"literature\",\"problem\",\"software\",\"control\",\"knowledge\",\"power\",\"ability\",\"economics\",\"love\",\"internet\",\"television\",\"science\",\"library\",\"nature\",\"fact\",\"product\",\"idea\",\"temperature\",\"investment\",\"area\",\"society\",\"activity\",\"story\",\"industry\",\"media\",\"thing\",\"oven\",\"community\",\"definition\",\"safety\",\"quality\",\"development\",\"language\",\"management\",\"player\",\"variety\",\"video\",\"week\",\"security\",\"country\",\"exam\",\"movie\",\"organization\",\"equipment\",\"physics\",\"analysis\",\"policy\",\"series\",\"thought\",\"basis\",\"boyfriend\",\"direction\",\"strategy\",\"technology\",\"army\",\"camera\",\"freedom\",\"paper\",\"environment\",\"child\",\"instance\",\"month\",\"truth\",\"marketing\",\"university\",\"writing\",\"article\",\"department\",\"difference\",\"goal\",\"news\",\"audience\",\"fishing\",\"growth\",\"income\",\"marriage\",\"user\",\"combination\",\"failure\",\"meaning\",\"medicine\",\"philosophy\",\"teacher\",\"communication\",\"night\",\"chemistry\",\"disease\",\"disk\",\"energy\",\"nation\",\"road\",\"role\",\"soup\",\"advertising\",\"location\",\"success\",\"addition\",\"apartment\",\"education\",\"math\",\"moment\",\"painting\",\"politics\",\"attention\",\"decision\",\"event\",\"property\",\"shopping\",\"student\",\"wood\",\"competition\",\"distribution\",\"entertainment\",\"office\",\"population\",\"president\",\"unit\",\"category\",\"cigarette\",\"context\",\"introduction\",\"opportunity\",\"performance\",\"driver\",\"flight\",\"length\",\"magazine\",\"newspaper\",\"relationship\",\"teaching\",\"cell\",\"dealer\",\"debate\",\"finding\",\"lake\",\"member\",\"message\",\"phone\",\"scene\",\"appearance\",\"association\",\"concept\",\"customer\",\"death\",\"discussion\",\"housing\",\"inflation\",\"insurance\",\"mood\",\"woman\",\"advice\",\"blood\",\"effort\",\"expression\",\"importance\",\"opinion\",\"payment\",\"reality\",\"responsibility\",\"situation\",\"skill\",\"statement\",\"wealth\",\"application\",\"city\",\"county\",\"depth\",\"estate\",\"foundation\",\"grandmother\",\"heart\",\"perspective\",\"photo\",\"recipe\",\"studio\",\"topic\",\"collection\",\"depression\",\"imagination\",\"passion\",\"percentage\",\"resource\",\"setting\",\"ad\",\"agency\",\"college\",\"connection\",\"criticism\",\"debt\",\"description\",\"memory\",\"patience\",\"secretary\",\"solution\",\"administration\",\"aspect\",\"attitude\",\"director\",\"personality\",\"psychology\",\"recommendation\",\"response\",\"selection\",\"storage\",\"version\",\"alcohol\",\"argument\",\"complaint\",\"contract\",\"emphasis\",\"highway\",\"loss\",\"membership\",\"possession\",\"preparation\",\"steak\",\"union\",\"agreement\",\"cancer\",\"currency\",\"employment\",\"engineering\",\"entry\",\"interaction\",\"limit\",\"mixture\",\"preference\",\"region\",\"republic\",\"seat\",\"tradition\",\"virus\",\"actor\",\"classroom\",\"delivery\",\"device\",\"difficulty\",\"drama\",\"election\",\"engine\",\"football\",\"guidance\",\"hotel\",\"match\",\"owner\",\"priority\",\"protection\",\"suggestion\",\"tension\",\"variation\",\"anxiety\",\"atmosphere\",\"awareness\",\"bread\",\"climate\",\"comparison\",\"confusion\",\"construction\",\"elevator\",\"emotion\",\"employee\",\"employer\",\"guest\",\"height\",\"leadership\",\"mall\",\"manager\",\"operation\",\"recording\",\"respect\",\"sample\",\"transportation\",\"boring\",\"charity\",\"cousin\",\"disaster\",\"editor\",\"efficiency\",\"excitement\",\"extent\",\"feedback\",\"guitar\",\"homework\",\"leader\",\"mom\",\"outcome\",\"permission\",\"presentation\",\"promotion\",\"reflection\",\"refrigerator\",\"resolution\",\"revenue\",\"session\",\"singer\",\"tennis\",\"basket\",\"bonus\",\"cabinet\",\"childhood\",\"church\",\"clothes\",\"coffee\",\"dinner\",\"drawing\",\"hair\",\"hearing\",\"initiative\",\"judgment\",\"lab\",\"measurement\",\"mode\",\"mud\",\"orange\",\"poetry\",\"police\",\"possibility\",\"procedure\",\"queen\",\"ratio\",\"relation\",\"restaurant\",\"satisfaction\",\"sector\",\"signature\",\"significance\",\"song\",\"tooth\",\"town\",\"vehicle\",\"volume\",\"wife\",\"accident\",\"airport\",\"appointment\",\"arrival\",\"assumption\",\"baseball\",\"chapter\",\"committee\",\"conversation\",\"database\",\"enthusiasm\",\"error\",\"explanation\",\"farmer\",\"gate\",\"girl\",\"hall\",\"historian\",\"hospital\",\"injury\",\"instruction\",\"maintenance\",\"manufacturer\",\"meal\",\"perception\",\"pie\",\"poem\",\"presence\",\"proposal\",\"reception\",\"replacement\",\"revolution\",\"river\",\"son\",\"speech\",\"tea\",\"village\",\"warning\",\"winner\",\"worker\",\"writer\",\"assistance\",\"breath\",\"buyer\",\"chest\",\"chocolate\",\"conclusion\",\"contribution\",\"cookie\",\"courage\",\"desk\",\"drawer\",\"establishment\",\"examination\",\"garbage\",\"grocery\",\"honey\",\"impression\",\"improvement\",\"independence\",\"insect\",\"inspection\",\"inspector\",\"king\",\"ladder\",\"menu\",\"penalty\",\"piano\",\"potato\",\"profession\",\"professor\",\"quantity\",\"reaction\",\"requirement\",\"salad\",\"sister\",\"supermarket\",\"tongue\",\"weakness\",\"wedding\",\"affair\",\"ambition\",\"analyst\",\"apple\",\"assignment\",\"assistant\",\"bathroom\",\"bedroom\",\"beer\",\"birthday\",\"celebration\",\"championship\",\"cheek\",\"client\",\"consequence\",\"departure\",\"diamond\",\"dirt\",\"ear\",\"fortune\",\"friendship\",\"funeral\",\"gene\",\"girlfriend\",\"hat\",\"indication\",\"intention\",\"lady\",\"midnight\",\"negotiation\",\"obligation\",\"passenger\",\"pizza\",\"platform\",\"poet\",\"pollution\",\"recognition\",\"reputation\",\"shirt\",\"speaker\",\"stranger\",\"surgery\",\"sympathy\",\"tale\",\"throat\",\"trainer\",\"uncle\",\"youth\",\"time\",\"work\",\"film\",\"water\",\"money\",\"example\",\"while\",\"business\",\"study\",\"game\",\"life\",\"form\",\"air\",\"day\",\"place\",\"number\",\"part\",\"field\",\"fish\",\"back\",\"process\",\"heat\",\"hand\",\"experience\",\"job\",\"book\",\"end\",\"point\",\"type\",\"home\",\"economy\",\"value\",\"body\",\"market\",\"guide\",\"interest\",\"state\",\"radio\",\"course\",\"company\",\"price\",\"size\",\"card\",\"list\",\"mind\",\"trade\",\"line\",\"care\",\"group\",\"risk\",\"word\",\"fat\",\"force\",\"key\",\"light\",\"training\",\"name\",\"school\",\"top\",\"amount\",\"level\",\"order\",\"practice\",\"research\",\"sense\",\"service\",\"piece\",\"web\",\"boss\",\"sport\",\"fun\",\"house\",\"page\",\"term\",\"test\",\"answer\",\"sound\",\"focus\",\"matter\",\"kind\",\"soil\",\"board\",\"oil\",\"picture\",\"access\",\"garden\",\"range\",\"rate\",\"reason\",\"future\",\"site\",\"demand\",\"exercise\",\"image\",\"case\",\"cause\",\"coast\",\"action\",\"age\",\"bad\",\"boat\",\"record\",\"result\",\"section\",\"building\",\"mouse\",\"cash\",\"class\",\"period\",\"plan\",\"store\",\"tax\",\"side\",\"subject\",\"space\",\"rule\",\"stock\",\"weather\",\"chance\",\"figure\",\"man\",\"model\",\"source\",\"beginning\",\"earth\",\"program\",\"chicken\",\"design\",\"feature\",\"head\",\"material\",\"purpose\",\"question\",\"rock\",\"salt\",\"act\",\"birth\",\"car\",\"dog\",\"object\",\"scale\",\"sun\",\"note\",\"profit\",\"rent\",\"speed\",\"style\",\"war\",\"bank\",\"craft\",\"half\",\"inside\",\"outside\",\"standard\",\"bus\",\"exchange\",\"eye\",\"fire\",\"position\",\"pressure\",\"stress\",\"advantage\",\"benefit\",\"box\",\"frame\",\"issue\",\"step\",\"cycle\",\"face\",\"item\",\"metal\",\"paint\",\"review\",\"room\",\"screen\",\"structure\",\"view\",\"account\",\"ball\",\"discipline\",\"medium\",\"share\",\"balance\",\"bit\",\"black\",\"bottom\",\"choice\",\"gift\",\"impact\",\"machine\",\"shape\",\"tool\",\"wind\",\"address\",\"average\",\"career\",\"culture\",\"morning\",\"pot\",\"sign\",\"table\",\"task\",\"condition\",\"contact\",\"credit\",\"egg\",\"hope\",\"ice\",\"network\",\"north\",\"square\",\"attempt\",\"date\",\"effect\",\"link\",\"post\",\"star\",\"voice\",\"capital\",\"challenge\",\"friend\",\"self\",\"shot\",\"brush\",\"couple\",\"exit\",\"front\",\"function\",\"lack\",\"living\",\"plant\",\"plastic\",\"spot\",\"summer\",\"taste\",\"theme\",\"track\",\"wing\",\"brain\",\"button\",\"click\",\"desire\",\"foot\",\"gas\",\"influence\",\"notice\",\"rain\",\"wall\",\"base\",\"damage\",\"distance\",\"feeling\",\"pair\",\"savings\",\"staff\",\"sugar\",\"target\",\"text\",\"animal\",\"author\",\"budget\",\"discount\",\"file\",\"ground\",\"lesson\",\"minute\",\"officer\",\"phase\",\"reference\",\"register\",\"sky\",\"stage\",\"stick\",\"title\",\"trouble\",\"bowl\",\"bridge\",\"campaign\",\"character\",\"club\",\"edge\",\"evidence\",\"fan\",\"letter\",\"lock\",\"maximum\",\"novel\",\"option\",\"pack\",\"park\",\"quarter\",\"skin\",\"sort\",\"weight\",\"baby\",\"background\",\"carry\",\"dish\",\"factor\",\"fruit\",\"glass\",\"joint\",\"master\",\"muscle\",\"red\",\"strength\",\"traffic\",\"trip\",\"vegetable\",\"appeal\",\"chart\",\"gear\",\"ideal\",\"kitchen\",\"land\",\"log\",\"mother\",\"net\",\"party\",\"principle\",\"relative\",\"sale\",\"season\",\"signal\",\"spirit\",\"street\",\"tree\",\"wave\",\"belt\",\"bench\",\"commission\",\"copy\",\"drop\",\"minimum\",\"path\",\"progress\",\"project\",\"sea\",\"south\",\"status\",\"stuff\",\"ticket\",\"tour\",\"angle\",\"blue\",\"breakfast\",\"confidence\",\"daughter\",\"degree\",\"doctor\",\"dot\",\"dream\",\"duty\",\"essay\",\"father\",\"fee\",\"finance\",\"hour\",\"juice\",\"luck\",\"milk\",\"mouth\",\"peace\",\"pipe\",\"stable\",\"storm\",\"substance\",\"team\",\"trick\",\"afternoon\",\"bat\",\"beach\",\"blank\",\"catch\",\"chain\",\"consideration\",\"cream\",\"crew\",\"detail\",\"gold\",\"interview\",\"kid\",\"mark\",\"mission\",\"pain\",\"pleasure\",\"score\",\"screw\",\"sex\",\"shop\",\"shower\",\"suit\",\"tone\",\"window\",\"agent\",\"band\",\"bath\",\"block\",\"bone\",\"calendar\",\"candidate\",\"cap\",\"coat\",\"contest\",\"corner\",\"court\",\"cup\",\"district\",\"door\",\"east\",\"finger\",\"garage\",\"guarantee\",\"hole\",\"hook\",\"implement\",\"layer\",\"lecture\",\"lie\",\"manner\",\"meeting\",\"nose\",\"parking\",\"partner\",\"profile\",\"rice\",\"routine\",\"schedule\",\"swimming\",\"telephone\",\"tip\",\"winter\",\"airline\",\"bag\",\"battle\",\"bed\",\"bill\",\"bother\",\"cake\",\"code\",\"curve\",\"designer\",\"dimension\",\"dress\",\"ease\",\"emergency\",\"evening\",\"extension\",\"farm\",\"fight\",\"gap\",\"grade\",\"holiday\",\"horror\",\"horse\",\"host\",\"husband\",\"loan\",\"mistake\",\"mountain\",\"nail\",\"noise\",\"occasion\",\"package\",\"patient\",\"pause\",\"phrase\",\"proof\",\"race\",\"relief\",\"sand\",\"sentence\",\"shoulder\",\"smoke\",\"stomach\",\"string\",\"tourist\",\"towel\",\"vacation\",\"west\",\"wheel\",\"wine\",\"arm\",\"aside\",\"associate\",\"bet\",\"blow\",\"border\",\"branch\",\"breast\",\"brother\",\"buddy\",\"bunch\",\"chip\",\"coach\",\"cross\",\"document\",\"draft\",\"dust\",\"expert\",\"floor\",\"god\",\"golf\",\"habit\",\"iron\",\"judge\",\"knife\",\"landscape\",\"league\",\"mail\",\"mess\",\"native\",\"opening\",\"parent\",\"pattern\",\"pin\",\"pool\",\"pound\",\"request\",\"salary\",\"shame\",\"shelter\",\"shoe\",\"silver\",\"tackle\",\"tank\",\"trust\",\"assist\",\"bake\",\"bar\",\"bell\",\"bike\",\"blame\",\"boy\",\"brick\",\"chair\",\"closet\",\"clue\",\"collar\",\"comment\",\"conference\",\"devil\",\"diet\",\"fear\",\"fuel\",\"glove\",\"jacket\",\"lunch\",\"monitor\",\"mortgage\",\"nurse\",\"pace\",\"panic\",\"peak\",\"plane\",\"reward\",\"row\",\"sandwich\",\"shock\",\"spite\",\"spray\",\"surprise\",\"till\",\"transition\",\"weekend\",\"welcome\",\"yard\",\"alarm\",\"bend\",\"bicycle\",\"bite\",\"blind\",\"bottle\",\"cable\",\"candle\",\"clerk\",\"cloud\",\"concert\",\"counter\",\"flower\",\"grandfather\",\"harm\",\"knee\",\"lawyer\",\"leather\",\"load\",\"mirror\",\"neck\",\"pension\",\"plate\",\"purple\",\"ruin\",\"ship\",\"skirt\",\"slice\",\"snow\",\"specialist\",\"stroke\",\"switch\",\"trash\",\"tune\",\"zone\",\"anger\",\"award\",\"bid\",\"bitter\",\"boot\",\"bug\",\"camp\",\"candy\",\"carpet\",\"cat\",\"champion\",\"channel\",\"clock\",\"comfort\",\"cow\",\"crack\",\"engineer\",\"entrance\",\"fault\",\"grass\",\"guy\",\"hell\",\"highlight\",\"incident\",\"island\",\"joke\",\"jury\",\"leg\",\"lip\",\"mate\",\"motor\",\"nerve\",\"passage\",\"pen\",\"pride\",\"priest\",\"prize\",\"promise\",\"resident\",\"resort\",\"ring\",\"roof\",\"rope\",\"sail\",\"scheme\",\"script\",\"sock\",\"station\",\"toe\",\"tower\",\"truck\",\"witness\",\"can\",\"will\",\"other\",\"use\",\"make\",\"good\",\"look\",\"help\",\"go\",\"great\",\"being\",\"still\",\"public\",\"read\",\"keep\",\"start\",\"give\",\"human\",\"local\",\"general\",\"specific\",\"long\",\"play\",\"feel\",\"high\",\"put\",\"common\",\"set\",\"change\",\"simple\",\"past\",\"big\",\"possible\",\"particular\",\"major\",\"personal\",\"current\",\"national\",\"cut\",\"natural\",\"physical\",\"show\",\"try\",\"check\",\"second\",\"call\",\"move\",\"pay\",\"let\",\"increase\",\"single\",\"individual\",\"turn\",\"ask\",\"buy\",\"guard\",\"hold\",\"main\",\"offer\",\"potential\",\"professional\",\"international\",\"travel\",\"cook\",\"alternative\",\"special\",\"working\",\"whole\",\"dance\",\"excuse\",\"cold\",\"commercial\",\"low\",\"purchase\",\"deal\",\"primary\",\"worth\",\"fall\",\"necessary\",\"positive\",\"produce\",\"search\",\"present\",\"spend\",\"talk\",\"creative\",\"tell\",\"cost\",\"drive\",\"green\",\"support\",\"glad\",\"remove\",\"return\",\"run\",\"complex\",\"due\",\"effective\",\"middle\",\"regular\",\"reserve\",\"independent\",\"leave\",\"original\",\"reach\",\"rest\",\"serve\",\"watch\",\"beautiful\",\"charge\",\"active\",\"break\",\"negative\",\"safe\",\"stay\",\"visit\",\"visual\",\"affect\",\"cover\",\"report\",\"rise\",\"walk\",\"white\",\"junior\",\"pick\",\"unique\",\"classic\",\"final\",\"lift\",\"mix\",\"private\",\"stop\",\"teach\",\"western\",\"concern\",\"familiar\",\"fly\",\"official\",\"broad\",\"comfortable\",\"gain\",\"rich\",\"save\",\"stand\",\"young\",\"heavy\",\"lead\",\"listen\",\"valuable\",\"worry\",\"handle\",\"leading\",\"meet\",\"release\",\"sell\",\"finish\",\"normal\",\"press\",\"ride\",\"secret\",\"spread\",\"spring\",\"tough\",\"wait\",\"brown\",\"deep\",\"display\",\"flow\",\"hit\",\"objective\",\"shoot\",\"touch\",\"cancel\",\"chemical\",\"cry\",\"dump\",\"extreme\",\"push\",\"conflict\",\"eat\",\"fill\",\"formal\",\"jump\",\"kick\",\"opposite\",\"pass\",\"pitch\",\"remote\",\"total\",\"treat\",\"vast\",\"abuse\",\"beat\",\"burn\",\"deposit\",\"print\",\"raise\",\"sleep\",\"somewhere\",\"advance\",\"consist\",\"dark\",\"double\",\"draw\",\"equal\",\"fix\",\"hire\",\"internal\",\"join\",\"kill\",\"sensitive\",\"tap\",\"win\",\"attack\",\"claim\",\"constant\",\"drag\",\"drink\",\"guess\",\"minor\",\"pull\",\"raw\",\"soft\",\"solid\",\"wear\",\"weird\",\"wonder\",\"annual\",\"count\",\"dead\",\"doubt\",\"feed\",\"forever\",\"impress\",\"repeat\",\"round\",\"sing\",\"slide\",\"strip\",\"wish\",\"combine\",\"command\",\"dig\",\"divide\",\"equivalent\",\"hang\",\"hunt\",\"initial\",\"march\",\"mention\",\"spiritual\",\"survey\",\"tie\",\"adult\",\"brief\",\"crazy\",\"escape\",\"gather\",\"hate\",\"prior\",\"repair\",\"rough\",\"sad\",\"scratch\",\"sick\",\"strike\",\"employ\",\"external\",\"hurt\",\"illegal\",\"laugh\",\"lay\",\"mobile\",\"nasty\",\"ordinary\",\"respond\",\"royal\",\"senior\",\"split\",\"strain\",\"struggle\",\"swim\",\"train\",\"upper\",\"wash\",\"yellow\",\"convert\",\"crash\",\"dependent\",\"fold\",\"funny\",\"grab\",\"hide\",\"miss\",\"permit\",\"quote\",\"recover\",\"resolve\",\"roll\",\"sink\",\"slip\",\"spare\",\"suspect\",\"sweet\",\"swing\",\"twist\",\"upstairs\",\"usual\",\"abroad\",\"brave\",\"calm\",\"concentrate\",\"estimate\",\"grand\",\"male\",\"mine\",\"prompt\",\"quiet\",\"refuse\",\"regret\",\"reveal\",\"rush\",\"shake\",\"shift\",\"shine\",\"steal\",\"suck\",\"surround\",\"bear\",\"brilliant\",\"dare\",\"dear\",\"delay\",\"drunk\",\"female\",\"hurry\",\"inevitable\",\"invite\",\"kiss\",\"neat\",\"pop\",\"punch\",\"quit\",\"reply\",\"representative\",\"resist\",\"rip\",\"rub\",\"silly\",\"smile\",\"spell\",\"stretch\",\"stupid\",\"tear\",\"temporary\",\"tomorrow\",\"wake\",\"wrap\",\"yesterday\",\"Thomas\",\"Tom\",\"Lieuwe\"];\r",
+									"\r",
+									"function generateBusinessName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name1[getRandomInt(0, name1.length + 1)]) + '-' + capFirst(name2[getRandomInt(0, name2.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"Business Name is \"+generateBusinessName())\r",
+									"\r",
+									"function generateFirstName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name1[getRandomInt(0, name1.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"First Name is \"+generateFirstName())\r",
+									"\r",
+									"function generateSecondName(){\r",
+									"\t\r",
+									"\tvar name = capFirst(name2[getRandomInt(0, name2.length + 1)]);\r",
+									"\treturn name;\r",
+									"}\r",
+									"console.log(\"Second Name is \"+generateSecondName())\r",
+									"\r",
+									"// function getRandomEmail(domain){\r",
+									"// const random = Math.random().toString(36).substring(7);\r",
+									"// return random + '@' + domain;\r",
+									"// }\r",
+									"function getRandomEmail(domain){\r",
+									"const email=\"patientq_automation\" + new Date().getTime();\r",
+									"// pm.environment.set(\"businessOwnerEmailBefore@\", email);\r",
+									"const random = Math.random().toString(36).substring(7);\r",
+									"return email + '@' + domain;\r",
+									"}\r",
+									"// const domain = pm.environment.get(\"domain\");\r",
+									"console.log(\"random email address:\"+ getRandomEmail(\"yopmail.com\"));\r",
+									"\r",
+									"var digits = Math.floor(Math.random() * 9000000000) + 1000000000;\r",
+									"console.log(\"Phone Number is \"+digits)\r",
+									"\r",
+									"pm.collectionVariables.set(\"businessNamee\", generateBusinessName());\r",
+									"pm.collectionVariables.set(\"phoneNumberr\", digits);\r",
+									"pm.collectionVariables.set(\"firstNamee\", generateFirstName());\r",
+									"pm.collectionVariables.set(\"secondNamee\", generateSecondName());\r",
+									"pm.collectionVariables.set(\"businessOwnerEmailAddresss\", getRandomEmail(\"yopmail.com\"));\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"{{businessNamee}}\",\n  \"businessPhoneNumber\": \"{{phoneNumberr}}\",\n  \"ownerPhoneNumber\":\"{{phoneNumberr}}\",\n  \"firstName\": \"{{firstNamee}}\",\n  \"lastName\": \"{{secondNamee}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"email\": \"{{businessOwnerEmailAddresss}}\",\n  \"city\": \"Newyork\",\n  \"state\": \"USA\",\n  \"country\":\"America\",\n  \"streetAddress\": \"Block2 Street 15\",\n  \"postalCode\": \"00000\",\n  \"subdomain\": \"busbymubeen.patientq.com\",\n  \"website\": \"busbymubeen.patientq.com\",\n  \"preferredTimeZone\": \"America/New_York\",\n  \"twilio_phone_number\": \"string\",\n  \"twilio_sub_account_id\": \"string\",\n  \"jobTitle\": \"SQAE\",\n  \"title\": \"Software Test Engineer\"\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/business",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"business"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/business",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"{{businessName}}\",\n  \"businessPhoneNumber\": \"{{phoneNumber}}\",\n  \"ownerPhoneNumber\":\"{{phoneNumber}}\",\n  \"firstName\": \"{{firstName}}\",\n  \"lastName\": \"{{secondName}}\",\n  \"password\": \"{{businessOwnerPassword}}\",\n  \"email\": \"{{businessOwnerEmailAddress}}\",\n  \"city\": \"Newyork\",\n  \"state\": \"USA\",\n  \"country\":\"America\",\n  \"streetAddress\": \"Block2 Street 15\",\n  \"postalCode\": \"00000\",\n  \"subdomain\": \"busbymubeen.patientq.com\",\n  \"website\": \"busbymubeen.patientq.com\",\n  \"preferredTimeZone\": \"America/New_York\",\n  \"twilio_phone_number\": \"string\",\n  \"twilio_sub_account_id\": \"string\",\n  \"jobTitle\": \"SQAE\",\n  \"title\": \"Software Test Engineer\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/business",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"business"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "606"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 09:41:39 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"25e-nEWmECUPgkvfJmny+JHR1Fd/L6Q\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725874898372-b8f20718"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 e4efc654f758d47b9a1a075104881f3a.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "fmCtJxFCPIRWfQensw71BfDPR_CEPuiE7QVtF8hxPB8mDB-rdvTc3A=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"id\": 6,\n        \"name\": \"Outrageous-Broad\",\n        \"email\": \"patientq_automation1725874899712@yopmail.com\",\n        \"phoneNumber\": \"9895544128\",\n        \"isActive\": true,\n        \"country\": \"America\",\n        \"streetAddress\": \"Block2 Street 15\",\n        \"postalCode\": \"00000\",\n        \"city\": \"Newyork\",\n        \"state\": \"USA\",\n        \"website\": \"busbymubeen.patientq.com\",\n        \"user\": {\n            \"id\": \"eaea0b8d-3b49-4dc5-90b8-192657b20e3a\",\n            \"firstName\": \"Wiggly\",\n            \"lastName\": \"Sample\",\n            \"phoneNumber\": \"9895544128\",\n            \"email\": \"patientq_automation1725874899712@yopmail.com\",\n            \"isActive\": true,\n            \"isBusinessOwner\": true,\n            \"title\": \"Software Test Engineer\",\n            \"jobTitle\": \"SQAE\"\n        },\n        \"testMessageInboxUrl\": \"\"\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/businesses",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"// Adding a test to check the response time\r",
+									"pm.test(\"Response time is less than 1500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1500);\r",
+									"});\r",
+									"// Adding a test to check the business is created successfully\r",
+									"pm.test(\"Verify that the business is created successfully\", function () {\r",
+									"    pm.expect(jsonData.data.rows[0].id).to.be.equal(pm.collectionVariables.get(\"created_business_id\"));\r",
+									"});\r",
+									"// Adding a test to verify the name of the business\r",
+									"pm.test(\"Verify the  the name of the businesss\", function () {\r",
+									"    pm.expect(jsonData.data.rows[0].name).to.eql(pm.collectionVariables.get(\"businessNamee\"));\r",
+									"});\r",
+									"// Adding a test to verify the email of the business\r",
+									"pm.test(\"Verify the email of the business\", function () {\r",
+									"    pm.expect(jsonData.data.rows[0].email).to.eql(pm.collectionVariables.get(\"businessOwnerEmailAddresss\"));\r",
+									"});\r",
+									"// Adding a test to verify the phone numer of the business\r",
+									"pm.test(\"Verify the phone numer of the business\", function () {\r",
+									"    pm.expect(Number(jsonData.data.rows[0].phoneNumber)).to.eql(pm.collectionVariables.get(\"phoneNumberr\"));\r",
+									"});\r",
+									"// Adding a test to verify the the business is active\r",
+									"pm.test(\"Verify the isActive flag of the business\", function () {\r",
+									"    pm.expect(jsonData.data.rows[0].isActive).to.eql(true);\r",
+									"});\r",
+									"\r",
+									"// Add a test to validate the response schema\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"    var schema = {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"            statusCode: { type: \"number\" },\r",
+									"            data: {\r",
+									"                type: \"object\",\r",
+									"                properties: {\r",
+									"                    rows: {\r",
+									"                        type: \"array\",\r",
+									"                        items: {\r",
+									"                            type: \"object\",\r",
+									"                            properties: {\r",
+									"                                id: { type: \"number\" },\r",
+									"                                name: { type: \"string\" },\r",
+									"                                isActive: { type: \"boolean\" },\r",
+									"                                email: { type: \"string\" },\r",
+									"                                phoneNumber: { type: \"string\" },\r",
+									"                                noOfEmployees: { type: \"number\" },\r",
+									"                                user: {\r",
+									"                                    type: \"object\",\r",
+									"                                    properties: {\r",
+									"                                        id: { type: \"string\" },\r",
+									"                                        firstName: { type: \"string\" },\r",
+									"                                        lastName: { type: \"string\" },\r",
+									"                                        phoneNumber: { type: \"string\" },\r",
+									"                                        email: { type: \"string\" },\r",
+									"                                        isActive: { type: \"boolean\" },\r",
+									"                                        isBusinessOwner: { type: \"boolean\" },\r",
+									"                                        title: { type: \"string\" },\r",
+									"                                        jobTitle: { type: \"string\" }\r",
+									"                                    },\r",
+									"                                    required: [\"id\", \"firstName\", \"lastName\", \"phoneNumber\", \"email\", \"isActive\", \"isBusinessOwner\", \"title\", \"jobTitle\"]\r",
+									"                                }\r",
+									"                            },\r",
+									"                            required: [\"id\", \"name\", \"isActive\", \"email\", \"phoneNumber\", \"noOfEmployees\", \"user\"]\r",
+									"                        }\r",
+									"                    },\r",
+									"                    pageInfo: {\r",
+									"                        type: \"object\",\r",
+									"                        properties: {\r",
+									"                            page: { type: \"number\" },\r",
+									"                            size: { type: \"number\" },\r",
+									"                            totalItems: { type: \"number\" },\r",
+									"                            totalPages: { type: \"number\" }\r",
+									"                        },\r",
+									"                        required: [\"page\", \"size\", \"totalItems\", \"totalPages\"]\r",
+									"                    }\r",
+									"                },\r",
+									"                required: [\"rows\", \"pageInfo\"]\r",
+									"            },\r",
+									"            error: { type: [\"null\", \"object\"] }\r",
+									"        },\r",
+									"        required: [\"statusCode\", \"data\", \"error\"]\r",
+									"    };\r",
+									"\r",
+									"    pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/businesses?pageNo=1&pageSize=10",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"businesses"
+							],
+							"query": [
+								{
+									"key": "pageNo",
+									"value": "1"
+								},
+								{
+									"key": "pageSize",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/businesses",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/businesses?pageNo=1&pageSize=10",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"businesses"
+									],
+									"query": [
+										{
+											"key": "pageNo",
+											"value": "1"
+										},
+										{
+											"key": "pageSize",
+											"value": "10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3736"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:01:50 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e98-faG9/8ielzFZT45+Tj91AAsO9RY\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876110007-a1541ff6"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "axAgtDakQxJOy0BRmXTJeLhRga5rafOXpmKld84f3Hm5L5mdRlhChg=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"rows\": [\n            {\n                \"id\": 9,\n                \"name\": \"Knowing-Fire\",\n                \"isActive\": true,\n                \"email\": \"patientq_automation1725876058484@yopmail.com\",\n                \"phoneNumber\": \"9750062550\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"ae730d84-9341-4592-a03b-2cb3cc180bac\",\n                    \"firstName\": \"Creative\",\n                    \"lastName\": \"Wind\",\n                    \"phoneNumber\": \"9750062550\",\n                    \"email\": \"patientq_automation1725876058484@yopmail.com\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"Software Test Engineer\",\n                    \"jobTitle\": \"SQAE\"\n                }\n            },\n            {\n                \"id\": 8,\n                \"name\": \"Soggy-Climate\",\n                \"isActive\": true,\n                \"email\": \"patientq_automation1725875697406@yopmail.com\",\n                \"phoneNumber\": \"6318855988\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"2224ff5b-7e14-4b05-8109-636529aa40d5\",\n                    \"firstName\": \"Attentive\",\n                    \"lastName\": \"Block\",\n                    \"phoneNumber\": \"6318855988\",\n                    \"email\": \"patientq_automation1725875697406@yopmail.com\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"Software Test Engineer\",\n                    \"jobTitle\": \"SQAE\"\n                }\n            },\n            {\n                \"id\": 7,\n                \"name\": \"Upright-Stupid\",\n                \"isActive\": true,\n                \"email\": \"patientq_automation1725875154069@yopmail.com\",\n                \"phoneNumber\": \"2292849502\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"4935a783-b537-491d-8ea2-9ab35c8c684b\",\n                    \"firstName\": \"Sympathetic\",\n                    \"lastName\": \"Permit\",\n                    \"phoneNumber\": \"2292849502\",\n                    \"email\": \"patientq_automation1725875154069@yopmail.com\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"Software Test Engineer\",\n                    \"jobTitle\": \"SQAE\"\n                }\n            },\n            {\n                \"id\": 6,\n                \"name\": \"Outrageous-Broad\",\n                \"isActive\": true,\n                \"email\": \"patientq_automation1725874899712@yopmail.com\",\n                \"phoneNumber\": \"9895544128\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"eaea0b8d-3b49-4dc5-90b8-192657b20e3a\",\n                    \"firstName\": \"Wiggly\",\n                    \"lastName\": \"Sample\",\n                    \"phoneNumber\": \"9895544128\",\n                    \"email\": \"patientq_automation1725874899712@yopmail.com\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"Software Test Engineer\",\n                    \"jobTitle\": \"SQAE\"\n                }\n            },\n            {\n                \"id\": 5,\n                \"name\": \"Sunrise Health Clinic\",\n                \"isActive\": true,\n                \"email\": \"ali.murtaza+11@venturedive.com\",\n                \"phoneNumber\": \"+1-800-555-1234\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"e3a6a328-3f8b-4807-b7fc-153f9cd6179f\",\n                    \"firstName\": \"John\",\n                    \"lastName\": \"Doe\",\n                    \"phoneNumber\": \"+1-800-555-5678\",\n                    \"email\": \"ali.murtaza+11@venturedive.com\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"Dr.\",\n                    \"jobTitle\": \"Clinic Manager\"\n                }\n            },\n            {\n                \"id\": 4,\n                \"name\": \"Extra-small-Accident\",\n                \"isActive\": true,\n                \"email\": \"patientq_automation1725872645051@starmail.net\",\n                \"phoneNumber\": \"7333826130\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"e824f645-5bd6-4981-930f-ada5be4876b7\",\n                    \"firstName\": \"Incomplete\",\n                    \"lastName\": \"Youth\",\n                    \"phoneNumber\": \"7333826130\",\n                    \"email\": \"patientq_automation1725872645051@starmail.net\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"Software Test Engineer\",\n                    \"jobTitle\": \"SQAE\"\n                }\n            },\n            {\n                \"id\": 3,\n                \"name\": \"Slight-Toe\",\n                \"isActive\": true,\n                \"email\": \"patientq_automation1725871766948@starmail.net\",\n                \"phoneNumber\": \"8236596193\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"6e15f39a-f868-4924-b701-97e722c9b99e\",\n                    \"firstName\": \"Offbeat\",\n                    \"lastName\": \"Field\",\n                    \"phoneNumber\": \"8236596193\",\n                    \"email\": \"patientq_automation1725871766948@starmail.net\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"Software Test Engineer\",\n                    \"jobTitle\": \"SQAE\"\n                }\n            },\n            {\n                \"id\": 2,\n                \"name\": \"J8HeNLi2QD\",\n                \"isActive\": true,\n                \"email\": \"user87441852@yopmail.com\",\n                \"phoneNumber\": \"03152009777\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"81e99121-58a0-4b29-b819-db9260a2f7a5\",\n                    \"firstName\": \"oowvVD\",\n                    \"lastName\": \"GJW8IfFE\",\n                    \"phoneNumber\": \"03459554453\",\n                    \"email\": \"user87441852@yopmail.com\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"LsU6Hl\",\n                    \"jobTitle\": \"cJibsw0z3q\"\n                }\n            },\n            {\n                \"id\": 1,\n                \"name\": \"BAjn3Xjf9k\",\n                \"isActive\": true,\n                \"email\": \"user61001677@maildrop.cc\",\n                \"phoneNumber\": \"03854526717\",\n                \"noOfEmployees\": 0,\n                \"user\": {\n                    \"id\": \"32e605d2-2143-41a4-95d2-a89f554a858e\",\n                    \"firstName\": \"L8fWCU\",\n                    \"lastName\": \"R6oWwrfe\",\n                    \"phoneNumber\": \"03215086656\",\n                    \"email\": \"user61001677@maildrop.cc\",\n                    \"isActive\": true,\n                    \"isBusinessOwner\": true,\n                    \"title\": \"3F5dF5\",\n                    \"jobTitle\": \"99sTD70Ypc\"\n                }\n            }\n        ],\n        \"pageInfo\": {\n            \"page\": 1,\n            \"size\": 10,\n            \"totalItems\": 9,\n            \"totalPages\": 1\n        }\n    },\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "role&permission",
+			"item": [
+				{
+					"name": "/api/v1/admin/permission",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"role_create\", jsonData.data.rows[0].id);\r",
+									"pm.collectionVariables.set(\"role_edit\", jsonData.data.rows[1].id);\r",
+									"pm.collectionVariables.set(\"role_view\", jsonData.data.rows[2].id);\r",
+									"pm.collectionVariables.set(\"role_delete\", jsonData.data.rows[3].id);\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"    var schema = {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"            statusCode: { type: \"number\" },\r",
+									"            data: {\r",
+									"                type: \"object\",\r",
+									"                properties: {\r",
+									"                    rows: { type: \"array\" },\r",
+									"                    pageInfo: { type: [\"object\", \"null\"] }\r",
+									"                },\r",
+									"                required: [\"rows\"]\r",
+									"            },\r",
+									"            error: { type: [\"object\", \"null\"] }\r",
+									"        },\r",
+									"        required: [\"statusCode\", \"data\", \"error\"]\r",
+									"    };\r",
+									"\r",
+									"    pm.expect(tv4.validate(pm.response.json(), schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/permission",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"permission"
+							]
+						},
+						"description": "Generated from cURL: curl -X 'GET' \\\r\n  'https://api-dev.patientq.io/api/v1/admin/permission' \\\r\n  -H 'accept: application/json'"
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/permission",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/permission",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"permission"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "242"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:03:23 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f2-ZxQMsfbx6e9aUBCQRVfFwmtNEsY\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876203219-d35f6cf8"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "vRNEBY9O8XBIUE2Cfp-wHUiFr-rMv1qOx1GI1Qa3f_mffZcE08p79A=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"rows\": [\n            {\n                \"id\": 1,\n                \"name\": \"role.add\",\n                \"appModuleId\": 1\n            },\n            {\n                \"id\": 2,\n                \"name\": \"role.edit\",\n                \"appModuleId\": 1\n            },\n            {\n                \"id\": 3,\n                \"name\": \"role.view\",\n                \"appModuleId\": 1\n            },\n            {\n                \"id\": 4,\n                \"name\": \"role.delete\",\n                \"appModuleId\": 1\n            }\n        ],\n        \"pageInfo\": null\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"pm.collectionVariables.set(\"created_role_id\", jsonData.data.id);\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});\r",
+									"// Adding a test to check the name of the role\r",
+									"pm.test(\"Verify that the name of the role\", function () {\r",
+									"    pm.expect(jsonData.data.name).to.be.equal(\"Nurse\");\r",
+									"});\r",
+									"// Adding a test to check the description of the role\r",
+									"pm.test(\"Verify that the description of the role\", function () {\r",
+									"    pm.expect(jsonData.data.description).to.be.equal(\"Deal with the patients\");\r",
+									"});\r",
+									"// Adding a test to check the isActive set as true for new role\r",
+									"pm.test(\"Verify that the isActive set as true for new role\", function () {\r",
+									"    pm.expect(jsonData.data.isActive).to.be.equal(true);\r",
+									"});\r",
+									"\r",
+									"// Adding a test to validate the response schema\r",
+									"pm.test(\"Schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      statusCode: { type: \"number\" },\r",
+									"      data: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"          id: { type: \"number\" },\r",
+									"          name: { type: \"string\" },\r",
+									"          description: { type: \"string\" },\r",
+									"          isActive: { type: \"boolean\" },\r",
+									"          permissions: {\r",
+									"            type: \"array\",\r",
+									"            items: {\r",
+									"              type: \"object\",\r",
+									"              properties: {\r",
+									"                id: { type: \"number\" },\r",
+									"                name: { type: \"string\" },\r",
+									"                appModuleId: { type: \"number\" }\r",
+									"              }\r",
+									"            }\r",
+									"          },\r",
+									"          businessId: { type: \"number\" }\r",
+									"        },\r",
+									"        required: [\"id\", \"name\", \"description\", \"isActive\", \"permissions\", \"businessId\"]\r",
+									"      },\r",
+									"      error: { type: \"null\" }\r",
+									"    },\r",
+									"    required: [\"statusCode\", \"data\", \"error\"]\r",
+									"  };\r",
+									"\r",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Nurse\",\n  \"description\": \"Deal with the patients\",\n  \"isActive\": true,\n  \"assignPermissions\": [ \n    {{role_view}},\n    {{role_delete}}\n  ],\n  \"businessId\": {{created_business_id}} //External Role for business\n}\n// Internal Role like sub-admin - Super admin is missing \n",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/role",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"role"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/role",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"Nurse\",\n  \"description\": \"Deal with the patients\",\n  \"isActive\": true,\n  \"assignPermissions\": [ \n    {{role_view}},\n    {{role_delete}}\n  ],\n  \"businessId\": {{created_business_id}} //External Role for business\n}\n// Internal Role like sub-admin - Super admin is missing \n",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"role"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "238"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:04:09 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ee-VPF+Et/R4POC3aNRNepXIKOTJCE\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876249058-841fbaf3"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "YA6tNNH7QX4-5iq91feIRJkyXe7414xropFj4GNBp04s58ZPf2ecqQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 201,\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Nurse\",\n        \"description\": \"Deal with the patients\",\n        \"isActive\": true,\n        \"permissions\": [\n            {\n                \"id\": 3,\n                \"name\": \"role.view\",\n                \"appModuleId\": 1\n            },\n            {\n                \"id\": 4,\n                \"name\": \"role.delete\",\n                \"appModuleId\": 1\n            }\n        ],\n        \"businessId\": 9\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Adding a test to check the role is created successfully\r",
+									"pm.test(\"Verify that the role is created successfully\", function () {\r",
+									"    pm.expect(jsonData.data.rows[jsonData.data.rows.length - 1].id).to.be.equal(pm.collectionVariables.get(\"created_role_id\"));\r",
+									"});\r",
+									"// Adding a test to check the role is created in the same business successfully\r",
+									"pm.test(\"Verify that the role is created in the same business successfully\", function () {\r",
+									"    pm.expect(jsonData.data.rows[jsonData.data.rows.length - 1].businessId).to.be.equal(pm.collectionVariables.get(\"created_business_id\"));\r",
+									"});\r",
+									"\r",
+									"// Test to check for response schema validation\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"    var response = pm.response.json();\r",
+									"\r",
+									"    pm.expect(response).to.have.property('statusCode');\r",
+									"    pm.expect(response).to.have.property('data');\r",
+									"    pm.expect(response.data).to.have.property('rows').that.is.an('array').and.not.empty;\r",
+									"    response.data.rows.forEach((row) => {\r",
+									"        pm.expect(row).to.have.property('id');\r",
+									"        pm.expect(row).to.have.property('name');\r",
+									"        pm.expect(row).to.have.property('description');\r",
+									"        pm.expect(row).to.have.property('isActive');\r",
+									"        pm.expect(row).to.have.property('createdBy');\r",
+									"        pm.expect(row).to.have.property('businessId');\r",
+									"        pm.expect(row).to.have.property('permissions').that.is.an('array').and.not.empty;\r",
+									"        row.permissions.forEach((permission) => {\r",
+									"            pm.expect(permission).to.have.property('id');\r",
+									"            pm.expect(permission).to.have.property('name');\r",
+									"            pm.expect(permission).to.have.property('appModuleId');\r",
+									"        });\r",
+									"        pm.expect(row).to.have.property('createdByUser');\r",
+									"        pm.expect(row).to.have.property('business');\r",
+									"        pm.expect(row.business).to.have.property('createdAt');\r",
+									"        pm.expect(row.business).to.have.property('updatedAt');\r",
+									"        pm.expect(row.business).to.have.property('id');\r",
+									"        pm.expect(row.business).to.have.property('name');\r",
+									"        pm.expect(row.business).to.have.property('email');\r",
+									"        pm.expect(row.business).to.have.property('phoneNumber');\r",
+									"        pm.expect(row.business).to.have.property('country');\r",
+									"        pm.expect(row.business).to.have.property('state');\r",
+									"        pm.expect(row.business).to.have.property('city');\r",
+									"        pm.expect(row.business).to.have.property('streetAddress');\r",
+									"        pm.expect(row.business).to.have.property('postalCode');\r",
+									"        pm.expect(row.business).to.have.property('subdomain');\r",
+									"        pm.expect(row.business).to.have.property('website');\r",
+									"        pm.expect(row.business).to.have.property('countryISOCode');\r",
+									"        pm.expect(row.business).to.have.property('twilioPhoneNumber');\r",
+									"        pm.expect(row.business).to.have.property('twilioSubAccountId');\r",
+									"        pm.expect(row.business).to.have.property('isActive');\r",
+									"        pm.expect(row.business).to.have.property('preferredTimeZone');\r",
+									"    });\r",
+									"    pm.expect(response.data).to.have.property('pageInfo');\r",
+									"    pm.expect(response).to.have.property('error');\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/role",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"role"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/role",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/role",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"role"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "818"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:04:41 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"332-e6xMLLQRVIJFA51Eo7Dx9d8HJrE\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876281640-1488ba52"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "lvEIT2t9xU_lfUK-586guiNyj1Euy6Lb2wolxuesA_mqLqNOeQ3y-Q=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"rows\": [\n            {\n                \"id\": 4,\n                \"name\": \"Nurse\",\n                \"description\": \"Deal with the patients\",\n                \"isActive\": true,\n                \"createdBy\": null,\n                \"businessId\": 9,\n                \"permissions\": [\n                    {\n                        \"id\": 3,\n                        \"name\": \"role.view\",\n                        \"appModuleId\": 1\n                    },\n                    {\n                        \"id\": 4,\n                        \"name\": \"role.delete\",\n                        \"appModuleId\": 1\n                    }\n                ],\n                \"createdByUser\": null,\n                \"business\": {\n                    \"createdAt\": \"2024-09-09T10:00:58.368Z\",\n                    \"updatedAt\": \"2024-09-09T10:00:58.368Z\",\n                    \"id\": 9,\n                    \"name\": \"Knowing-Fire\",\n                    \"email\": \"patientq_automation1725876058484@yopmail.com\",\n                    \"phoneNumber\": \"9750062550\",\n                    \"country\": \"America\",\n                    \"state\": \"USA\",\n                    \"city\": \"Newyork\",\n                    \"streetAddress\": \"Block2 Street 15\",\n                    \"postalCode\": \"00000\",\n                    \"subdomain\": \"busbymubeen.patientq.com\",\n                    \"website\": \"busbymubeen.patientq.com\",\n                    \"countryISOCode\": null,\n                    \"twilioPhoneNumber\": \"0000\",\n                    \"twilioSubAccountId\": null,\n                    \"isActive\": true,\n                    \"preferredTimeZone\": \"America/New_York\"\n                }\n            }\n        ],\n        \"pageInfo\": null\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/role/{{id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response contains the exact string\r",
+									"pm.test(\"Response contains the exact permissions\", function () {\r",
+									"    pm.expect(jsonData.data.permissions[0].id).to.equal(pm.collectionVariables.get(\"role_view\"));\r",
+									"});\r",
+									"// Test if the response contains the exact string\r",
+									"pm.test(\"Response contains the exact permissions\", function () {\r",
+									"    pm.expect(jsonData.data.permissions[1].id).to.equal(pm.collectionVariables.get(\"role_delete\"));\r",
+									"});\r",
+									"\r",
+									"// Adding a test to check for response schema validation\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      statusCode: { type: \"number\" },\r",
+									"      data: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"          id: { type: \"number\" },\r",
+									"          name: { type: \"string\" },\r",
+									"          description: { type: \"string\" },\r",
+									"          isActive: { type: \"boolean\" },\r",
+									"          permissions: {\r",
+									"            type: \"array\",\r",
+									"            items: {\r",
+									"              type: \"object\",\r",
+									"              properties: {\r",
+									"                id: { type: \"number\" },\r",
+									"                name: { type: \"string\" },\r",
+									"                appModuleId: { type: \"number\" },\r",
+									"              },\r",
+									"              required: [\"id\", \"name\", \"appModuleId\"],\r",
+									"            },\r",
+									"          },\r",
+									"          businessId: { type: \"number\" },\r",
+									"          business: {\r",
+									"            type: \"object\",\r",
+									"            properties: {\r",
+									"              // Define the properties of the business object here\r",
+									"            },\r",
+									"            // Add required properties of the business object here\r",
+									"          },\r",
+									"          createdByUser: { type: [\"object\", \"null\"] },\r",
+									"          createdBy: { type: [\"object\", \"null\"] },\r",
+									"        },\r",
+									"        required: [\"id\", \"name\", \"description\", \"isActive\", \"permissions\", \"businessId\"],\r",
+									"      },\r",
+									"      error: { type: [\"string\", \"null\"] },\r",
+									"    },\r",
+									"    required: [\"statusCode\", \"data\", \"error\"],\r",
+									"  };\r",
+									"\r",
+									"  var response = pm.response.json();\r",
+									"  pm.expect(tv4.validate(response, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"role",
+								"{{created_role_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/role/{{id}}",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"role",
+										"{{created_role_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "791"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:05:46 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"317-cKKMf497/E6LRsPUaR/GB+gX+x0\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876346684-53922903"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "Xxi4r8l4l1qMRs-nrOx_ZVuR07fLxGXqNlbjdKLnMs4Vl4ReXik_DQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Nurse\",\n        \"description\": \"Deal with the patients\",\n        \"isActive\": true,\n        \"permissions\": [\n            {\n                \"id\": 3,\n                \"name\": \"role.view\",\n                \"appModuleId\": 1\n            },\n            {\n                \"id\": 4,\n                \"name\": \"role.delete\",\n                \"appModuleId\": 1\n            }\n        ],\n        \"businessId\": 9,\n        \"business\": {\n            \"createdAt\": \"2024-09-09T10:00:58.368Z\",\n            \"updatedAt\": \"2024-09-09T10:00:58.368Z\",\n            \"id\": 9,\n            \"name\": \"Knowing-Fire\",\n            \"email\": \"patientq_automation1725876058484@yopmail.com\",\n            \"phoneNumber\": \"9750062550\",\n            \"country\": \"America\",\n            \"state\": \"USA\",\n            \"city\": \"Newyork\",\n            \"streetAddress\": \"Block2 Street 15\",\n            \"postalCode\": \"00000\",\n            \"subdomain\": \"busbymubeen.patientq.com\",\n            \"website\": \"busbymubeen.patientq.com\",\n            \"countryISOCode\": null,\n            \"twilioPhoneNumber\": \"0000\",\n            \"twilioSubAccountId\": null,\n            \"isActive\": true,\n            \"preferredTimeZone\": \"America/New_York\"\n        },\n        \"createdByUser\": null,\n        \"createdBy\": null\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/role/{{id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test to validate response schema\r",
+									"pm.test(\"Schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      statusCode: { type: \"number\" },\r",
+									"      data: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"          generatedMaps: { type: \"array\" },\r",
+									"          raw: { type: \"array\" },\r",
+									"          affected: { type: \"number\" },\r",
+									"        },\r",
+									"        required: [\"generatedMaps\", \"raw\", \"affected\"],\r",
+									"      },\r",
+									"      error: { type: [\"null\", \"object\"] },\r",
+									"    },\r",
+									"    required: [\"statusCode\", \"data\", \"error\"],\r",
+									"  };\r",
+									"\r",
+									"  pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"description\": \"Updated\",\n  \"isActive\": \"true\",\n  \"assignPermissions\": [\n    {{role_edit}}\n  ]\n}",
+							"options": {
+								"raw": {
+									"headerFamily": "json",
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"role",
+								"{{created_role_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/role/{{id}}",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"description\": \"Updated\",\n  \"isActive\": \"true\",\n  \"assignPermissions\": [\n    {{role_edit}}\n  ]\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"role",
+										"{{created_role_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "81"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:06:01 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"51-ASvQR5H9QJ5z0jAFy56FCOUr5YA\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876360932-830cc8b7"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "JJFrzDgVocTRVdi0KQwmvsNJrAYV6so4o5n18fggEUxxKykF0cFAFw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"generatedMaps\": [],\n        \"raw\": [],\n        \"affected\": 1\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/role/{{id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Extracting a value from the response body\r",
+									"const jsonData = pm.response.json();\r",
+									"\r",
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"// Test if the response contains the exact string\r",
+									"pm.test(\"Response contains the exact permissions\", function () {\r",
+									"    pm.expect(jsonData.data.permissions[0].id).to.equal(pm.collectionVariables.get(\"role_edit\"));\r",
+									"});\r",
+									"// Adding a test to validate the response schema\r",
+									"pm.test(\"Response schema is valid\", function () {\r",
+									"    var schema = {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"            statusCode: { type: \"number\" },\r",
+									"            data: {\r",
+									"                type: \"object\",\r",
+									"                properties: {\r",
+									"                    id: { type: \"number\" },\r",
+									"                    name: { type: \"string\" },\r",
+									"                    description: { type: \"string\" },\r",
+									"                    isActive: { type: \"boolean\" },\r",
+									"                    permissions: {\r",
+									"                        type: \"array\",\r",
+									"                        items: {\r",
+									"                            type: \"object\",\r",
+									"                            properties: {\r",
+									"                                id: { type: \"number\" },\r",
+									"                                name: { type: \"string\" },\r",
+									"                                appModuleId: { type: \"number\" }\r",
+									"                            },\r",
+									"                            required: [\"id\", \"name\", \"appModuleId\"]\r",
+									"                        }\r",
+									"                    },\r",
+									"                    businessId: { type: \"number\" },\r",
+									"                    business: {\r",
+									"                        type: \"object\",\r",
+									"                        properties: {\r",
+									"                            createdAt: { type: \"string\" },\r",
+									"                            updatedAt: { type: \"string\" },\r",
+									"                            id: { type: \"number\" },\r",
+									"                            name: { type: \"string\" },\r",
+									"                            email: { type: \"string\" },\r",
+									"                            phoneNumber: { type: \"string\" },\r",
+									"                            country: { type: \"string\" },\r",
+									"                            state: { type: \"string\" },\r",
+									"                            city: { type: \"string\" },\r",
+									"                            streetAddress: { type: \"string\" },\r",
+									"                            postalCode: { type: \"string\" },\r",
+									"                            subdomain: { type: \"string\" },\r",
+									"                            website: { type: \"string\" },\r",
+									"                            countryISOCode: { type: [\"string\", \"null\"] },\r",
+									"                            twilioPhoneNumber: { type: [\"string\", \"null\"] },\r",
+									"                            twilioSubAccountId: { type: [\"string\", \"null\"] },\r",
+									"                            isActive: { type: \"boolean\" },\r",
+									"                            preferredTimeZone: { type: \"string\" }\r",
+									"                        }\r",
+									"                    },\r",
+									"                    createdByUser: { type: [\"object\", \"null\"] },\r",
+									"                    createdBy: { type: [\"object\", \"null\"] }\r",
+									"                },\r",
+									"                required: [\"id\", \"name\", \"description\", \"isActive\", \"permissions\", \"businessId\", \"business\"]\r",
+									"            },\r",
+									"            error: { type: [\"string\", \"null\"] }\r",
+									"        },\r",
+									"        required: [\"statusCode\", \"data\", \"error\"]\r",
+									"    };\r",
+									"\r",
+									"    pm.expect(tv4.validate(jsonData, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"role",
+								"{{created_role_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/role/{{id}}",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"role",
+										"{{created_role_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "730"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:06:47 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2da-SH6bUsZHrXEJsDGUuZUhLJLW8yU\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876407064-93768dfc"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "D0TXpzDVky4agyJT96fcii0pJEIet74uGP85qnjUy9V3YWgrJu1yAQ=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"id\": 4,\n        \"name\": \"Nurse\",\n        \"description\": \"Updated\",\n        \"isActive\": true,\n        \"permissions\": [\n            {\n                \"id\": 2,\n                \"name\": \"role.edit\",\n                \"appModuleId\": 1\n            }\n        ],\n        \"businessId\": 9,\n        \"business\": {\n            \"createdAt\": \"2024-09-09T10:00:58.368Z\",\n            \"updatedAt\": \"2024-09-09T10:00:58.368Z\",\n            \"id\": 9,\n            \"name\": \"Knowing-Fire\",\n            \"email\": \"patientq_automation1725876058484@yopmail.com\",\n            \"phoneNumber\": \"9750062550\",\n            \"country\": \"America\",\n            \"state\": \"USA\",\n            \"city\": \"Newyork\",\n            \"streetAddress\": \"Block2 Street 15\",\n            \"postalCode\": \"00000\",\n            \"subdomain\": \"busbymubeen.patientq.com\",\n            \"website\": \"busbymubeen.patientq.com\",\n            \"countryISOCode\": null,\n            \"twilioPhoneNumber\": \"0000\",\n            \"twilioSubAccountId\": null,\n            \"isActive\": true,\n            \"preferredTimeZone\": \"America/New_York\"\n        },\n        \"createdByUser\": null,\n        \"createdBy\": null\n    },\n    \"error\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "/api/v1/admin/role/{{id}}",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Adding a test to check the response status code\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"// Adding a test to check for schema validation in the response\r",
+									"pm.test(\"Schema is valid\", function () {\r",
+									"  var schema = {\r",
+									"    type: \"object\",\r",
+									"    properties: {\r",
+									"      statusCode: { type: \"number\" },\r",
+									"      data: {\r",
+									"        type: \"object\",\r",
+									"        properties: {\r",
+									"          raw: { type: \"array\" },\r",
+									"          affected: { type: \"number\" },\r",
+									"        },\r",
+									"        required: [\"raw\", \"affected\"]\r",
+									"      },\r",
+									"      error: { type: \"null\" }\r",
+									"    },\r",
+									"    required: [\"statusCode\", \"data\", \"error\"]\r",
+									"  };\r",
+									"\r",
+									"  var response = pm.response.json();\r",
+									"  pm.expect(tv4.validate(response, schema)).to.be.true;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"admin",
+								"role",
+								"{{created_role_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "/api/v1/admin/role/{{id}}",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/api/v1/admin/role/{{created_role_id}}",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"admin",
+										"role",
+										"{{created_role_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 09 Sep 2024 10:07:21 GMT"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-s1LurefLvDDqKrkrgR1H+zCciiA\""
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.62 (Amazon Linux) OpenSSL/3.0.8"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-Trace-Id",
+									"value": "1725876441608-d2f8f0e6"
+								},
+								{
+									"key": "X-Cache",
+									"value": "Miss from cloudfront"
+								},
+								{
+									"key": "Via",
+									"value": "1.1 3b482bf4706a93d5a9cd8f6cb9208a92.cloudfront.net (CloudFront)"
+								},
+								{
+									"key": "X-Amz-Cf-Pop",
+									"value": "DXB53-P2"
+								},
+								{
+									"key": "X-Amz-Cf-Id",
+									"value": "Rk2HwMyCxV2dzMGavcASjpTKlIuRGvIqiMlbw4HvpBGhI8xKWLJ5zw=="
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"data\": {\n        \"raw\": [],\n        \"affected\": 1\n    },\n    \"error\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{SuperAdminAcessTokenn}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "SuperAdminAcessTokenn",
+			"value": ""
+		},
+		{
+			"key": "created_business_id",
+			"value": ""
+		},
+		{
+			"key": "created_role_id",
+			"value": ""
+		},
+		{
+			"key": "role_view",
+			"value": ""
+		},
+		{
+			"key": "role_create",
+			"value": ""
+		},
+		{
+			"key": "role_edit",
+			"value": ""
+		},
+		{
+			"key": "role_delete",
+			"value": ""
+		},
+		{
+			"key": "businessNamee",
+			"value": ""
+		},
+		{
+			"key": "phoneNumberr",
+			"value": ""
+		},
+		{
+			"key": "firstNamee",
+			"value": ""
+		},
+		{
+			"key": "secondNamee",
+			"value": ""
+		},
+		{
+			"key": "businessOwnerEmailAddresss",
+			"value": ""
+		}
+	]
+}
